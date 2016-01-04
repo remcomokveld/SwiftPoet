@@ -2,9 +2,11 @@
 //  SwiftPoet.swift
 //  Cleanroom Project
 //
-//  Created by Kyle Dorman on 1/4/16.
-//  Copyright (c) 2016 Gilt Groupe. All rights reserved.
+//  Created by  on 11/9/15.
+//  Copyright (c) 2015 Gilt Groupe. All rights reserved.
 //
+
+import Foundation
 
 public protocol SwiftPoet
 {

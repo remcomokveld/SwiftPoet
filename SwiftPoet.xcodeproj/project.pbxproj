@@ -14,9 +14,36 @@
 		3B00E5A41BA37A420011486D /* SwiftPoet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B00E59A1BA37A420011486D /* SwiftPoet.framework */; };
 		3B38DBE41BA764BA000986DF /* SwiftPoet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00E4D31BA36B840011486D /* SwiftPoet.swift */; };
 		3B78C6B61BA762CF00173EAC /* SwiftPoet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00E4D31BA36B840011486D /* SwiftPoet.swift */; };
-		3B78C6B91BA762FD00173EAC /* SwiftPoetUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78C6B81BA762FD00173EAC /* SwiftPoetUnitTests.swift */; };
-		3B78C6BA1BA762FD00173EAC /* SwiftPoetUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78C6B81BA762FD00173EAC /* SwiftPoetUnitTests.swift */; };
-		3B78C6BB1BA762FD00173EAC /* SwiftPoetUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78C6B81BA762FD00173EAC /* SwiftPoetUnitTests.swift */; };
+		59AA667A1C3B1853003CD1A2 /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66751C3B1853003CD1A2 /* CodeBlock.swift */; };
+		59AA667B1C3B1853003CD1A2 /* CodeWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66761C3B1853003CD1A2 /* CodeWriter.swift */; };
+		59AA667C1C3B1853003CD1A2 /* ControlFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66771C3B1853003CD1A2 /* ControlFlow.swift */; };
+		59AA667D1C3B1853003CD1A2 /* EmitObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66781C3B1853003CD1A2 /* EmitObject.swift */; };
+		59AA667E1C3B1853003CD1A2 /* TypeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66791C3B1853003CD1A2 /* TypeName.swift */; };
+		59AA66831C3B185A003CD1A2 /* Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66801C3B185A003CD1A2 /* Construct.swift */; };
+		59AA66841C3B185A003CD1A2 /* EmitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66811C3B185A003CD1A2 /* EmitType.swift */; };
+		59AA66851C3B185A003CD1A2 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66821C3B185A003CD1A2 /* Modifier.swift */; };
+		59AA66971C3B1865003CD1A2 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66871C3B1865003CD1A2 /* Builder.swift */; };
+		59AA66981C3B1865003CD1A2 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66881C3B1865003CD1A2 /* Emitter.swift */; };
+		59AA66991C3B1865003CD1A2 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66891C3B1865003CD1A2 /* Literal.swift */; };
+		59AA669A1C3B1865003CD1A2 /* ClassSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA668B1C3B1865003CD1A2 /* ClassSpec.swift */; };
+		59AA669B1C3B1865003CD1A2 /* EnumSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA668C1C3B1865003CD1A2 /* EnumSpec.swift */; };
+		59AA669C1C3B1865003CD1A2 /* FieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA668D1C3B1865003CD1A2 /* FieldSpec.swift */; };
+		59AA669D1C3B1865003CD1A2 /* MethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA668E1C3B1865003CD1A2 /* MethodSpec.swift */; };
+		59AA669E1C3B1865003CD1A2 /* ParameterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA668F1C3B1865003CD1A2 /* ParameterSpec.swift */; };
+		59AA669F1C3B1865003CD1A2 /* PoetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66901C3B1865003CD1A2 /* PoetSpec.swift */; };
+		59AA66A01C3B1865003CD1A2 /* ProtocolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66911C3B1865003CD1A2 /* ProtocolSpec.swift */; };
+		59AA66A11C3B1865003CD1A2 /* StructSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66921C3B1865003CD1A2 /* StructSpec.swift */; };
+		59AA66A21C3B1865003CD1A2 /* TypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66931C3B1865003CD1A2 /* TypeSpec.swift */; };
+		59AA66A31C3B1865003CD1A2 /* PoetUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66951C3B1865003CD1A2 /* PoetUtil.swift */; };
+		59AA66A41C3B1865003CD1A2 /* ReservedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66961C3B1865003CD1A2 /* ReservedWords.swift */; };
+		59AA66B41C3B1870003CD1A2 /* gilt_public_api.json in Resources */ = {isa = PBXBuildFile; fileRef = 59AA66AD1C3B1870003CD1A2 /* gilt_public_api.json */; };
+		59AA66B51C3B18D3003CD1A2 /* ControlFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66A61C3B1870003CD1A2 /* ControlFlowTests.swift */; };
+		59AA66B61C3B18D3003CD1A2 /* EnumSpecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66A71C3B1870003CD1A2 /* EnumSpecTests.swift */; };
+		59AA66B71C3B18D3003CD1A2 /* MethodSpecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66A81C3B1870003CD1A2 /* MethodSpecTests.swift */; };
+		59AA66B81C3B18D3003CD1A2 /* PoetUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66A91C3B1870003CD1A2 /* PoetUtilTests.swift */; };
+		59AA66B91C3B18D3003CD1A2 /* GenerateModelFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66AB1C3B1870003CD1A2 /* GenerateModelFromJSON.swift */; };
+		59AA66BA1C3B18D3003CD1A2 /* GenrateEnumFromSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66AC1C3B1870003CD1A2 /* GenrateEnumFromSetTest.swift */; };
+		59AA66BE1C3B242B003CD1A2 /* gilt_public_api.json in Resources */ = {isa = PBXBuildFile; fileRef = 59AA66AD1C3B1870003CD1A2 /* gilt_public_api.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +100,36 @@
 		3B38DBE11BA76428000986DF /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		3B38DBE21BA76428000986DF /* tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tvOS.xcconfig; sourceTree = "<group>"; };
 		3B38DBE31BA76428000986DF /* watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = watchOS.xcconfig; sourceTree = "<group>"; };
-		3B78C6B81BA762FD00173EAC /* SwiftPoetUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPoetUnitTests.swift; sourceTree = "<group>"; };
 		3B78C6CE1BA7634E00173EAC /* SwiftPoet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftPoet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59AA66751C3B1853003CD1A2 /* CodeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
+		59AA66761C3B1853003CD1A2 /* CodeWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeWriter.swift; sourceTree = "<group>"; };
+		59AA66771C3B1853003CD1A2 /* ControlFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlFlow.swift; sourceTree = "<group>"; };
+		59AA66781C3B1853003CD1A2 /* EmitObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitObject.swift; sourceTree = "<group>"; };
+		59AA66791C3B1853003CD1A2 /* TypeName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeName.swift; sourceTree = "<group>"; };
+		59AA66801C3B185A003CD1A2 /* Construct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Construct.swift; sourceTree = "<group>"; };
+		59AA66811C3B185A003CD1A2 /* EmitType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitType.swift; sourceTree = "<group>"; };
+		59AA66821C3B185A003CD1A2 /* Modifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
+		59AA66871C3B1865003CD1A2 /* Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		59AA66881C3B1865003CD1A2 /* Emitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
+		59AA66891C3B1865003CD1A2 /* Literal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
+		59AA668B1C3B1865003CD1A2 /* ClassSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassSpec.swift; sourceTree = "<group>"; };
+		59AA668C1C3B1865003CD1A2 /* EnumSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumSpec.swift; sourceTree = "<group>"; };
+		59AA668D1C3B1865003CD1A2 /* FieldSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldSpec.swift; sourceTree = "<group>"; };
+		59AA668E1C3B1865003CD1A2 /* MethodSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodSpec.swift; sourceTree = "<group>"; };
+		59AA668F1C3B1865003CD1A2 /* ParameterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterSpec.swift; sourceTree = "<group>"; };
+		59AA66901C3B1865003CD1A2 /* PoetSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetSpec.swift; sourceTree = "<group>"; };
+		59AA66911C3B1865003CD1A2 /* ProtocolSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolSpec.swift; sourceTree = "<group>"; };
+		59AA66921C3B1865003CD1A2 /* StructSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructSpec.swift; sourceTree = "<group>"; };
+		59AA66931C3B1865003CD1A2 /* TypeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeSpec.swift; sourceTree = "<group>"; };
+		59AA66951C3B1865003CD1A2 /* PoetUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetUtil.swift; sourceTree = "<group>"; };
+		59AA66961C3B1865003CD1A2 /* ReservedWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservedWords.swift; sourceTree = "<group>"; };
+		59AA66A61C3B1870003CD1A2 /* ControlFlowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlFlowTests.swift; sourceTree = "<group>"; };
+		59AA66A71C3B1870003CD1A2 /* EnumSpecTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumSpecTests.swift; sourceTree = "<group>"; };
+		59AA66A81C3B1870003CD1A2 /* MethodSpecTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodSpecTests.swift; sourceTree = "<group>"; };
+		59AA66A91C3B1870003CD1A2 /* PoetUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetUtilTests.swift; sourceTree = "<group>"; };
+		59AA66AB1C3B1870003CD1A2 /* GenerateModelFromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateModelFromJSON.swift; sourceTree = "<group>"; };
+		59AA66AC1C3B1870003CD1A2 /* GenrateEnumFromSetTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenrateEnumFromSetTest.swift; sourceTree = "<group>"; };
+		59AA66AD1C3B1870003CD1A2 /* gilt_public_api.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gilt_public_api.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +228,11 @@
 		3B00E4D21BA36B840011486D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				59AA66861C3B1865003CD1A2 /* Protocols */,
+				59AA668A1C3B1865003CD1A2 /* Spec */,
+				59AA66941C3B1865003CD1A2 /* Util */,
+				59AA667F1C3B185A003CD1A2 /* Enums */,
+				59AA66741C3B1853003CD1A2 /* CodeGeneration */,
 				3B00E4D31BA36B840011486D /* SwiftPoet.swift */,
 			);
 			path = Sources;
@@ -181,7 +241,8 @@
 		3B00E4D51BA36B840011486D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3B78C6B81BA762FD00173EAC /* SwiftPoetUnitTests.swift */,
+				59AA66A51C3B1870003CD1A2 /* FileTests */,
+				59AA66AA1C3B1870003CD1A2 /* FullGenerators */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -208,6 +269,84 @@
 				3B00E4B91BA36B840011486D /* BuildControl */,
 				3B00E55E1BA3782D0011486D /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		59AA66741C3B1853003CD1A2 /* CodeGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				59AA66751C3B1853003CD1A2 /* CodeBlock.swift */,
+				59AA66761C3B1853003CD1A2 /* CodeWriter.swift */,
+				59AA66771C3B1853003CD1A2 /* ControlFlow.swift */,
+				59AA66781C3B1853003CD1A2 /* EmitObject.swift */,
+				59AA66791C3B1853003CD1A2 /* TypeName.swift */,
+			);
+			path = CodeGeneration;
+			sourceTree = "<group>";
+		};
+		59AA667F1C3B185A003CD1A2 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				59AA66801C3B185A003CD1A2 /* Construct.swift */,
+				59AA66811C3B185A003CD1A2 /* EmitType.swift */,
+				59AA66821C3B185A003CD1A2 /* Modifier.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		59AA66861C3B1865003CD1A2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				59AA66871C3B1865003CD1A2 /* Builder.swift */,
+				59AA66881C3B1865003CD1A2 /* Emitter.swift */,
+				59AA66891C3B1865003CD1A2 /* Literal.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		59AA668A1C3B1865003CD1A2 /* Spec */ = {
+			isa = PBXGroup;
+			children = (
+				59AA668B1C3B1865003CD1A2 /* ClassSpec.swift */,
+				59AA668C1C3B1865003CD1A2 /* EnumSpec.swift */,
+				59AA668D1C3B1865003CD1A2 /* FieldSpec.swift */,
+				59AA668E1C3B1865003CD1A2 /* MethodSpec.swift */,
+				59AA668F1C3B1865003CD1A2 /* ParameterSpec.swift */,
+				59AA66901C3B1865003CD1A2 /* PoetSpec.swift */,
+				59AA66911C3B1865003CD1A2 /* ProtocolSpec.swift */,
+				59AA66921C3B1865003CD1A2 /* StructSpec.swift */,
+				59AA66931C3B1865003CD1A2 /* TypeSpec.swift */,
+			);
+			path = Spec;
+			sourceTree = "<group>";
+		};
+		59AA66941C3B1865003CD1A2 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				59AA66951C3B1865003CD1A2 /* PoetUtil.swift */,
+				59AA66961C3B1865003CD1A2 /* ReservedWords.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		59AA66A51C3B1870003CD1A2 /* FileTests */ = {
+			isa = PBXGroup;
+			children = (
+				59AA66A61C3B1870003CD1A2 /* ControlFlowTests.swift */,
+				59AA66A71C3B1870003CD1A2 /* EnumSpecTests.swift */,
+				59AA66A81C3B1870003CD1A2 /* MethodSpecTests.swift */,
+				59AA66A91C3B1870003CD1A2 /* PoetUtilTests.swift */,
+			);
+			path = FileTests;
+			sourceTree = "<group>";
+		};
+		59AA66AA1C3B1870003CD1A2 /* FullGenerators */ = {
+			isa = PBXGroup;
+			children = (
+				59AA66AB1C3B1870003CD1A2 /* GenerateModelFromJSON.swift */,
+				59AA66AC1C3B1870003CD1A2 /* GenrateEnumFromSetTest.swift */,
+				59AA66AD1C3B1870003CD1A2 /* gilt_public_api.json */,
+			);
+			path = FullGenerators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,6 +582,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59AA66B41C3B1870003CD1A2 /* gilt_public_api.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +590,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59AA66BE1C3B242B003CD1A2 /* gilt_public_api.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +630,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B78C6B91BA762FD00173EAC /* SwiftPoetUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +637,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59AA66A01C3B1865003CD1A2 /* ProtocolSpec.swift in Sources */,
+				59AA667A1C3B1853003CD1A2 /* CodeBlock.swift in Sources */,
+				59AA669B1C3B1865003CD1A2 /* EnumSpec.swift in Sources */,
+				59AA669C1C3B1865003CD1A2 /* FieldSpec.swift in Sources */,
+				59AA66981C3B1865003CD1A2 /* Emitter.swift in Sources */,
+				59AA66A41C3B1865003CD1A2 /* ReservedWords.swift in Sources */,
+				59AA669F1C3B1865003CD1A2 /* PoetSpec.swift in Sources */,
+				59AA667C1C3B1853003CD1A2 /* ControlFlow.swift in Sources */,
+				59AA66841C3B185A003CD1A2 /* EmitType.swift in Sources */,
+				59AA669E1C3B1865003CD1A2 /* ParameterSpec.swift in Sources */,
+				59AA66A31C3B1865003CD1A2 /* PoetUtil.swift in Sources */,
+				59AA667E1C3B1853003CD1A2 /* TypeName.swift in Sources */,
+				59AA669D1C3B1865003CD1A2 /* MethodSpec.swift in Sources */,
+				59AA66991C3B1865003CD1A2 /* Literal.swift in Sources */,
+				59AA667B1C3B1853003CD1A2 /* CodeWriter.swift in Sources */,
+				59AA66831C3B185A003CD1A2 /* Construct.swift in Sources */,
+				59AA669A1C3B1865003CD1A2 /* ClassSpec.swift in Sources */,
+				59AA66A11C3B1865003CD1A2 /* StructSpec.swift in Sources */,
+				59AA667D1C3B1853003CD1A2 /* EmitObject.swift in Sources */,
 				3B00E5931BA37A290011486D /* SwiftPoet.swift in Sources */,
+				59AA66851C3B185A003CD1A2 /* Modifier.swift in Sources */,
+				59AA66971C3B1865003CD1A2 /* Builder.swift in Sources */,
+				59AA66A21C3B1865003CD1A2 /* TypeSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +667,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B78C6BA1BA762FD00173EAC /* SwiftPoetUnitTests.swift in Sources */,
+				59AA66B51C3B18D3003CD1A2 /* ControlFlowTests.swift in Sources */,
+				59AA66B61C3B18D3003CD1A2 /* EnumSpecTests.swift in Sources */,
+				59AA66B71C3B18D3003CD1A2 /* MethodSpecTests.swift in Sources */,
+				59AA66B81C3B18D3003CD1A2 /* PoetUtilTests.swift in Sources */,
+				59AA66B91C3B18D3003CD1A2 /* GenerateModelFromJSON.swift in Sources */,
+				59AA66BA1C3B18D3003CD1A2 /* GenrateEnumFromSetTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +688,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B78C6BB1BA762FD00173EAC /* SwiftPoetUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
