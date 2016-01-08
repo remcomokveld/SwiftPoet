@@ -8,18 +8,18 @@
 
 import Foundation
 
-internal struct PoetUtil {
-    static func addDataToList<T: Equatable>(data: T, inout list: [T]) {
+public struct PoetUtil {
+    internal static func addDataToList<T: Equatable>(data: T, inout list: [T]) {
         if (list.filter { $0 == data }).count == 0 {
             list.append(data)
         }
     }
 
-    static func addDataToList<T>(data: [T], fn: (T) -> Any) {
+    internal static func addDataToList<T>(data: [T], fn: (T) -> Any) {
         for d in data { fn(d) }
     }
 
-    static func cleanTypeName(name: String) -> String {
+    public static func cleanTypeName(name: String) -> String {
         let cleanedName = PoetUtil.stripSpaceAndUnderscore(name).reduce("") { accum, str in
             return accum + PoetUtil.capitalizeFirstChar(str)
         }
@@ -27,7 +27,7 @@ internal struct PoetUtil {
         return ReservedWords.safeWord(cleanedName)
     }
 
-    static func cleanCammelCaseString(name: String) -> String {
+    public static func cleanCammelCaseString(name: String) -> String {
         guard name.characters.count > 0 else {
             return name
         }
@@ -67,14 +67,14 @@ internal struct PoetUtil {
         return String(chars)
     }
 
-    static func fmap<A, B>(f: A -> B?, a: A?) -> B? {
+    internal static func fmap<A, B>(f: A -> B?, a: A?) -> B? {
         switch a {
         case .Some(let x): return f(x)
         case .None: return .None
         }
     }
 
-    static func fmap<A, B>(f: A -> B, a: A?) -> B? {
+    internal static func fmap<A, B>(f: A -> B, a: A?) -> B? {
         switch a {
         case .Some(let x): return f(x)
         case .None:   return .None
