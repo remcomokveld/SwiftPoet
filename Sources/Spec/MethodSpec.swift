@@ -67,7 +67,7 @@ public class MethodSpec: PoetSpecImpl {
         }
         cbBuilder.addEmitObject(.Literal, any: name)
         cbBuilder.addEmitObject(.Literal, any: "(")
-        codeWriter.emitWithIndentation(cbBuilder.build())
+        codeWriter.emit(cbBuilder.build())
 
         var first = true
         parameters.forEach { p in

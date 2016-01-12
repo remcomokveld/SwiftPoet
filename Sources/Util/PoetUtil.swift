@@ -9,6 +9,16 @@
 import Foundation
 
 public struct PoetUtil {
+    private static let template = "^^^^"
+    private static let regexPattern = "\\s|_|\\."
+    private static func getSpaceAndPunctuationRegex() -> NSRegularExpression? {
+        do {
+            return try NSRegularExpression(pattern: PoetUtil.regexPattern, options: NSRegularExpressionOptions.AnchorsMatchLines)
+        } catch {
+            return nil
+        }
+    }
+
     internal static func addDataToList<T: Equatable>(data: T, inout list: [T]) {
         if (list.filter { $0 == data }).count == 0 {
             list.append(data)
@@ -19,51 +29,46 @@ public struct PoetUtil {
         for d in data { fn(d) }
     }
 
+    // CapitalizedCammelCase
     public static func cleanTypeName(name: String) -> String {
-        let cleanedName = PoetUtil.stripSpaceAndUnderscore(name).reduce("") { accum, str in
-            return accum + PoetUtil.capitalizeFirstChar(str)
-        }
-
-        return ReservedWords.safeWord(cleanedName)
+        return ReservedWords.safeWord(PoetUtil.stripSpaceAndPunctuation(name).joinWithSeparator(""))
     }
 
+    // cammelCase
     public static func cleanCammelCaseString(name: String) -> String {
-        guard name.characters.count > 0 else {
-            return name
-        }
-
-        var cleanedNameChars = PoetUtil.stripSpaceAndUnderscore(name).reduce("") { accum, str in
-                return accum + PoetUtil.capitalizeFirstChar(str)
-        }.characters
-
-        let lowercaseStr = String(cleanedNameChars.first!).lowercaseString.characters
-        let range = Range(start: cleanedNameChars.startIndex, end: cleanedNameChars.startIndex.successor())
-        cleanedNameChars.replaceRange(range, with: lowercaseStr)
-
-        return ReservedWords.safeWord(String(cleanedNameChars))
+        let cleanedNameChars = PoetUtil.stripSpaceAndPunctuation(name).joinWithSeparator("")
+        return ReservedWords.safeWord(PoetUtil.lowercaseFirstChar(cleanedNameChars))
     }
 
-    private static func stripSpaceAndUnderscore(name: String) -> [String] {
-        let chars = name.characters
-
-        // if name doens not have spaces or underscores, assume it is already cleaned
-        guard chars.contains(" ") || chars.contains("_")  else {
+    private static func stripSpaceAndPunctuation(name: String) -> [String] {
+        guard let regex = getSpaceAndPunctuationRegex() else {
             return [name]
         }
 
-        return chars.split { str in
-            str == " " || str == "_"
-        }.map {
-            String($0).lowercaseString
+        return regex.stringByReplacingMatchesInString(name, options: [], range: NSMakeRange(0, name.characters.count), withTemplate: PoetUtil.template).componentsSeparatedByString(PoetUtil.template).map { s in
+            PoetUtil.capitalizeFirstChar(s)
         }
     }
 
     // capitalize first letter without removing cammel case on other characters
     private static func capitalizeFirstChar(str: String) -> String {
+        return PoetUtil.caseFirstChar(str) { str in
+            return str.uppercaseString.characters
+        }
+    }
+
+    // lowercase first letter without removing cammel case on other characters
+    private static func lowercaseFirstChar(str: String) -> String {
+        return PoetUtil.caseFirstChar(str) { str in
+            return str.lowercaseString.characters
+        }
+    }
+
+    private static func caseFirstChar(str: String, caseFn: (str: String) -> String.CharacterView) -> String {
         var chars = str.characters
         let first = str.substringToIndex(chars.startIndex.successor())
         let range = Range(start: chars.startIndex, end: chars.startIndex.successor())
-        chars.replaceRange(range, with: first.capitalizedString.characters)
+        chars.replaceRange(range, with: caseFn(str: first))
         return String(chars)
     }
 

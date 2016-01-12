@@ -71,4 +71,9 @@ class PoetUtilTests: XCTestCase {
         XCTAssertEqual("testAllCaps", PoetUtil.cleanCammelCaseString(name))
     }
 
+    func testPeriodsInName() {
+        let name = "TEST.ALL.CAPS"
+        XCTAssertEqual("testAllCaps", PoetUtil.cleanCammelCaseString(name))
+    }
+
 }
