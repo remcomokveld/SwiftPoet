@@ -53,6 +53,30 @@ public enum ControlFlow: String {
         return cb.build()
     }
 
+    public static func closureControlFlow(parameters: CodeBlock, canThrow: Bool, returnType: CodeBlock? , execution: CodeBlock) -> CodeBlock {
+        let cb = CodeBlock.builder()
+        cb.addEmitObject(.BeginStatement)
+        cb.addEmitObject(.Literal, any: "(")
+        cb.addEmitObjects(parameters.emittableObjects)
+        cb.addEmitObject(.Literal, any: ")")
+        if canThrow {
+            cb.addEmitObject(.Literal, any: "throws")
+        }
+        cb.addEmitObject(.Literal, any: "->")
+        if returnType != nil {
+            cb.addEmitObjects(returnType!.emittableObjects)
+        } else {
+            cb.addEmitObject(.Literal, any: "void")
+        }
+        cb.addEmitObject(.Literal, any: ControlFlow.ForIn.rawValue)
+        cb.addEmitObject(.NewLine)
+        cb.addEmitObject(.IncreaseIndentation)
+        cb.addEmitObjects(execution.emittableObjects)
+        cb.addEmitObject(.DecreaseIndentation)
+        cb.addEmitObject(.EndStatement)
+        return cb.build()
+    }
+
     public static func forControlFlow(iterator: CodeBlock, iterable: CodeBlock, execution: CodeBlock) -> CodeBlock {
         fatalError("So many loops so little time")
     }
@@ -99,7 +123,7 @@ public enum ControlFlow: String {
             }
 
             cb.addEmitObject(.BeginStatement)
-            cb.addCodeBlock(codeBlock)
+            cb.addEmitObjects(codeBlock.emittableObjects)
             cb.addEmitObject(.EndStatement)
             return cb.build()
         }

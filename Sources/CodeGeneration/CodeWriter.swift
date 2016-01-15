@@ -192,6 +192,12 @@ extension CodeWriter {
                     self.emitBeginStatement()
                 case .EndStatement:
                     self.emitEndStatement()
+                case .NewLine:
+                    self.emitNewLine()
+                case .IncreaseIndentation:
+                    self.indent()
+                case .DecreaseIndentation:
+                    self.unindent()
                 case .EscapedString:
                     let str = emitObject.any ?? ""
                     self.emitLiteral("\"\(str)\"", first: first)
