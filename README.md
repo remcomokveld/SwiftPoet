@@ -2,9 +2,9 @@
 
 # SwiftPoet
 
-SwiftPoet is a Swift framework for generating Swift code. SwiftPoet is created under the preemis that generating code for a language is best done in the same language.
+SwiftPoet is a Swift framework for generating Swift code. SwiftPoet is created under the premise that generating code for a language is best done in the same language.
 Based heavily on the thought process of [JavaPoet](https://github.com/square/javapoet), SwiftPoet is the base repository which will eventually generate Swift code
-from an (apidoc.json)[http://apidoc.me/doc/] file at Gilt. That said, SwiftPoet is meant to be generalized and usable in other generation scenerios.
+from an (apidoc.json)[http://apidoc.me/doc/] file at Gilt. That said, SwiftPoet is meant to be generalized and usable in other generation scenarios.
 
 SwiftPoet is part of [the Cleanroom Project](https://github.com/gilt/Cleanroom) from [Gilt Tech](http://tech.gilt.com).
 
