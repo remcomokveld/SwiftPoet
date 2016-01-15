@@ -80,17 +80,27 @@ extension ClassSpecBuilder {
         guard (ClassSpec.asMemberModifiers.filter { $0 == m }).count == 1 else {
             return self
         }
-        super.addModifier(internalMethod: m)
+        super.addModifier(internalModifier: m)
         return self
     }
 
-    public func addModifiers(modifiers mList: [Modifier]) -> Self {
-        mList.forEach { addModifier($0) }
+    public func addModifiers(modifiers: [Modifier]) -> Self {
+        modifiers.forEach { self.addModifier($0) }
         return self
     }
 
     public func addDescription(description: String?) -> Self {
         super.addDescription(description)
+        return self
+    }
+
+    public func addImport(imprt: String) -> Self {
+        super.addImport(imprt)
+        return self
+    }
+
+    public func addImports(imports: [String]) -> Self {
+        super.addImports(imports)
         return self
     }
 }

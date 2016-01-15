@@ -122,4 +122,33 @@ class ControlFlowTests: XCTestCase {
         XCTAssertEqual(result, cb.toString())
     }
 
+    func testTwoOptionals() {
+        let leftOne = CodeBlock.builder().addEmitObject(.Literal, any: "let name").build()
+        let rightOne = CodeBlock.builder().addEmitObject(.Literal, any: "NSDate() as? String").build()
+        let comparisonOne = ComparisonListItem(comparison: Comparison(lhs: leftOne, comparator: .OptionalCheck, rhs: rightOne))
+
+        let leftTwo = CodeBlock.builder().addEmitObject(.Literal, any: "let age").build()
+        let rightTwo = CodeBlock.builder().addEmitObject(.Literal, any: "100 as? String").build()
+        let comparisonTwo = ComparisonListItem(comparison: Comparison(lhs: leftTwo, comparator: .OptionalCheck, rhs: rightTwo), requirement: Requirement.OptionalList)
+
+        let body = CodeBlock.builder().addEmitObject(.Literal, any: "print(\"Crazy conversion!!!\")").build()
+
+        let comparisons = ComparisonList(list: [comparisonOne, comparisonTwo])
+
+        let controlFlow = ControlFlow.ifControlFlow(body, comparisons)
+
+        let result =
+        "if let name = NSDate() as? String, let age = 100 as? String {\n" +
+            "\n" +
+            "    print(\"Crazy conversion!!!\")\n" +
+        "}\n"
+
+                print(result)
+                print(controlFlow.toString())
+
+        XCTAssertEqual(result, controlFlow.toString())
+    }
+
+
+
 }

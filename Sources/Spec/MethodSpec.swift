@@ -10,29 +10,44 @@ import Foundation
 
 public class MethodSpec: PoetSpecImpl {
     public let typeVariables: [TypeName]
+    public let throwsError: Bool
     public let returnType: TypeName?
     public let parameters: [ParameterSpec]
     public let code: CodeBlock?
     public var parentType: Construct?
     //    public let defaultValue: CodeBlock?
-    //    public let excpetions: [TypeName]
-
 
     private init(b: MethodSpecBuilder) {
         self.typeVariables = b.typeVariables
+        self.throwsError = b.throwsError
         self.returnType = b.returnType
         self.parameters = b.parameters
         self.code = b.code
         self.parentType = b.parentType
 
-        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description)
+        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, imports: b.imports)
     }
 
     public static func builder(name: String) -> MethodSpecBuilder {
         return MethodSpecBuilder(name: name)
     }
 
-    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
+    public override func collectImports() -> Set<String> {
+        var collectedImports: [Set<String>] = Array(arrayLiteral: imports)
+        typeVariables.forEach { collectedImports.append($0.collectImports()) }
+        parameters.forEach { collectedImports.append($0.collectImports()) }
+
+        if let returnType = returnType {
+            collectedImports.append(returnType.collectImports())
+        }
+
+        return collectedImports.reduce(Set<String>()) { (var dict, set) in
+            set.forEach { dict.insert($0) }
+            return dict
+        }
+    }
+
+    public override func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
         guard let parentType = parentType else {
             emitGeneralFunction(codeWriter)
             return codeWriter
@@ -80,6 +95,10 @@ public class MethodSpec: PoetSpecImpl {
 
         codeWriter.emit(.Literal, any: ")")
 
+        if throwsError {
+            codeWriter.emit(.Literal, any: " throws")
+        }
+
         if let returnType = returnType {
             let returnBuilder = CodeBlock.builder()
             returnBuilder.addEmitObject(.Literal, any: " ->")
@@ -94,6 +113,7 @@ public class MethodSpecBuilder: SpecBuilderImpl, Builder {
     public static let defaultConstruct: Construct = .Method
 
     private var typeVariables = [TypeName]()
+    private var throwsError = false
     private var returnType: TypeName?
     private var parameters = [ParameterSpec]()
     private var code: CodeBlock?
@@ -102,7 +122,7 @@ public class MethodSpecBuilder: SpecBuilderImpl, Builder {
     public var parentType: Construct? {
         return _parentType
     }
-    //    public let excpetions: [TypeName]
+
     //    public let defaultValue: CodeBlock?
 
     private init(name: String) {
@@ -154,6 +174,11 @@ extension MethodSpecBuilder {
         return self
     }
 
+    public func canThrowError() -> Self {
+        throwsError = true
+        return self
+    }
+
     //    public func addStatement(format: String, args: [AnyObject]) {
     //        code.addStatement(format, args)
     //    }
@@ -163,17 +188,27 @@ extension MethodSpecBuilder {
 extension MethodSpecBuilder {
 
     public func addModifier(m: Modifier) -> Self {
-        super.addModifier(internalMethod: m)
+        super.addModifier(internalModifier: m)
         return self
     }
 
     public func addModifiers(modifiers: [Modifier]) -> Self {
-        super.addModifiers(modifiers: modifiers)
+        super.addModifiers(modifiers)
         return self
     }
 
     public func addDescription(description: String?) -> Self {
         super.addDescription(description)
+        return self
+    }
+
+    public func addImport(imprt: String) -> Self {
+        super.addImport(imprt)
+        return self
+    }
+
+    public func addImports(imports: [String]) -> Self {
+        super.addImports(imports)
         return self
     }
 }

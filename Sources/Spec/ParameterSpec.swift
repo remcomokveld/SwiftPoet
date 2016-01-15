@@ -13,14 +13,20 @@ public class ParameterSpec: PoetSpecImpl {
 
     private init(b: ParameterSpecBuilder) {
         self.type = b.type
-        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description)
+        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, imports: b.imports)
     }
 
     public static func builder(name: String, type: TypeName, construct: Construct? = nil) -> ParameterSpecBuilder {
         return ParameterSpecBuilder(name: name, type: type, construct: construct)
     }
 
-    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
+    public override func collectImports() -> Set<String> {
+        var collectedImports = Set(imports)
+        type.collectImports().forEach { collectedImports.insert($0) }
+        return collectedImports
+    }
+
+    public override func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
         let cbBuilder = CodeBlock.builder()
         if (construct == .MutableParam) {
             cbBuilder.addEmitObject(.Literal, any: construct)
@@ -54,18 +60,28 @@ public class ParameterSpecBuilder: SpecBuilderImpl, Builder {
 // MARK: Chaining
 extension ParameterSpecBuilder {
 
-    public func addModifier(m: Modifier) -> ParameterSpecBuilder {
-        super.addModifier(internalMethod: m)
+    public func addModifier(m: Modifier) -> Self {
+        super.addModifier(internalModifier: m)
         return self
     }
 
-    public func addModifiers(modifiers: [Modifier]) -> ParameterSpecBuilder {
-        super.addModifiers(modifiers: modifiers)
+    public func addModifiers(modifiers: [Modifier]) -> Self {
+        super.addModifiers(modifiers)
         return self
     }
 
-    public func addDescription(description: String?) -> ParameterSpecBuilder {
+    public func addDescription(description: String?) -> Self {
         super.addDescription(description)
+        return self
+    }
+
+    public func addImport(imprt: String) -> Self {
+        super.addImport(imprt)
+        return self
+    }
+
+    public func addImports(imports: [String]) -> Self {
+        super.addImports(imports)
         return self
     }
 }

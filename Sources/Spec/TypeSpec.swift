@@ -19,7 +19,8 @@ public protocol TypeSpec {
     var fieldSpecs: [FieldSpec]? { get }
     var superType: TypeName? { get }
     var superProtocols: [TypeName]? { get }
-//    var dependancies: [String] { get }
+
+    func toFile() -> String
 }
 
 public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
@@ -34,10 +35,35 @@ public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
         superType = builder.superType
         superProtocols = builder.superProtocols
 
-        super.init(name: builder.name, construct: builder.construct, modifiers: builder.modifiers, description: builder.description)
+        super.init(name: builder.name, construct: builder.construct, modifiers: builder.modifiers, description: builder.description, imports: builder.imports)
     }
 
-    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
+    public func toFile() -> String {
+        return emit(CodeWriter(), asFile: true).out
+    }
+
+    public override func collectImports() -> Set<String> {
+        var collectedImports = Array(arrayLiteral: imports)
+        methodSpecs?.forEach { collectedImports.append($0.collectImports()) }
+        fieldSpecs?.forEach { collectedImports.append($0.collectImports()) }
+        superProtocols?.forEach { collectedImports.append($0.collectImports()) }
+
+        if let superType = superType {
+            collectedImports.append(superType.collectImports())
+        }
+
+        return collectedImports.reduce(Set<String>()) { (var dict, set) in
+            set.forEach { dict.insert($0) }
+            return dict
+        }
+    }
+
+    public override func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
+        if asFile {
+            codeWriter.emitFileHeader(self)
+            let imports = collectImports()
+            codeWriter.emitImports(imports)
+        }
         codeWriter.emitDocumentation(self)
         codeWriter.emitModifiers(modifiers)
         let cbBuilder = CodeBlock.builder()

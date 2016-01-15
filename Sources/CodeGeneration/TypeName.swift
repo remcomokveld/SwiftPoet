@@ -8,13 +8,14 @@
 
 import Foundation
 
-public class TypeName {
+public class TypeName: Importable {
     public let keyword: String
     public let leftInnerType: TypeName? // for arrays or dictionaries
     public let rightInnerType: TypeName? // for dictionaries
     public let optional: Bool
+    public var imports: Set<String>
 
-    public init(keyword: String, optional: Bool = false) {
+    public init(keyword: String, optional: Bool = false, imports: [String]? = nil) {
         let trimKeyWord = keyword.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
 
         if TypeName.isDictionary(trimKeyWord) {
@@ -50,6 +51,15 @@ public class TypeName {
             self.keyword = PoetUtil.cleanTypeName(trimKeyWord)
             self.optional = optional
         }
+
+        self.imports = imports?.reduce(Set<String>()) { (var dict, s) in dict.insert(s); return dict; } ?? Set<String>()
+    }
+
+    public func collectImports() -> Set<String> {
+        var collectedImports = Set(imports)
+        leftInnerType?.collectImports().forEach { collectedImports.insert($0) }
+        rightInnerType?.collectImports().forEach { collectedImports.insert($0) }
+        return collectedImports
     }
 
     public var isPrimitive: Bool {
@@ -109,7 +119,7 @@ extension TypeName: Hashable {
 }
 
 extension TypeName: Emitter {
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    public func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
         return codeWriter.emit(.Literal, any: keyword)
     }
 

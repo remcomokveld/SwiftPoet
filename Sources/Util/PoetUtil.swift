@@ -10,7 +10,7 @@ import Foundation
 
 public struct PoetUtil {
     private static let template = "^^^^"
-    private static let regexPattern = "\\s|_|\\."
+    private static let regexPattern = "\\s|_|\\.|-"
     private static func getSpaceAndPunctuationRegex() -> NSRegularExpression? {
         do {
             return try NSRegularExpression(pattern: PoetUtil.regexPattern, options: NSRegularExpressionOptions.AnchorsMatchLines)
@@ -65,6 +65,10 @@ public struct PoetUtil {
     }
 
     private static func caseFirstChar(str: String, caseFn: (str: String) -> String.CharacterView) -> String {
+        guard str.characters.count > 0 else {
+            return str // This does happen!
+        }
+
         var chars = str.characters
         let first = str.substringToIndex(chars.startIndex.successor())
         let range = Range(start: chars.startIndex, end: chars.startIndex.successor())

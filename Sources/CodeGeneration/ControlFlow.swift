@@ -129,7 +129,7 @@ public struct ComparisonList: Emitter {
         self.requirement = requirement
     }
 
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    public func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
         if requirement != nil {
             codeWriter.emit(.Literal, any: requirement!)
         }
@@ -158,9 +158,9 @@ public struct ComparisonListItem: Emitter {
         self.requirement = requirement
     }
 
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    public func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
         if requirement != nil {
-            codeWriter.emit(.Literal, any: requirement!)
+            codeWriter.emit(.Literal, any: requirement!.rawValue)
         }
         return comparison.emit(codeWriter)
     }
@@ -171,7 +171,13 @@ public struct Comparison: Emitter {
     let comparator: Comparator
     let rhs: CodeBlock
 
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    public init(lhs: CodeBlock, comparator: Comparator, rhs: CodeBlock) {
+        self.lhs = lhs
+        self.comparator = comparator
+        self.rhs = rhs
+    }
+
+    public func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
         let cbBuilder = CodeBlock.builder()
         cbBuilder.addEmitObjects(lhs.emittableObjects)
         cbBuilder.addEmitObject(.Literal, any: comparator.rawValue)
@@ -195,4 +201,5 @@ public enum Comparator: String {
 public enum Requirement: String {
     case And = "&&"
     case Or = "||"
+    case OptionalList = ", "
 }

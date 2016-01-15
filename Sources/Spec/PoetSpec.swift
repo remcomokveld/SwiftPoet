@@ -17,21 +17,27 @@ public protocol PoetSpec {
     func toString() -> String
 }
 
-public class PoetSpecImpl: PoetSpec, Emitter {
+public class PoetSpecImpl: PoetSpec, Emitter, Importable {
     public let name: String
     public let construct: Construct
     public let modifiers: Set<Modifier>
     public let description: String?
+    public let imports: Set<String>
 
-    public init(name: String, construct: Construct, modifiers: Set<Modifier>, description: String?) {
+    public init(name: String, construct: Construct, modifiers: Set<Modifier>, description: String?, imports: Set<String>) {
         self.name = name
         self.construct = construct
         self.modifiers = modifiers
         self.description = description
+        self.imports = imports
     }
 
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    public func emit(codeWriter: CodeWriter, asFile: Bool) -> CodeWriter {
         fatalError("Override emit method in child")
+    }
+
+    public func collectImports() -> Set<String> {
+        fatalError("Override collectImports method in child")
     }
 }
 
@@ -52,38 +58,38 @@ public protocol SpecBuilder {
     var construct: Construct { get }
     var modifiers: Set<Modifier> { get }
     var description: String? { get }
+    var imports: Set<String> { get }
 }
 
 public class SpecBuilderImpl: SpecBuilder {
     public let name: String
     public let construct: Construct
-
-    private var _description: String? = nil
-    public var description: String? {
-        return _description
-    }
-
-    private var _modifiers = Set<Modifier>()
-    public var modifiers: Set<Modifier> {
-        return _modifiers
-    }
+    public private(set) var description: String? = nil
+    public private(set) var modifiers = Set<Modifier>()
+    public private(set) var imports = Set<String>()
 
     public init(name: String, construct: Construct) {
         self.name = name // clean the string in child
         self.construct = construct
     }
 
-    internal func addModifier(internalMethod m: Modifier) {
-        if !(_modifiers.contains(m)) {
-            _modifiers.insert(m)
-        }
+    internal func addModifier(internalModifier modifier: Modifier) {
+        self.modifiers.insert(modifier)
     }
 
-    internal func addModifiers(modifiers mList: [Modifier]) {
-        mList.forEach { addModifier(internalMethod: $0) }
+    internal func addModifiers(modifiers: [Modifier]) {
+        modifiers.forEach { addModifier(internalModifier: $0) }
     }
 
     internal func addDescription(description: String?) {
-        self._description = description
+        self.description = description
+    }
+
+    internal func addImport(imprt: String) {
+        self.imports.insert(imprt)
+    }
+
+    internal func addImports(imports: [String]) {
+        imports.forEach { addImport($0) }
     }
 }
