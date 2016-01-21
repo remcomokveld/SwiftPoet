@@ -73,6 +73,7 @@ public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
         codeWriter.emit(cbBuilder.build())
         codeWriter.emitInheritance(superType, superProtocols: superProtocols)
         codeWriter.emit(.BeginStatement)
+        codeWriter.emitNewLine()
 
         var first = true
 

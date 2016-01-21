@@ -39,29 +39,27 @@ public class StructSpecBuilder: TypeSpecBuilderImpl, Builder {
     }
 
     private func addInitMethod() {
-        if methodSpecs == nil || methodSpecs!.count == 0 {
-            let mb = MethodSpec.builder("init")
-            let cb = CodeBlock.builder()
+        let mb = MethodSpec.builder("init")
+        let cb = CodeBlock.builder()
 
-            self.fieldSpecs?.forEach { spec in
-                if Modifier.equivalentAccessLevel(parentModifiers: self.modifiers, childModifiers: spec.modifiers) {
-                    mb.addParameter(ParameterSpec.builder(spec.name, type: spec.type!)
-                        .addModifiers(Array(spec.modifiers))
-                        .addDescription(spec.description)
-                        .build()
-                    )
+        self.fieldSpecs?.forEach { spec in
+            if Modifier.equivalentAccessLevel(parentModifiers: self.modifiers, childModifiers: spec.modifiers) {
+                mb.addParameter(ParameterSpec.builder(spec.name, type: spec.type!)
+                    .addModifiers(Array(spec.modifiers))
+                    .addDescription(spec.description)
+                    .build()
+                )
 
-                    cb.addCodeBlock(CodeBlock.builder()
-                        .addEmitObject(.Literal, any: "self.\(spec.name) = \(spec.name)")
-                        .build()
-                    )
-                }
+                cb.addCodeBlock(CodeBlock.builder()
+                    .addEmitObject(.Literal, any: "self.\(spec.name) = \(spec.name)")
+                    .build()
+                )
             }
-
-            mb.addCode(cb.build())
-
-            self.addMethodSpec(mb.build())
         }
+
+        mb.addCode(cb.build())
+
+        self.addMethodSpec(mb.build())
     }
 
     public func includeDefaultInit() -> StructSpecBuilder {

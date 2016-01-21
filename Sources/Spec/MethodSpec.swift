@@ -67,7 +67,7 @@ public class MethodSpec: PoetSpecImpl {
         emitFunctionSigniture(codeWriter)
         codeWriter.emit(.BeginStatement)
         if let code = code {
-            codeWriter.emitWithIndentation(code)
+            codeWriter.emit(code)
         }
         codeWriter.emit(.EndStatement)
     }

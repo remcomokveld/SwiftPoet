@@ -48,32 +48,37 @@ public enum ControlFlow: String {
         cb.addEmitObject(.Literal, any: ControlFlow.ForIn.rawValue)
         cb.addEmitObjects(iterator.emittableObjects)
         cb.addEmitObject(.BeginStatement)
-        cb.addEmitObjects(execution.emittableObjects)
+        cb.addCodeBlock(execution)
         cb.addEmitObject(.EndStatement)
         return cb.build()
     }
 
     public static func closureControlFlow(parameters: CodeBlock, canThrow: Bool, returnType: CodeBlock? , execution: CodeBlock) -> CodeBlock {
         let cb = CodeBlock.builder()
+        let closureBlock = CodeBlock.builder()
+
         cb.addEmitObject(.BeginStatement)
-        cb.addEmitObject(.Literal, any: "(")
-        cb.addEmitObjects(parameters.emittableObjects)
-        cb.addEmitObject(.Literal, any: ")")
+
+        closureBlock.addEmitObject(.Literal, any: "(")
+        closureBlock.addEmitObjects(parameters.emittableObjects)
+        closureBlock.addEmitObject(.Literal, any: ")")
         if canThrow {
-            cb.addEmitObject(.Literal, any: "throws")
+            closureBlock.addEmitObject(.Literal, any: "throws")
         }
-        cb.addEmitObject(.Literal, any: "->")
+        closureBlock.addEmitObject(.Literal, any: "->")
         if returnType != nil {
-            cb.addEmitObjects(returnType!.emittableObjects)
+            closureBlock.addEmitObjects(returnType!.emittableObjects)
         } else {
-            cb.addEmitObject(.Literal, any: "void")
+            closureBlock.addEmitObject(.Literal, any: "void")
         }
-        cb.addEmitObject(.Literal, any: ControlFlow.ForIn.rawValue)
-        cb.addEmitObject(.NewLine)
-        cb.addEmitObject(.IncreaseIndentation)
-        cb.addEmitObjects(execution.emittableObjects)
-        cb.addEmitObject(.DecreaseIndentation)
+        closureBlock.addEmitObject(.Literal, any: ControlFlow.ForIn.rawValue)
+        closureBlock.addEmitObject(.IncreaseIndentation)
+        closureBlock.addCodeBlock(execution)
+        closureBlock.addEmitObject(.DecreaseIndentation)
+
+        cb.addCodeBlock(closureBlock.build())
         cb.addEmitObject(.EndStatement)
+
         return cb.build()
     }
 
@@ -81,32 +86,40 @@ public enum ControlFlow: String {
         fatalError("So many loops so little time")
     }
 
-    public static func switchControlFlow(switchValue: String, cases: [(String, CodeBlock)], defaultCase: CodeBlock) -> CodeBlock {
+    public static func switchControlFlow(switchValue: String, cases: [(String, CodeBlock)], defaultCase: CodeBlock? = nil) -> CodeBlock {
         let cb = CodeBlock.builder()
         cb.addEmitObject(.Literal, any: ControlFlow.Switch.rawValue)
         cb.addEmitObject(.Literal, any: switchValue)
         cb.addEmitObject(.BeginStatement)
 
         cases.forEach { caseItem in
-            cb.addEmitObject(.Literal, any: "case")
-            cb.addEmitObject(.Literal, any: caseItem.0)
-            cb.addEmitObject(.Literal, any: ":")
-            cb.addEmitObject(.IncreaseIndentation)
-            cb.addCodeBlock(caseItem.1)
-            cb.addEmitObject(.DecreaseIndentation)
-            cb.addEmitObject(.NewLine)
+            cb.addCodeBlock(ControlFlow.switchCase(caseItem.0, execution: caseItem.1))
         }
 
-        cb.addEmitObject(.Literal, any: "default")
-        cb.addEmitObject(.Literal, any: ":")
-
-        cb.addEmitObject(.IncreaseIndentation)
-        cb.addCodeBlock(defaultCase)
-        cb.addEmitObject(.DecreaseIndentation)
-        cb.addEmitObject(.NewLine)
+        if let defaultCase = defaultCase {
+            cb.addCodeBlock(ControlFlow.switchCase(nil, execution: defaultCase))
+        }
 
         cb.addEmitObject(.EndStatement)
         return cb.build()
+    }
+
+    private static func switchCase(caseLine: String?, execution: CodeBlock) -> CodeBlock {
+        let caseWord = caseLine == nil ? "default" : "case"
+        let cbCase = CodeBlock.builder()
+        let cbCaseLineTwo = CodeBlock.builder()
+
+        cbCase.addEmitObject(.Literal, any: caseWord)
+        cbCase.addEmitObject(.Literal, any: caseLine)
+        cbCase.addEmitObject(.Literal, any: ":")
+
+        cbCaseLineTwo.addEmitObject(.IncreaseIndentation)
+        cbCaseLineTwo.addCodeBlock(execution)
+        cbCaseLineTwo.addEmitObject(.DecreaseIndentation)
+
+        cbCase.addCodeBlock(cbCaseLineTwo.build())
+
+        return cbCase.build()
     }
 
     private static func fnGenerator(type: ControlFlow) -> (CodeBlock, ComparisonList?) -> CodeBlock {
@@ -123,7 +136,7 @@ public enum ControlFlow: String {
             }
 
             cb.addEmitObject(.BeginStatement)
-            cb.addEmitObjects(codeBlock.emittableObjects)
+            cb.addCodeBlock(codeBlock)
             cb.addEmitObject(.EndStatement)
             return cb.build()
         }
@@ -214,7 +227,7 @@ public struct Comparison: Emitter {
 
 public enum Comparator: String {
     case Equals = "=="
-    case NotEquals = "!'"
+    case NotEquals = "!="
     case LessThan = "<"
     case GreaterThan = ">"
     case LessThanOrEqualTo = "<="

@@ -190,6 +190,8 @@ extension CodeWriter {
                     self.emitLiteral(emitObject.any, first: first)
                 case .BeginStatement:
                     self.emitBeginStatement()
+                    first = true
+                    break
                 case .EndStatement:
                     self.emitEndStatement()
                 case .NewLine:
@@ -269,7 +271,7 @@ extension CodeWriter {
     }
 
     private func emitBeginStatement() {
-        let begin = " {\n"
+        let begin = " {"
         _out.appendContentsOf(begin.characters)
         indent()
     }
