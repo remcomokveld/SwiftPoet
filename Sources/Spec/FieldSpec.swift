@@ -20,8 +20,8 @@ public class FieldSpec: PoetSpecImpl {
         super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, imports: b.imports)
     }
 
-    public static func builder(name: String, type: TypeName? = nil) -> FieldSpecBuilder {
-        return FieldSpecBuilder(name: name, type: type)
+    public static func builder(name: String, type: TypeName? = nil, construct: Construct? = nil) -> FieldSpecBuilder {
+        return FieldSpecBuilder(name: name, type: type, construct: construct)
     }
 
     public override func collectImports() -> Set<String> {
@@ -74,16 +74,33 @@ public class FieldSpec: PoetSpecImpl {
         codeWriter.emitModifiers(modifiers)
         let cbBuilder = CodeBlock.builder()
             .addEmitObject(.Literal, any: construct)
-        .addEmitObject(.Literal, any: cleanName)
-        .addEmitObject(.Literal, any: ":")
-        .addEmitObject(.Literal, any: type)
+            .addEmitObject(.Literal, any: cleanName)
 
-        if let initializer = initializer {
-            cbBuilder.addEmitObject(.Literal, any: "=")
-            cbBuilder.addEmitObjects(initializer.emittableObjects)
+        if let type = type {
+            cbBuilder.addEmitObject(.Literal, any: ":")
+            cbBuilder.addEmitObject(.Literal, any: type)
         }
 
-        codeWriter.emitWithIndentation(cbBuilder.build())
+        if let initializer = initializer {
+            if construct == .MutableField {
+                cbBuilder.addEmitObject(.Literal, any: "=")
+                cbBuilder.addEmitObjects(initializer.emittableObjects)
+            } else if construct == .MutableParam {
+                cbBuilder.addEmitObject(.BeginStatement)
+                cbBuilder.addCodeBlock(initializer)
+                cbBuilder.addEmitObject(.EndStatement)
+            } else if construct == .TypeAlias && parentType != nil && parentType! == .Protocol {
+                cbBuilder.addEmitObject(.Literal, any: ":")
+                cbBuilder.addEmitObjects(initializer.emittableObjects)
+            } else if construct == .TypeAlias {
+                cbBuilder.addEmitObject(.Literal, any: "=")
+                cbBuilder.addEmitObjects(initializer.emittableObjects)
+            } else {
+                fatalError()
+            }
+        }
+
+        codeWriter.emit(cbBuilder.build())
     }
 
     private func emitProtocolType(codeWriter: CodeWriter) {
@@ -101,7 +118,7 @@ public class FieldSpec: PoetSpecImpl {
             cbBuilder.addEmitObject(.Literal, any: "{ get }")
         }
 
-        codeWriter.emitWithIndentation(cbBuilder.build())
+        codeWriter.emit(cbBuilder.build())
     }
 }
 
@@ -123,7 +140,7 @@ public class FieldSpecBuilder: SpecBuilderImpl, Builder {
 
     private init(name: String, type: TypeName? = nil, construct: Construct? = nil) {
         self.type = type
-        let c = construct == nil || construct != .MutableField ? FieldSpecBuilder.defaultConstruct : construct!
+        let c = construct == nil ? FieldSpecBuilder.defaultConstruct : construct!
         super.init(name: PoetUtil.cleanCammelCaseString(name), construct: c)
     }
 

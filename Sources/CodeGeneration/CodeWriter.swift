@@ -167,12 +167,14 @@ extension CodeWriter {
     }
 
     public func emitModifiers(modifiers: Set<Modifier>) {
-        var first = true
-        let modListStr = modifiers.reduce("") { accum, mod in
-            let modStr = first ? mod.rawValue : " " + mod.rawValue
-            first = false
-            return accum + modStr
+        guard modifiers.count > 0 else {
+            _out.appendContentsOf(String.indent("", i: indentLevel).characters)
+            return
         }
+
+        let modListStr = Array(modifiers).map { m in
+            return m.rawValue
+        }.joinWithSeparator(" ") + " "
 
         _out.appendContentsOf(String.indent(modListStr, i: indentLevel).characters)
     }
@@ -190,8 +192,6 @@ extension CodeWriter {
                     self.emitLiteral(emitObject.any, first: first)
                 case .BeginStatement:
                     self.emitBeginStatement()
-                    first = true
-                    break
                 case .EndStatement:
                     self.emitEndStatement()
                 case .NewLine:
@@ -200,6 +200,9 @@ extension CodeWriter {
                     self.indent()
                 case .DecreaseIndentation:
                     self.unindent()
+                case .CodeLine:
+                    self.emitNewLine()
+                    self.emitWithIndentation(emitObject.any as! Literal)
                 case .EscapedString:
                     let str = emitObject.any ?? ""
                     self.emitLiteral("\"\(str)\"", first: first)
@@ -279,7 +282,7 @@ extension CodeWriter {
     private func emitEndStatement() {
         let newline = "\n"
         unindent()
-        let endBracket = String.indent("}\n", i: indentLevel)
+        let endBracket = String.indent("}", i: indentLevel)
         let end = newline + endBracket
         _out.appendContentsOf(end.characters)
     }
@@ -288,10 +291,18 @@ extension CodeWriter {
         _out.append("\n")
     }
 
+    private func addIndentation() {
+        _out.appendContentsOf(String.indent("", i: indentLevel).characters)
+    }
+
     public func emitWithIndentation(cb: CodeBlock) {
-        let indentation = String.indent("", i: indentLevel)
-        _out.appendContentsOf(indentation.characters)
+        self.addIndentation()
         emit(cb)
+    }
+
+    public func emitWithIndentation(any: Literal) {
+        self.addIndentation()
+        self.emitLiteral(any, first: true)
     }
 }
 

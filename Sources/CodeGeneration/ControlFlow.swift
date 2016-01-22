@@ -20,60 +20,61 @@ public enum ControlFlow: String {
     case For = "for"
     case Switch = "switch"
 
-    public static var guardControlFlow: (CodeBlock, ComparisonList?) -> CodeBlock = ControlFlow.fnGenerator(.Guard)
+    public static var guardControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.Guard)
 
-    public static var ifControlFlow: (CodeBlock, ComparisonList?) -> CodeBlock = ControlFlow.fnGenerator(.If)
+    public static var ifControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.If)
 
-    public static var elseIfControlFlow: (CodeBlock, ComparisonList?) -> CodeBlock = ControlFlow.fnGenerator(.ElseIf)
+    public static var elseIfControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.ElseIf)
 
-    public static var elseControlFlow: (CodeBlock, ComparisonList?) -> CodeBlock = ControlFlow.fnGenerator(.Else)
+    public static var elseControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.Else)
 
-    public static var whileControlFlow: (CodeBlock, ComparisonList?) -> CodeBlock = ControlFlow.fnGenerator(.While)
+    public static var whileControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.While)
 
-    public static func repeatWhileControlFlow(codeBlock: CodeBlock, comparisonList: ComparisonList) -> CodeBlock {
-        let cb = CodeBlock.builder()
-        cb.addEmitObject(.Literal, any: ControlFlow.RepeatWhile.rawValue)
-        cb.addEmitObject(.BeginStatement)
-        cb.addCodeBlock(codeBlock)
-        cb.addEmitObject(.EndStatement)
-        cb.addEmitObject(.Literal, any: ControlFlow.While.rawValue)
-        cb.addEmitObject(.Emitter, any: comparisonList)
-        return cb.build()
+    public static func repeatWhileControlFlow(comparisonList: ComparisonList, bodyFn: () -> CodeBlock) -> CodeBlock {
+        return CodeBlock.builder()
+            .addLiteral(ControlFlow.RepeatWhile.rawValue)
+            .addEmitObject(.BeginStatement)
+            .addCodeBlock(bodyFn())
+            .addEmitObject(.EndStatement)
+            .addLiteral(ControlFlow.While.rawValue)
+            .addEmitObject(.Emitter, any: comparisonList)
+            .build()
     }
 
-    public static func forInControlFlow(iterator: CodeBlock, iterable: CodeBlock, execution: CodeBlock) -> CodeBlock {
-        let cb = CodeBlock.builder()
-        cb.addEmitObject(.Literal, any: ControlFlow.For.rawValue)
-        cb.addEmitObjects(iterator.emittableObjects)
-        cb.addEmitObject(.Literal, any: ControlFlow.ForIn.rawValue)
-        cb.addEmitObjects(iterator.emittableObjects)
-        cb.addEmitObject(.BeginStatement)
-        cb.addCodeBlock(execution)
-        cb.addEmitObject(.EndStatement)
-        return cb.build()
+    public static func forInControlFlow(iterator: Literal, iterable: Literal, bodyFn: () -> CodeBlock) -> CodeBlock {
+        return CodeBlock.builder()
+            .addLiteral(ControlFlow.For.rawValue)
+            .addLiteral(iterator)
+            .addEmitObject(.Literal, any: ControlFlow.ForIn.rawValue)
+            .addLiteral(iterator)
+            .addEmitObject(.BeginStatement)
+            .addCodeBlock(bodyFn())
+            .addEmitObject(.EndStatement)
+            .build()
     }
 
-    public static func closureControlFlow(parameters: CodeBlock, canThrow: Bool, returnType: CodeBlock? , execution: CodeBlock) -> CodeBlock {
+    public static func closureControlFlow(parameterBlock: Literal, canThrow: Bool, returnType: Literal? , bodyFn: () -> CodeBlock) -> CodeBlock {
         let cb = CodeBlock.builder()
         let closureBlock = CodeBlock.builder()
 
         cb.addEmitObject(.BeginStatement)
 
-        closureBlock.addEmitObject(.Literal, any: "(")
-        closureBlock.addEmitObjects(parameters.emittableObjects)
-        closureBlock.addEmitObject(.Literal, any: ")")
+        closureBlock.addLiteral("(")
+        closureBlock.addLiteral(parameterBlock)
+        closureBlock.addLiteral(")")
         if canThrow {
-            closureBlock.addEmitObject(.Literal, any: "throws")
+            closureBlock.addLiteral("throws")
         }
-        closureBlock.addEmitObject(.Literal, any: "->")
-        if returnType != nil {
-            closureBlock.addEmitObjects(returnType!.emittableObjects)
+        closureBlock.addLiteral("->")
+        if let returnType = returnType {
+            closureBlock.addLiteral(returnType)
         } else {
-            closureBlock.addEmitObject(.Literal, any: "void")
+            closureBlock.addLiteral("void")
         }
-        closureBlock.addEmitObject(.Literal, any: ControlFlow.ForIn.rawValue)
+        closureBlock.addLiteral(ControlFlow.ForIn.rawValue)
+
         closureBlock.addEmitObject(.IncreaseIndentation)
-        closureBlock.addCodeBlock(execution)
+        closureBlock.addCodeBlock(bodyFn())
         closureBlock.addEmitObject(.DecreaseIndentation)
 
         cb.addCodeBlock(closureBlock.build())
@@ -122,21 +123,21 @@ public enum ControlFlow: String {
         return cbCase.build()
     }
 
-    private static func fnGenerator(type: ControlFlow) -> (CodeBlock, ComparisonList?) -> CodeBlock {
-        return { (codeBlock: CodeBlock, comparisonList: ComparisonList?) -> CodeBlock in
+    private static func fnGenerator(type: ControlFlow) -> (ComparisonList?, () -> CodeBlock) -> CodeBlock {
+        return { (comparisonList: ComparisonList?, bodyFn: () -> CodeBlock) -> CodeBlock in
             let cb = CodeBlock.builder()
-            cb.addEmitObject(.Literal, any: type.rawValue)
+                .addLiteral(type.rawValue)
 
             if type != .Else && comparisonList != nil {
                 cb.addEmitObject(.Emitter, any: comparisonList!)
             }
 
             if type == .Guard {
-                cb.addEmitObject(.Literal, any: "else")
+                cb.addLiteral("else")
             }
 
             cb.addEmitObject(.BeginStatement)
-            cb.addCodeBlock(codeBlock)
+            cb.addCodeBlock(bodyFn())
             cb.addEmitObject(.EndStatement)
             return cb.build()
         }

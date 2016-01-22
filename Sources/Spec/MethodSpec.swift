@@ -165,7 +165,7 @@ extension MethodSpecBuilder {
     }
 
     public func addCode(code: CodeBlock) -> Self {
-        self.code = code
+        self.code = CodeBlock.builder().addCodeBlock(code).build()
         return self
     }
 

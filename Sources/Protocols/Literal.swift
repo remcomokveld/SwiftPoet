@@ -8,13 +8,13 @@
 
 import Foundation
 
-internal protocol Literal {
+public protocol Literal {
     func literalValue() -> String
 }
 
 
 extension String: Literal {
-    func literalValue() -> String {
+    public func literalValue() -> String {
         return self
     }
 }

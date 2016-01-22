@@ -93,6 +93,10 @@ public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
         }
 
         codeWriter.emit(.EndStatement)
+
+        if asFile {
+            codeWriter.emitNewLine()
+        }
         
         return codeWriter
     }

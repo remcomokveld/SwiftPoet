@@ -16,7 +16,6 @@ public protocol Emitter {
 
 extension Emitter {
     public func toString() -> String {
-        let cw = self.emit(CodeWriter(), asFile: false)
-        return cw.out
+        return self.emit(CodeWriter(), asFile: false).out
     }
 }

@@ -111,15 +111,13 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testEmptyMethod() {
-        let mb = MethodSpec.builder("Test")
-        mb.addReturnType(TypeName.StringType)
-
-        let method = mb.build()
+        let method = MethodSpec.builder("Test")
+            .addReturnType(TypeName.StringType)
+            .build()
 
         let result =
         "func test () -> String {\n" +
-        "\n" +
-        "}\n"
+        "}"
 
 //        print(result)
 //        print(method.toString())
@@ -128,19 +126,17 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testMethodWithCodeBlock() {
-        let mb = MethodSpec.builder("Test")
-        mb.addReturnType(TypeName.StringType)
-
-        let cbBuilder = CodeBlock.builder()
-        cbBuilder.addEmitObject(.Literal, any: "return \"test\"")
-        mb.addCode(cbBuilder.build())
-
-        let method = mb.build()
+        let method = MethodSpec.builder("Test")
+            .addReturnType(TypeName.StringType)
+            .addCode(CodeBlock.builder()
+                .addLiteral("return \"test\"")
+                .build())
+            .build()
 
         let result =
         "func test () -> String {\n" +
         "    return \"test\"\n" +
-        "}\n"
+        "}"
 
 //        print(result)
 //        print(method.toString())
@@ -167,7 +163,7 @@ class MethodSpecTests: XCTestCase {
         "*/\n" +
         "func test (name : String) -> String {\n" +
         "    return name\n" +
-        "}\n"
+        "}"
 
 //        print(result)
 //        print(method.toString())
@@ -194,7 +190,7 @@ class MethodSpecTests: XCTestCase {
             "*/\n" +
             "func test (name : String) -> String {\n" +
             "    return name\n" +
-        "}\n"
+        "}"
 
         //        print(result)
         //        print(method.toString())

@@ -24,7 +24,6 @@ public enum Modifier: String {
     case Required = "required"
 
     //    case Extension
-    //    case TypeAlias
     //    case DidSet
     //    case Lazy
     //    case WillSet

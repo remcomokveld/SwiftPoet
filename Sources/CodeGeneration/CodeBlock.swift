@@ -21,8 +21,7 @@ public struct CodeBlock {
 
     public func toString() -> String {
         let codeWriter = CodeWriter()
-        codeWriter.emit(self)
-        return codeWriter.out
+        return codeWriter.emit(self).out
     }
 
     public static func builder() -> CodeBlockBuilder {
@@ -55,13 +54,21 @@ public class CodeBlockBuilder: Builder {
         return CodeBlock(builder: self)
     }
 
-    public func addEmitObject(eo: EmitObject) -> CodeBlockBuilder {
+    internal func addEmitObject(eo: EmitObject) -> CodeBlockBuilder {
         emittableObjects.append(Either.Left(eo))
         return self
     }
 
     public func addEmitObject(type: EmitType, any: Any? = nil) -> CodeBlockBuilder {
         return self.addEmitObject(EmitObject(type: type, any: any))
+    }
+
+    public func addLiteral(any: Literal) -> CodeBlockBuilder {
+        return self.addEmitObject(.Literal, any: any)
+    }
+
+    public func addCodeLine(any: Literal) -> CodeBlockBuilder {
+        return self.addEmitObject(.CodeLine, any: any)
     }
 
     public func addEmitObjects(emitObjects: [Either<EmitObject, CodeBlock>]) -> CodeBlockBuilder {

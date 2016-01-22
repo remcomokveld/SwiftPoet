@@ -130,7 +130,7 @@ extension TypeName: Emitter {
 }
 
 extension TypeName: Literal {
-    func literalValue() -> String {
+    public func literalValue() -> String {
         if keyword == "_nil" {
             return "nil"
         }

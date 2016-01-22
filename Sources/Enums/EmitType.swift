@@ -12,6 +12,7 @@ public enum EmitType {
     case Literal
     case Name
     case EscapedString
+    case Modifiers
 //    case Type
 //    case DollarSign
     case IncreaseIndentation
@@ -20,4 +21,5 @@ public enum EmitType {
     case EndStatement
     case NewLine
     case Emitter
+    case CodeLine
 }
