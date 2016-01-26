@@ -8,13 +8,15 @@
 
 import Foundation
 
-public protocol PoetSpec {
+public protocol PoetSpec: PoetPrintable {
     var name: String { get }
     var construct: Construct { get }
     var modifiers: Set<Modifier> { get }
     var description: String? { get }
 
     func toString() -> String
+    func toFile() -> String
+    func collectImports() -> Set<String>
 }
 
 public class PoetSpecImpl: PoetSpec, Emitter, Importable {
@@ -38,6 +40,10 @@ public class PoetSpecImpl: PoetSpec, Emitter, Importable {
 
     public func collectImports() -> Set<String> {
         fatalError("Override collectImports method in child")
+    }
+
+    public func toFile() -> String {
+        return self.emit(CodeWriter(), asFile: true).out
     }
 }
 

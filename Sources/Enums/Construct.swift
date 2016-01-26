@@ -19,6 +19,7 @@ public enum Construct {
     case Class
     case Protocol
     case TypeAlias
+    case Extension
 
     public var stringValue: String {
         switch self {
@@ -32,6 +33,7 @@ public enum Construct {
         case .Class: return "class"
         case .Protocol: return "protocol"
         case .TypeAlias: return "typealias"
+        case .Extension: return "extension"
         }
     }
 }

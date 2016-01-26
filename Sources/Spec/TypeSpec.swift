@@ -19,8 +19,6 @@ public protocol TypeSpec {
     var fieldSpecs: [FieldSpec]? { get }
     var superType: TypeName? { get }
     var superProtocols: [TypeName]? { get }
-
-    func toFile() -> String
 }
 
 public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
@@ -36,10 +34,6 @@ public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
         superProtocols = builder.superProtocols
 
         super.init(name: builder.name, construct: builder.construct, modifiers: builder.modifiers, description: builder.description, imports: builder.imports)
-    }
-
-    public func toFile() -> String {
-        return emit(CodeWriter(), asFile: true).out
     }
 
     public override func collectImports() -> Set<String> {
@@ -67,9 +61,8 @@ public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
         codeWriter.emitDocumentation(self)
         codeWriter.emitModifiers(modifiers)
         let cbBuilder = CodeBlock.builder()
-        cbBuilder.addEmitObject(.Literal, any: "") // add a space
-        cbBuilder.addEmitObject(.Literal, any: construct)
-        cbBuilder.addEmitObject(.Literal, any: name)
+        cbBuilder.addLiteral(construct)
+        cbBuilder.addLiteral(name)
         codeWriter.emit(cbBuilder.build())
         codeWriter.emitInheritance(superType, superProtocols: superProtocols)
         codeWriter.emit(.BeginStatement)
@@ -90,6 +83,7 @@ public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
         methodSpecs?.forEach { spec in
             codeWriter.emitNewLine()
             spec.emit(codeWriter)
+            codeWriter.emitNewLine()
         }
 
         codeWriter.emit(.EndStatement)

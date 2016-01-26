@@ -69,7 +69,7 @@ public enum ControlFlow: String {
         if let returnType = returnType {
             closureBlock.addLiteral(returnType)
         } else {
-            closureBlock.addLiteral("void")
+            closureBlock.addLiteral("Void")
         }
         closureBlock.addLiteral(ControlFlow.ForIn.rawValue)
 
@@ -85,6 +85,22 @@ public enum ControlFlow: String {
 
     public static func forControlFlow(iterator: CodeBlock, iterable: CodeBlock, execution: CodeBlock) -> CodeBlock {
         fatalError("So many loops so little time")
+    }
+
+    public static func doCatchControlFlow(doFn: () -> CodeBlock, catchFn: () -> CodeBlock) -> CodeBlock {
+        let doCB = CodeBlock.builder()
+        doCB.addLiteral("do")
+        doCB.addEmitObject(.BeginStatement)
+        doCB.addCodeBlock(doFn())
+        doCB.addEmitObject(.EndStatement)
+
+        let catchCB = CodeBlock.builder()
+        catchCB.addLiteral("catch")
+        catchCB.addEmitObject(.BeginStatement)
+        catchCB.addCodeBlock(catchFn())
+        catchCB.addEmitObject(.EndStatement)
+
+        return doCB.addCodeBlock(catchCB.build()).build()
     }
 
     public static func switchControlFlow(switchValue: String, cases: [(String, CodeBlock)], defaultCase: CodeBlock? = nil) -> CodeBlock {

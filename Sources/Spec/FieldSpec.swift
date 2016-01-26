@@ -56,7 +56,7 @@ public class FieldSpec: PoetSpecImpl {
     }
 
     private func emitEnumType(codeWriter: CodeWriter) {
-        let cleanName = parentType == .Enum ? PoetUtil.cleanTypeName(name) : PoetUtil.cleanCammelCaseString(name)
+        let cleanName = parentType == .Enum || construct == .TypeAlias ? PoetUtil.cleanTypeName(name) : PoetUtil.cleanCammelCaseString(name)
         let cbBuilder = CodeBlock.builder()
                     .addEmitObject(.Literal, any: "case")
                     .addEmitObject(.Literal, any: cleanName)
@@ -70,7 +70,7 @@ public class FieldSpec: PoetSpecImpl {
     }
 
     private func emitClassType(codeWriter: CodeWriter) {
-        let cleanName = parentType == .Enum ? PoetUtil.cleanTypeName(name) : PoetUtil.cleanCammelCaseString(name)
+        let cleanName = parentType == .Enum || construct == .TypeAlias ? PoetUtil.cleanTypeName(name) : PoetUtil.cleanCammelCaseString(name)
         codeWriter.emitModifiers(modifiers)
         let cbBuilder = CodeBlock.builder()
             .addEmitObject(.Literal, any: construct)
@@ -104,7 +104,7 @@ public class FieldSpec: PoetSpecImpl {
     }
 
     private func emitProtocolType(codeWriter: CodeWriter) {
-        let cleanName = parentType == .Enum ? PoetUtil.cleanTypeName(name) : PoetUtil.cleanCammelCaseString(name)
+        let cleanName = parentType == .Enum || construct == .TypeAlias ? PoetUtil.cleanTypeName(name) : PoetUtil.cleanCammelCaseString(name)
         codeWriter.emitModifiers(modifiers)
         let cbBuilder = CodeBlock.builder()
             .addEmitObject(.Literal, any: construct)
