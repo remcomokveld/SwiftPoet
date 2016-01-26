@@ -25,7 +25,7 @@ public class MethodSpec: PoetSpecImpl {
         self.code = b.code
         self.parentType = b.parentType
 
-        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, imports: b.imports)
+        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, framework: b.framework, imports: b.imports)
     }
 
     public static func builder(name: String) -> MethodSpecBuilder {
@@ -33,21 +33,24 @@ public class MethodSpec: PoetSpecImpl {
     }
 
     public override func collectImports() -> Set<String> {
-        var collectedImports: [Set<String>] = Array(arrayLiteral: imports)
-        typeVariables.forEach { collectedImports.append($0.collectImports()) }
-        parameters.forEach { collectedImports.append($0.collectImports()) }
-
-        if let returnType = returnType {
-            collectedImports.append(returnType.collectImports())
-        }
-
-        return collectedImports.reduce(Set<String>()) { (var dict, set) in
-            set.forEach { dict.insert($0) }
-            return dict
+        let nestedImports = [
+            typeVariables.reduce(Set<String>()) { set, t in
+                return set.union(t.collectImports())
+            },
+            parameters.reduce(Set<String>()) { set, p in
+                return set.union(p.collectImports())
+            },
+            returnType?.collectImports()
+        ]
+        return nestedImports.reduce(imports) { imports, list in
+            guard let list = list else {
+                return imports
+            }
+            return imports.union(list)
         }
     }
 
-    public override func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
+    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
         guard let parentType = parentType else {
             emitGeneralFunction(codeWriter)
             return codeWriter
@@ -199,6 +202,11 @@ extension MethodSpecBuilder {
 
     public func addDescription(description: String?) -> Self {
         super.addDescription(description)
+        return self
+    }
+
+    public func addFramework(framework: String?) -> Self {
+        super.addFramework(internalFramework: framework)
         return self
     }
 

@@ -17,7 +17,7 @@ public class FieldSpec: PoetSpecImpl {
         self.type = b.type
         self.initializer = b.initializer
         self.parentType = b.parentType
-        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, imports: b.imports)
+        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, framework: b.framework, imports: b.imports)
     }
 
     public static func builder(name: String, type: TypeName? = nil, construct: Construct? = nil) -> FieldSpecBuilder {
@@ -25,12 +25,13 @@ public class FieldSpec: PoetSpecImpl {
     }
 
     public override func collectImports() -> Set<String> {
-        var collectedImports = Set(imports)
-        type?.collectImports().forEach { collectedImports.insert($0) }
-        return collectedImports
+        guard let nestedImports = type?.collectImports() else {
+            return imports
+        }
+        return imports.union(nestedImports)
     }
 
-    public override func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
+    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
         codeWriter.emitDocumentation(self)
         
         guard let parentType = parentType else {
@@ -179,6 +180,11 @@ extension FieldSpecBuilder {
 
     public func addDescription(description: String?) -> Self {
         super.addDescription(description)
+        return self
+    }
+
+    public func addFramework(framework: String?) -> Self {
+        super.addFramework(internalFramework: framework)
         return self
     }
 

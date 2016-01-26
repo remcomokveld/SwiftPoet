@@ -13,7 +13,7 @@ public class ParameterSpec: PoetSpecImpl {
 
     private init(b: ParameterSpecBuilder) {
         self.type = b.type
-        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, imports: b.imports)
+        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, framework: b.framework, imports: b.imports)
     }
 
     public static func builder(name: String, type: TypeName, construct: Construct? = nil) -> ParameterSpecBuilder {
@@ -21,12 +21,10 @@ public class ParameterSpec: PoetSpecImpl {
     }
 
     public override func collectImports() -> Set<String> {
-        var collectedImports = Set(imports)
-        type.collectImports().forEach { collectedImports.insert($0) }
-        return collectedImports
+        return type.collectImports().union(imports)
     }
 
-    public override func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
+    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
         let cbBuilder = CodeBlock.builder()
         if (construct == .MutableParam) {
             cbBuilder.addEmitObject(.Literal, any: construct)
@@ -72,6 +70,11 @@ extension ParameterSpecBuilder {
 
     public func addDescription(description: String?) -> Self {
         super.addDescription(description)
+        return self
+    }
+
+    public func addFramework(framework: String?) -> Self {
+        super.addFramework(internalFramework: framework)
         return self
     }
 

@@ -9,13 +9,13 @@
 import Foundation
 
 public protocol Emitter {
-    func emit(codeWriter: CodeWriter, asFile: Bool) -> CodeWriter
+    func emit(codeWriter: CodeWriter) -> CodeWriter
 
     func toString() -> String
 }
 
 extension Emitter {
     public func toString() -> String {
-        return self.emit(CodeWriter(), asFile: false).out
+        return self.emit(CodeWriter()).out
     }
 }

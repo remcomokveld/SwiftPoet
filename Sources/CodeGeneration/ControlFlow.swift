@@ -183,7 +183,7 @@ public struct ComparisonList: Emitter {
         self.requirement = requirement
     }
 
-    public func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
+    public func emit(codeWriter: CodeWriter) -> CodeWriter {
         if requirement != nil {
             codeWriter.emit(.Literal, any: requirement!)
         }
@@ -212,7 +212,7 @@ public struct ComparisonListItem: Emitter {
         self.requirement = requirement
     }
 
-    public func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
+    public func emit(codeWriter: CodeWriter) -> CodeWriter {
         if requirement != nil {
             codeWriter.emit(.Literal, any: requirement!.rawValue)
         }
@@ -231,7 +231,7 @@ public struct Comparison: Emitter {
         self.rhs = rhs
     }
 
-    public func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
+    public func emit(codeWriter: CodeWriter) -> CodeWriter {
         let cbBuilder = CodeBlock.builder()
         cbBuilder.addEmitObjects(lhs.emittableObjects)
         cbBuilder.addEmitObject(.Literal, any: comparator.rawValue)

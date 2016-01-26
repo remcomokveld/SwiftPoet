@@ -94,6 +94,11 @@ extension ClassSpecBuilder {
         return self
     }
 
+    public func addFramework(framework: String?) -> Self {
+        super.addFramework(internalFramework: framework)
+        return self
+    }
+
     public func addImport(imprt: String) -> Self {
         super.addImport(imprt)
         return self

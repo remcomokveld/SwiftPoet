@@ -33,31 +33,31 @@ public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
         superType = builder.superType
         superProtocols = builder.superProtocols
 
-        super.init(name: builder.name, construct: builder.construct, modifiers: builder.modifiers, description: builder.description, imports: builder.imports)
+        super.init(name: builder.name, construct: builder.construct, modifiers: builder.modifiers, description: builder.description, framework: builder.framework, imports: builder.imports)
     }
 
     public override func collectImports() -> Set<String> {
-        var collectedImports = Array(arrayLiteral: imports)
-        methodSpecs?.forEach { collectedImports.append($0.collectImports()) }
-        fieldSpecs?.forEach { collectedImports.append($0.collectImports()) }
-        superProtocols?.forEach { collectedImports.append($0.collectImports()) }
+        let externalImports = [
+            methodSpecs?.reduce(Set<String>()) { set, m in
+            return set.union(m.collectImports())
+            },
+            fieldSpecs?.reduce(Set<String>()) { set, f in
+                return set.union(f.collectImports())
+            },
+            superProtocols?.reduce(Set<String>()) { set, sp in
+                set.union(sp.collectImports())
+            },
+            superType?.collectImports()]
 
-        if let superType = superType {
-            collectedImports.append(superType.collectImports())
-        }
-
-        return collectedImports.reduce(Set<String>()) { (var dict, set) in
-            set.forEach { dict.insert($0) }
-            return dict
+        return externalImports.reduce(imports) { set, list in
+            guard let list = list else {
+                return set
+            }
+            return set.union(list)
         }
     }
 
-    public override func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
-        if asFile {
-            codeWriter.emitFileHeader(self)
-            let imports = collectImports()
-            codeWriter.emitImports(imports)
-        }
+    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
         codeWriter.emitDocumentation(self)
         codeWriter.emitModifiers(modifiers)
         let cbBuilder = CodeBlock.builder()
@@ -87,10 +87,6 @@ public class TypeSpecImpl: PoetSpecImpl, TypeSpec {
         }
 
         codeWriter.emit(.EndStatement)
-
-        if asFile {
-            codeWriter.emitNewLine()
-        }
         
         return codeWriter
     }
@@ -104,30 +100,15 @@ public protocol TypeSpecBuilder {
 }
 
 public class TypeSpecBuilderImpl: SpecBuilderImpl, TypeSpecBuilder {
-    public var _methodSpecs: [MethodSpec]?
-    public var methodSpecs: [MethodSpec]? {
-        return _methodSpecs
-    }
-
-    public var _fieldSpecs: [FieldSpec]?
-    public var fieldSpecs: [FieldSpec]? {
-        return _fieldSpecs
-    }
-
-    public var _superProtocols: [TypeName]?
-    public var superProtocols: [TypeName]? {
-        return _superProtocols
-    }
-
-    public var _superType: TypeName? = nil
-    public var superType: TypeName? {
-        return _superType
-    }
+    public private(set) var methodSpecs: [MethodSpec]?
+    public private(set) var fieldSpecs: [FieldSpec]?
+    public private(set) var superProtocols: [TypeName]?
+    public private(set) var superType: TypeName?
 
     internal init(name: String, construct: Construct, methodSpecs ms: [MethodSpec]?, fieldSpecs fs: [FieldSpec]?, superProtocols ps: [TypeName]?) {
-        self._methodSpecs = ms
-        self._fieldSpecs = fs
-        self._superProtocols = ps
+        self.methodSpecs = ms
+        self.fieldSpecs = fs
+        self.superProtocols = ps
 
         super.init(name: PoetUtil.cleanTypeName(name), construct: construct)
     }
@@ -137,18 +118,18 @@ public class TypeSpecBuilderImpl: SpecBuilderImpl, TypeSpecBuilder {
     }
 
     internal func addMethodSpec(methodSpec ms: MethodSpec) {
-        guard let mSpecs = _methodSpecs else { return }
+        guard let mSpecs = methodSpecs else { return }
 
         if (mSpecs.filter { $0 == ms }).count == 0 {
-            _methodSpecs?.append(ms)
+            methodSpecs?.append(ms)
         }
     }
 
     internal func addFieldSpec(fieldSpec: FieldSpec) {
-        guard let fs = _fieldSpecs else { return }
+        guard let fs = fieldSpecs else { return }
 
         if (fs.filter { $0 == fieldSpec }).count == 0 {
-            _fieldSpecs?.append(fieldSpec)
+            fieldSpecs?.append(fieldSpec)
             fieldSpec.parentType = self.construct
         }
     }
@@ -158,10 +139,10 @@ public class TypeSpecBuilderImpl: SpecBuilderImpl, TypeSpecBuilder {
     }
 
     internal func addProtocol(protocolSpec: TypeName) {
-        guard let ps = _superProtocols else { return }
+        guard let ps = superProtocols else { return }
 
         if (ps.filter { $0 == protocolSpec }).count == 0 {
-            _superProtocols?.append(protocolSpec)
+            superProtocols?.append(protocolSpec)
         }
     }
 
@@ -170,6 +151,6 @@ public class TypeSpecBuilderImpl: SpecBuilderImpl, TypeSpecBuilder {
     }
 
     internal func addSuperType(superClass: TypeName) {
-        _superType = superClass
+        superType = superClass
     }
 }

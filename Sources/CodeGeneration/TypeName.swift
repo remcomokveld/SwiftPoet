@@ -20,8 +20,7 @@ public class TypeName: Importable {
 
         if TypeName.isDictionary(trimKeyWord) {
             let chars = trimKeyWord.characters
-            let range = Range(start: chars.startIndex.successor(), end: chars.endIndex.predecessor())
-            let isOptional = TypeName.isOptional(trimKeyWord.substringWithRange(range))
+            let isOptional = TypeName.isOptional(trimKeyWord)
             let endIndex = isOptional ? chars.endIndex.predecessor().predecessor() : chars.endIndex.predecessor()
             let splitIndex = trimKeyWord.rangeOfString(":")!.startIndex
 
@@ -33,7 +32,7 @@ public class TypeName: Importable {
         } else if TypeName.isArray(trimKeyWord) {
             let chars = trimKeyWord.characters
             var range = Range(start: chars.startIndex.successor(), end: chars.endIndex.predecessor())
-            let isOptional = TypeName.isOptional(trimKeyWord.substringWithRange(range))
+            let isOptional = TypeName.isOptional(trimKeyWord)
             range.endIndex = isOptional ? chars.endIndex.predecessor().predecessor() : chars.endIndex.predecessor()
 
             self.leftInnerType = TypeName(keyword: trimKeyWord.substringWithRange(range))
@@ -97,7 +96,7 @@ public class TypeName: Importable {
         let range = NSRange(location: 0, length: keyword.characters.count)
 
         do {
-            optionalMatch = try NSRegularExpression(pattern: "^\\w+\\?$", options: .CaseInsensitive)
+            optionalMatch = try NSRegularExpression(pattern: "^.+\\?$", options: .CaseInsensitive)
         } catch {
             optionalMatch = nil // this should never happen
         }
@@ -119,8 +118,8 @@ extension TypeName: Hashable {
 }
 
 extension TypeName: Emitter {
-    public func emit(codeWriter: CodeWriter, asFile: Bool = false) -> CodeWriter {
-        return codeWriter.emit(.Literal, any: keyword)
+    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+        return codeWriter.emit(.Literal, any: literalValue())
     }
 
     public func toString() -> String {
