@@ -14,6 +14,18 @@
 		3B00E5A41BA37A420011486D /* SwiftPoet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B00E59A1BA37A420011486D /* SwiftPoet.framework */; };
 		3B38DBE41BA764BA000986DF /* SwiftPoet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00E4D31BA36B840011486D /* SwiftPoet.swift */; };
 		3B78C6B61BA762CF00173EAC /* SwiftPoet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00E4D31BA36B840011486D /* SwiftPoet.swift */; };
+		591504491C56EB2F00A9844A /* Printable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504481C56EB2F00A9844A /* Printable.swift */; };
+		5915044A1C56EB2F00A9844A /* Printable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504481C56EB2F00A9844A /* Printable.swift */; };
+		5915044B1C56EB2F00A9844A /* Printable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504481C56EB2F00A9844A /* Printable.swift */; };
+		5915044C1C56EB2F00A9844A /* Printable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504481C56EB2F00A9844A /* Printable.swift */; };
+		5915044E1C56EB7B00A9844A /* ExtensionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5915044D1C56EB7B00A9844A /* ExtensionSpec.swift */; };
+		5915044F1C56EB7B00A9844A /* ExtensionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5915044D1C56EB7B00A9844A /* ExtensionSpec.swift */; };
+		591504501C56EB7B00A9844A /* ExtensionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5915044D1C56EB7B00A9844A /* ExtensionSpec.swift */; };
+		591504511C56EB7B00A9844A /* ExtensionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5915044D1C56EB7B00A9844A /* ExtensionSpec.swift */; };
+		591504581C56ED9100A9844A /* PrintableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504571C56ED9100A9844A /* PrintableList.swift */; };
+		591504591C56ED9100A9844A /* PrintableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504571C56ED9100A9844A /* PrintableList.swift */; };
+		5915045A1C56ED9100A9844A /* PrintableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504571C56ED9100A9844A /* PrintableList.swift */; };
+		5915045B1C56ED9100A9844A /* PrintableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504571C56ED9100A9844A /* PrintableList.swift */; };
 		599EABD51C46DAD1002DEAB3 /* Importable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EABD41C46DAD1002DEAB3 /* Importable.swift */; };
 		599EABD61C46DAD1002DEAB3 /* Importable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EABD41C46DAD1002DEAB3 /* Importable.swift */; };
 		599EABD71C46DAD1002DEAB3 /* Importable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EABD41C46DAD1002DEAB3 /* Importable.swift */; };
@@ -105,6 +117,9 @@
 		3B38DBE21BA76428000986DF /* tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tvOS.xcconfig; sourceTree = "<group>"; };
 		3B38DBE31BA76428000986DF /* watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = watchOS.xcconfig; sourceTree = "<group>"; };
 		3B78C6CE1BA7634E00173EAC /* SwiftPoet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftPoet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		591504481C56EB2F00A9844A /* Printable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Printable.swift; sourceTree = "<group>"; };
+		5915044D1C56EB7B00A9844A /* ExtensionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionSpec.swift; sourceTree = "<group>"; };
+		591504571C56ED9100A9844A /* PrintableList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintableList.swift; sourceTree = "<group>"; };
 		599EABD41C46DAD1002DEAB3 /* Importable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Importable.swift; sourceTree = "<group>"; };
 		59AA66751C3B1853003CD1A2 /* CodeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
 		59AA66761C3B1853003CD1A2 /* CodeWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeWriter.swift; sourceTree = "<group>"; };
@@ -305,6 +320,7 @@
 				59AA66881C3B1865003CD1A2 /* Emitter.swift */,
 				59AA66891C3B1865003CD1A2 /* Literal.swift */,
 				599EABD41C46DAD1002DEAB3 /* Importable.swift */,
+				591504481C56EB2F00A9844A /* Printable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -321,6 +337,7 @@
 				59AA66911C3B1865003CD1A2 /* ProtocolSpec.swift */,
 				59AA66921C3B1865003CD1A2 /* StructSpec.swift */,
 				59AA66931C3B1865003CD1A2 /* TypeSpec.swift */,
+				5915044D1C56EB7B00A9844A /* ExtensionSpec.swift */,
 			);
 			path = Spec;
 			sourceTree = "<group>";
@@ -330,6 +347,7 @@
 			children = (
 				59AA66951C3B1865003CD1A2 /* PoetUtil.swift */,
 				59AA66961C3B1865003CD1A2 /* ReservedWords.swift */,
+				591504571C56ED9100A9844A /* PrintableList.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -630,6 +648,9 @@
 			files = (
 				599EABD51C46DAD1002DEAB3 /* Importable.swift in Sources */,
 				3B00E5751BA3793F0011486D /* SwiftPoet.swift in Sources */,
+				5915044E1C56EB7B00A9844A /* ExtensionSpec.swift in Sources */,
+				591504581C56ED9100A9844A /* PrintableList.swift in Sources */,
+				591504491C56EB2F00A9844A /* Printable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,15 +669,18 @@
 				59AA667A1C3B1853003CD1A2 /* CodeBlock.swift in Sources */,
 				599EABD61C46DAD1002DEAB3 /* Importable.swift in Sources */,
 				59AA669B1C3B1865003CD1A2 /* EnumSpec.swift in Sources */,
+				591504591C56ED9100A9844A /* PrintableList.swift in Sources */,
 				59AA669C1C3B1865003CD1A2 /* FieldSpec.swift in Sources */,
 				59AA66981C3B1865003CD1A2 /* Emitter.swift in Sources */,
 				59AA66A41C3B1865003CD1A2 /* ReservedWords.swift in Sources */,
 				59AA669F1C3B1865003CD1A2 /* PoetSpec.swift in Sources */,
 				59AA667C1C3B1853003CD1A2 /* ControlFlow.swift in Sources */,
+				5915044A1C56EB2F00A9844A /* Printable.swift in Sources */,
 				59AA66841C3B185A003CD1A2 /* EmitType.swift in Sources */,
 				59AA669E1C3B1865003CD1A2 /* ParameterSpec.swift in Sources */,
 				59AA66A31C3B1865003CD1A2 /* PoetUtil.swift in Sources */,
 				59AA667E1C3B1853003CD1A2 /* TypeName.swift in Sources */,
+				5915044F1C56EB7B00A9844A /* ExtensionSpec.swift in Sources */,
 				59AA669D1C3B1865003CD1A2 /* MethodSpec.swift in Sources */,
 				59AA66991C3B1865003CD1A2 /* Literal.swift in Sources */,
 				59AA667B1C3B1853003CD1A2 /* CodeWriter.swift in Sources */,
@@ -690,6 +714,9 @@
 			files = (
 				599EABD71C46DAD1002DEAB3 /* Importable.swift in Sources */,
 				3B78C6B61BA762CF00173EAC /* SwiftPoet.swift in Sources */,
+				591504501C56EB7B00A9844A /* ExtensionSpec.swift in Sources */,
+				5915045A1C56ED9100A9844A /* PrintableList.swift in Sources */,
+				5915044B1C56EB2F00A9844A /* Printable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +733,9 @@
 			files = (
 				599EABD81C46DAD1002DEAB3 /* Importable.swift in Sources */,
 				3B38DBE41BA764BA000986DF /* SwiftPoet.swift in Sources */,
+				591504511C56EB7B00A9844A /* ExtensionSpec.swift in Sources */,
+				5915045B1C56ED9100A9844A /* PrintableList.swift in Sources */,
+				5915044C1C56EB2F00A9844A /* Printable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
