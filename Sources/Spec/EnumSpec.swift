@@ -45,7 +45,6 @@ extension EnumSpecBuilder {
 
     public func addMethodSpec(methodSpec: MethodSpec) -> Self {
         super.addMethodSpec(internalMethodSpec: methodSpec)
-        methodSpec.parentType = self.construct
         return self
     }
 
@@ -76,7 +75,7 @@ extension EnumSpecBuilder {
     }
 
     public func addModifier(modifier: Modifier) -> Self {
-        guard (EnumSpec.asMemberModifiers.filter { $0 == modifier }).count == 1 else {
+        guard EnumSpec.asMemberModifiers.contains(modifier) else {
             return self
         }
         super.addModifier(internalModifier: modifier)

@@ -106,6 +106,7 @@ public class TypeSpecBuilder: SpecBuilder, TypeSpecProtocol {
         if !methodSpecs.contains(methodSpec) {
             self.methodSpecs.append(methodSpec)
         }
+        methodSpec.parentType = self.construct
     }
 
     internal func addMethodSpecs(internalMethodSpecList methodSpecList: [MethodSpec]) {
@@ -113,7 +114,7 @@ public class TypeSpecBuilder: SpecBuilder, TypeSpecProtocol {
     }
 
     internal func addFieldSpec(internalFieldSpec fieldSpec: FieldSpec) {
-        if (fieldSpecs.filter { $0 == fieldSpec }).isEmpty {
+        if !fieldSpecs.contains(fieldSpec) {
             self.fieldSpecs.append(fieldSpec)
             fieldSpec.parentType = self.construct
         }

@@ -77,7 +77,7 @@ extension ExtensionSpecBuilder {
     }
 
     public func addModifier(m: Modifier) -> Self {
-        guard (ExtensionSpec.asMemberModifiers.filter { $0 == m }).count == 1 else {
+        guard ExtensionSpec.asMemberModifiers.contains(m) else {
             return self
         }
         super.addModifier(internalModifier: m)

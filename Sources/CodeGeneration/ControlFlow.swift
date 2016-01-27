@@ -46,7 +46,7 @@ public enum ControlFlow: String {
             .addLiteral(ControlFlow.For.rawValue)
             .addLiteral(iterator)
             .addEmitObject(.Literal, any: ControlFlow.ForIn.rawValue)
-            .addLiteral(iterator)
+            .addLiteral(iterable)
             .addEmitObject(.BeginStatement)
             .addCodeBlock(bodyFn())
             .addEmitObject(.EndStatement)

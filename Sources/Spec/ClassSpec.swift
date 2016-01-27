@@ -45,13 +45,11 @@ extension ClassSpecBuilder {
 
     public func addMethodSpec(methodSpec: MethodSpec) -> Self {
         super.addMethodSpec(internalMethodSpec: methodSpec)
-        methodSpec.parentType = self.construct
         return self
     }
 
     public func addFieldSpec(fieldSpec: FieldSpec) -> Self {
         super.addFieldSpec(internalFieldSpec: fieldSpec)
-        fieldSpec.parentType = .Enum
         return self
     }
 
@@ -75,11 +73,12 @@ extension ClassSpecBuilder {
         return self
     }
 
-    public func addModifier(m: Modifier) -> Self {
-        guard (ClassSpec.asMemberModifiers.filter { $0 == m }).count == 1 else {
+    public func addModifier(modifier: Modifier) -> Self {
+        guard ClassSpec.asMemberModifiers.contains(modifier) else {
+            print("\(name) \(modifier.rawValue)")
             return self
         }
-        super.addModifier(internalModifier: m)
+        super.addModifier(internalModifier: modifier)
         return self
     }
 

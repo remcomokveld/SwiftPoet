@@ -131,7 +131,8 @@ public class MethodSpecBuilder: SpecBuilder, Builder, MethodSpecProtocol {
     public var parentType: Construct?
 
     private init(name: String) {
-        super.init(name: PoetUtil.cleanCammelCaseString(name), construct: MethodSpecBuilder.defaultConstruct)
+        let cleanName = name == "init" ? name : PoetUtil.cleanCammelCaseString(name) // init is a reserved word but is ok as a method name
+        super.init(name: cleanName, construct: MethodSpecBuilder.defaultConstruct)
     }
 
     public func build() -> Result {

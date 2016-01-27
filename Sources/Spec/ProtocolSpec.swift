@@ -45,13 +45,11 @@ extension ProtocolSpecBuilder {
 
     public func addMethodSpec(methodSpec: MethodSpec) -> Self {
         super.addMethodSpec(internalMethodSpec: methodSpec)
-        methodSpec.parentType = self.construct
         return self
     }
 
     public func addFieldSpec(fieldSpec: FieldSpec) -> Self {
         super.addFieldSpec(internalFieldSpec: fieldSpec)
-        fieldSpec.parentType = .Enum
         return self
     }
 
@@ -76,7 +74,7 @@ extension ProtocolSpecBuilder {
     }
 
     public func addModifier(m: Modifier) -> Self {
-        guard (ProtocolSpec.asMemberModifiers.filter { $0 == m }).count == 1 else {
+        guard ProtocolSpec.asMemberModifiers.contains(m) else {
             return self
         }
         super.addModifier(internalModifier: m)

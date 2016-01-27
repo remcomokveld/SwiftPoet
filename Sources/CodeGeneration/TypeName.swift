@@ -18,7 +18,12 @@ public class TypeName: Importable {
     public init(keyword: String, optional: Bool = false, imports: [String]? = nil) {
         let trimKeyWord = keyword.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
 
-        if TypeName.isDictionary(trimKeyWord) {
+        if TypeName.isObject(trimKeyWord) {
+            self.keyword = "Dictionary"
+            self.leftInnerType = TypeName.StringType
+            self.rightInnerType = TypeName.StringType
+            self.optional = optional
+        } else if TypeName.isDictionary(trimKeyWord) {
             let chars = trimKeyWord.characters
             let isOptional = TypeName.isOptional(trimKeyWord)
             let endIndex = isOptional ? chars.endIndex.predecessor().predecessor() : chars.endIndex.predecessor()
@@ -63,6 +68,10 @@ public class TypeName: Importable {
 
     public var isPrimitive: Bool {
         return keyword != TypeName.NilType.keyword
+    }
+
+    private static func isObject(keyword: String) -> Bool {
+        return keyword.lowercaseString == "object"
     }
 
     private static func isArray(keyword: String) -> Bool {
