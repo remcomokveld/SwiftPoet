@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class EnumSpec: TypeSpecImpl {
+public class EnumSpec: TypeSpec {
     public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
     public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Throws]
     public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
 
     private init(builder: EnumSpecBuilder) {
-        super.init(builder: builder as TypeSpecBuilderImpl)
+        super.init(builder: builder as TypeSpecBuilder)
     }
 
     public static func builder(name: String) -> EnumSpecBuilder {
@@ -22,18 +22,17 @@ public class EnumSpec: TypeSpecImpl {
     }
 }
 
-public class EnumSpecBuilder: TypeSpecBuilderImpl, Builder {
+public class EnumSpecBuilder: TypeSpecBuilder, Builder {
     public typealias Result = EnumSpec
     public static let defaultConstruct: Construct = .Enum
 
     private init(name: String) {
-        super.init(name: name, construct: EnumSpecBuilder.defaultConstruct, methodSpecs: [MethodSpec](), fieldSpecs: [FieldSpec](), superProtocols: [TypeName]())
+        super.init(name: name, construct: EnumSpecBuilder.defaultConstruct)
     }
 
     public func build() -> Result {
         return EnumSpec(builder: self)
     }
-
 }
 
 // MARK: Chaining
@@ -45,13 +44,13 @@ extension EnumSpecBuilder {
     }
 
     public func addMethodSpec(methodSpec: MethodSpec) -> Self {
-        super.addMethodSpec(methodSpec: methodSpec)
+        super.addMethodSpec(internalMethodSpec: methodSpec)
         methodSpec.parentType = self.construct
         return self
     }
 
     public func addFieldSpec(fieldSpec: FieldSpec) -> Self {
-        super.addFieldSpec(fieldSpec)
+        super.addFieldSpec(internalFieldSpec: fieldSpec)
         fieldSpec.parentType = .Enum
         return self
     }
@@ -62,17 +61,17 @@ extension EnumSpecBuilder {
     }
 
     public func addProtocol(protocolSpec: TypeName) -> Self {
-        super.addProtocol(protocolSpec)
+        super.addProtocol(internalProtocolSpec: protocolSpec)
         return self
     }
 
     public func addProtocols(protocolList: [TypeName]) -> Self {
-        super.addProtocols(protocolList)
+        super.addProtocols(internalProtocolSpecList: protocolList)
         return self
     }
 
     public func addSuperType(superClass: TypeName) -> Self {
-        super.addSuperType(superClass)
+        super.addSuperType(internalSuperClass: superClass)
         return self 
     }
 
@@ -90,7 +89,7 @@ extension EnumSpecBuilder {
     }
 
     public func addDescription(description: String?) -> Self {
-        super.addDescription(description)
+        super.addDescription(internalDescription: description)
         return self
     }
 
@@ -100,12 +99,12 @@ extension EnumSpecBuilder {
     }
 
     public func addImport(imprt: String) -> Self {
-        super.addImport(imprt)
+        super.addImport(internalImport: imprt)
         return self
     }
 
     public func addImports(imports: [String]) -> Self {
-        super.addImports(imports)
+        super.addImports(internalImports: imports)
         return self
     }
 }

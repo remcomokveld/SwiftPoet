@@ -8,7 +8,11 @@
 
 import Foundation
 
-public class ParameterSpec: PoetSpecImpl {
+public protocol ParameterSpecProtocol {
+    var type: TypeName { get }
+}
+
+public class ParameterSpec: PoetSpec, ParameterSpecProtocol {
     public let type: TypeName
 
     private init(b: ParameterSpecBuilder) {
@@ -37,7 +41,7 @@ public class ParameterSpec: PoetSpecImpl {
     }
 }
 
-public class ParameterSpecBuilder: SpecBuilderImpl, Builder {
+public class ParameterSpecBuilder: SpecBuilder, Builder, ParameterSpecProtocol {
     public typealias Result = ParameterSpec
     public static let defaultConstruct: Construct = .Param
 
@@ -64,12 +68,12 @@ extension ParameterSpecBuilder {
     }
 
     public func addModifiers(modifiers: [Modifier]) -> Self {
-        super.addModifiers(modifiers)
+        super.addModifiers(internalModifiers: modifiers)
         return self
     }
 
     public func addDescription(description: String?) -> Self {
-        super.addDescription(description)
+        super.addDescription(internalDescription: description)
         return self
     }
 
@@ -79,12 +83,12 @@ extension ParameterSpecBuilder {
     }
 
     public func addImport(imprt: String) -> Self {
-        super.addImport(imprt)
+        super.addImport(internalImport: imprt)
         return self
     }
 
     public func addImports(imports: [String]) -> Self {
-        super.addImports(imports)
+        super.addImports(internalImports: imports)
         return self
     }
 }

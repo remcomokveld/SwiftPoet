@@ -85,12 +85,12 @@ class MethodSpecTests: XCTestCase {
 
     func testProtocolMethodOneParamWithDocs() {
         let mb = MethodSpec.builder("Test")
-        mb.addParentType(.Protocol)
-        mb.addReturnType(TypeName.StringType)
-        mb.addDescription("This is a test description")
+            .addParentType(.Protocol)
+            .addReturnType(TypeName.StringType)
+            .addDescription("This is a test description")
 
         let pb = ParameterSpec.builder("name", type: TypeName.StringType)
-                .addDescription("The name of the test")
+            .addDescription("The name of the test")
 
         mb.addParameter(pb.build())
 

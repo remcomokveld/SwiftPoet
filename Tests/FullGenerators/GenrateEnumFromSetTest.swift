@@ -45,7 +45,7 @@ class GenrateEnumFromSetTest: XCTestCase {
                         let name = value["name"] as! String
                         let description = value["description"] as? String
                         return FieldSpec.builder(name)
-                                .addInitializer(CodeBlock.builder().addEmitObject(.EscapedString, any: name).build())
+                                .addInitializer(CodeBlock.builder().addLiteral(name).build())
                                 .addDescription(description)
                                 .build()
                     }

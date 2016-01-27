@@ -8,7 +8,13 @@
 
 import Foundation
 
-public class FieldSpec: PoetSpecImpl {
+public protocol FieldSpecProtocol {
+    var type: TypeName? { get }
+    var initializer: CodeBlock? { get }
+    var parentType: Construct? { get set }
+}
+
+public class FieldSpec: PoetSpec, FieldSpecProtocol {
     public let type: TypeName?
     public let initializer: CodeBlock?
     public var parentType: Construct?
@@ -43,14 +49,14 @@ public class FieldSpec: PoetSpecImpl {
             emitEnumType(codeWriter)
             break
 
-        case .Struct, .Class:
+        case .Struct, .Class, .Extension:
             emitClassType(codeWriter)
             break
         case .Protocol:
             emitProtocolType(codeWriter)
             break
         default:
-            break
+            fatalError()
         }
 
         return codeWriter
@@ -123,21 +129,13 @@ public class FieldSpec: PoetSpecImpl {
     }
 }
 
-public class FieldSpecBuilder: SpecBuilderImpl, Builder {
+public class FieldSpecBuilder: SpecBuilder, Builder, FieldSpecProtocol {
+    private static let defaultConstruct: Construct = .Field
+    
     public typealias Result = FieldSpec
-    public static let defaultConstruct: Construct = .Field
-
     public let type: TypeName?
-
-    private var _initializer: CodeBlock? = nil
-    public var initializer: CodeBlock? {
-        return _initializer
-    }
-
-    private var _parentType: Construct? = nil
-    public var parentType: Construct? {
-        return _parentType
-    }
+    public private(set) var initializer: CodeBlock? = nil
+    public var parentType: Construct?
 
     private init(name: String, type: TypeName? = nil, construct: Construct? = nil) {
         self.type = type
@@ -151,16 +149,15 @@ public class FieldSpecBuilder: SpecBuilderImpl, Builder {
 
 }
 
-// MARK: Add feild specific info
+// MARK: Add field specific info
 extension FieldSpecBuilder {
-
-    public func addInitializer(i: CodeBlock) -> FieldSpecBuilder {
-        self._initializer = i
+    public func addInitializer(i: CodeBlock) -> Self {
+        self.initializer = i
         return self
     }
 
-    public func addParentType(pt: Construct) -> FieldSpecBuilder {
-        self._parentType = pt
+    public func addParentType(pt: Construct) -> Self {
+        self.parentType = pt
         return self
     }
 }
@@ -174,12 +171,12 @@ extension FieldSpecBuilder {
     }
 
     public func addModifiers(modifiers: [Modifier]) -> Self {
-        super.addModifiers(modifiers)
+        super.addModifiers(internalModifiers: modifiers)
         return self
     }
 
     public func addDescription(description: String?) -> Self {
-        super.addDescription(description)
+        super.addDescription(internalDescription: description)
         return self
     }
 
@@ -189,12 +186,12 @@ extension FieldSpecBuilder {
     }
 
     public func addImport(imprt: String) -> Self {
-        super.addImport(imprt)
+        super.addImport(internalImport: imprt)
         return self
     }
 
     public func addImports(imports: [String]) -> Self {
-        super.addImports(imports)
+        super.addImports(internalImports: imports)
         return self
     }
 }

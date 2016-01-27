@@ -117,7 +117,7 @@ extension CodeWriter {
     }
 
     public func emitDocumentation(o: AnyObject) {
-        if let spec = o as? TypeSpecImpl, let docs = spec.description {
+        if let spec = o as? TypeSpec, let docs = spec.description {
             var specDoc = "" as String
 
             let firstline = String.indent("/**\n", i: indentLevel)
@@ -205,13 +205,8 @@ extension CodeWriter {
                 case .CodeLine:
                     self.emitNewLine()
                     self.emitWithIndentation(emitObject.any as! Literal)
-                case .EscapedString:
-                    let str = emitObject.any ?? ""
-                    self.emitLiteral("\"\(str)\"", first: first)
                 case .Emitter:
                     self.emitEmitter(emitObject.any, first: first)
-                default:
-                    break
                 }
                 first = false
             }
@@ -226,7 +221,7 @@ extension CodeWriter {
     }
 
     private func emitLiteral(o: Any?, first: Bool = false) {
-        if let _ = o as? TypeSpecImpl {
+        if let _ = o as? TypeSpec {
             // Dunno
         } else if let literalType = o as? Literal {
             var lv = literalType.literalValue().characters
@@ -293,17 +288,17 @@ extension CodeWriter {
         _out.append("\n")
     }
 
-    private func addIndentation() {
+    private func emitIndentation() {
         _out.appendContentsOf(String.indent("", i: indentLevel).characters)
     }
 
     public func emitWithIndentation(cb: CodeBlock) {
-        self.addIndentation()
+        self.emitIndentation()
         emit(cb)
     }
 
     public func emitWithIndentation(any: Literal) {
-        self.addIndentation()
+        self.emitIndentation()
         self.emitLiteral(any, first: true)
     }
 

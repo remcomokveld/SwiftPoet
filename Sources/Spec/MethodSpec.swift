@@ -8,14 +8,22 @@
 
 import Foundation
 
-public class MethodSpec: PoetSpecImpl {
+public protocol MethodSpecProtocol {
+    var typeVariables: [TypeName] { get }
+    var throwsError: Bool { get }
+    var returnType: TypeName? { get }
+    var parameters: [ParameterSpec] { get }
+    var code: CodeBlock? { get }
+    var parentType: Construct? { get set}
+}
+
+public class MethodSpec: PoetSpec, MethodSpecProtocol {
     public let typeVariables: [TypeName]
     public let throwsError: Bool
     public let returnType: TypeName?
     public let parameters: [ParameterSpec]
     public let code: CodeBlock?
     public var parentType: Construct?
-    //    public let defaultValue: CodeBlock?
 
     private init(b: MethodSpecBuilder) {
         self.typeVariables = b.typeVariables
@@ -111,32 +119,24 @@ public class MethodSpec: PoetSpecImpl {
     }
 }
 
-public class MethodSpecBuilder: SpecBuilderImpl, Builder {
+public class MethodSpecBuilder: SpecBuilder, Builder, MethodSpecProtocol {
     public typealias Result = MethodSpec
     public static let defaultConstruct: Construct = .Method
 
-    private var typeVariables = [TypeName]()
-    private var throwsError = false
-    private var returnType: TypeName?
-    private var parameters = [ParameterSpec]()
-    private var code: CodeBlock?
-
-    private var _parentType: Construct?
-    public var parentType: Construct? {
-        return _parentType
-    }
-
-    //    public let defaultValue: CodeBlock?
+    public private(set) var typeVariables = [TypeName]()
+    public private(set) var throwsError = false
+    public private(set) var returnType: TypeName?
+    public private(set) var parameters = [ParameterSpec]()
+    public private(set) var code: CodeBlock?
+    public var parentType: Construct?
 
     private init(name: String) {
-        let methodName = name == "init" ? name : PoetUtil.cleanCammelCaseString(name)
-        super.init(name: methodName, construct: MethodSpecBuilder.defaultConstruct)
+        super.init(name: PoetUtil.cleanCammelCaseString(name), construct: MethodSpecBuilder.defaultConstruct)
     }
 
     public func build() -> Result {
         return MethodSpec(b: self)
     }
-
 }
 
 // MARK: Add method spcific info
@@ -173,7 +173,7 @@ extension MethodSpecBuilder {
     }
 
     public func addParentType(type: Construct) -> Self {
-        _parentType = type
+        parentType = type
         return self
     }
 
@@ -181,10 +181,6 @@ extension MethodSpecBuilder {
         throwsError = true
         return self
     }
-
-    //    public func addStatement(format: String, args: [AnyObject]) {
-    //        code.addStatement(format, args)
-    //    }
 }
 
 // MARK: Chaining
@@ -196,12 +192,12 @@ extension MethodSpecBuilder {
     }
 
     public func addModifiers(modifiers: [Modifier]) -> Self {
-        super.addModifiers(modifiers)
+        super.addModifiers(internalModifiers: modifiers)
         return self
     }
 
     public func addDescription(description: String?) -> Self {
-        super.addDescription(description)
+        super.addDescription(internalDescription: description)
         return self
     }
 
@@ -211,12 +207,12 @@ extension MethodSpecBuilder {
     }
 
     public func addImport(imprt: String) -> Self {
-        super.addImport(imprt)
+        super.addImport(internalImport: imprt)
         return self
     }
 
     public func addImports(imports: [String]) -> Self {
-        super.addImports(imports)
+        super.addImports(internalImports: imports)
         return self
     }
 }

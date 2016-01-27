@@ -45,8 +45,7 @@ extension CodeBlock: Hashable {
 public class CodeBlockBuilder: Builder {
     public typealias Result = CodeBlock
 
-    public var emittableObjects = [Either<EmitObject, CodeBlock>]()
-    //    private var controlFlowCount = 0 // for now, trust the creators
+    public private(set) var emittableObjects = [Either<EmitObject, CodeBlock>]()
 
     private init () {}
 

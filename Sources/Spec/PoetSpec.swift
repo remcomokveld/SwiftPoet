@@ -8,20 +8,16 @@
 
 import Foundation
 
-public protocol PoetSpec {
+public protocol PoetSpecProtocol {
     var name: String { get }
     var construct: Construct { get }
     var modifiers: Set<Modifier> { get }
     var description: String? { get }
     var framework: String? { get }
     var imports: Set<String> { get }
-
-    func toString() -> String
-    func collectImports() -> Set<String>
-    func toFile() -> PoetFile
 }
 
-public class PoetSpecImpl: PoetSpec, Emitter, Importable {
+public class PoetSpec: PoetSpecProtocol, Emitter, Importable {
     public let name: String
     public let construct: Construct
     public let modifiers: Set<Modifier>
@@ -51,28 +47,19 @@ public class PoetSpecImpl: PoetSpec, Emitter, Importable {
     }
 }
 
-extension PoetSpecImpl: Equatable {}
+extension PoetSpec: Equatable {}
 
-public func ==(lhs: PoetSpecImpl, rhs: PoetSpecImpl) -> Bool {
+public func ==(lhs: PoetSpec, rhs: PoetSpec) -> Bool {
     return lhs.dynamicType == rhs.dynamicType && lhs.toString() == rhs.toString()
 }
 
-extension PoetSpecImpl: Hashable {
+extension PoetSpec: Hashable {
     public var hashValue: Int {
         return self.toString().hashValue
     }
 }
 
-public protocol SpecBuilder {
-    var name: String { get }
-    var construct: Construct { get }
-    var modifiers: Set<Modifier> { get }
-    var description: String? { get }
-    var framework: String? { get }
-    var imports: Set<String> { get }
-}
-
-public class SpecBuilderImpl: SpecBuilder {
+public class SpecBuilder: PoetSpecProtocol {
     public let name: String
     public let construct: Construct
     public private(set) var modifiers = Set<Modifier>()
@@ -89,11 +76,11 @@ public class SpecBuilderImpl: SpecBuilder {
         self.modifiers.insert(modifier)
     }
 
-    internal func addModifiers(modifiers: [Modifier]) {
+    internal func addModifiers(internalModifiers modifiers: [Modifier]) {
         modifiers.forEach { addModifier(internalModifier: $0) }
     }
 
-    internal func addDescription(description: String?) {
+    internal func addDescription(internalDescription description: String?) {
         self.description = description
     }
 
@@ -101,11 +88,11 @@ public class SpecBuilderImpl: SpecBuilder {
         self.framework = PoetUtil.fmap(PoetUtil.cleanTypeName, a: framework)
     }
 
-    internal func addImport(imprt: String) {
+    internal func addImport(internalImport imprt: String) {
         self.imports.insert(imprt)
     }
 
-    internal func addImports(imports: [String]) {
-        imports.forEach { addImport($0) }
+    internal func addImports(internalImports imports: [String]) {
+        imports.forEach { addImport(internalImport: $0) }
     }
 }

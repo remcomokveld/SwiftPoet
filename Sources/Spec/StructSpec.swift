@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class StructSpec: TypeSpecImpl {
+public class StructSpec: TypeSpec {
     public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
     public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Mutating, .Throws]
     public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
 
     private init(b: StructSpecBuilder) {
-        super.init(builder: b as TypeSpecBuilderImpl)
+        super.init(builder: b as TypeSpecBuilder)
     }
 
     public static func builder(name: String) -> StructSpecBuilder {
@@ -22,27 +22,27 @@ public class StructSpec: TypeSpecImpl {
     }
 }
 
-public class StructSpecBuilder: TypeSpecBuilderImpl, Builder {
+public class StructSpecBuilder: TypeSpecBuilder, Builder {
     public typealias Result = StructSpec
     public static let defaultConstruct: Construct = .Struct
     private var includeInit: Bool = false
 
     public init(name: String) {
-        super.init(name: name, construct: StructSpecBuilder.defaultConstruct, methodSpecs: [MethodSpec](), fieldSpecs: [FieldSpec](), superProtocols: [TypeName]())
+        super.init(name: name, construct: StructSpecBuilder.defaultConstruct)
     }
 
     public func build() -> Result {
-        if !(methodSpecs!.contains { $0.name == "init" }) || includeInit {
+        if !(methodSpecs.contains { $0.name == "init" }) || includeInit {
             addInitMethod()
         }
         return StructSpec(b: self)
     }
 
-    private func addInitMethod() {
+    private func addInitMethod() -> Self {
         let mb = MethodSpec.builder("init")
         let cb = CodeBlock.builder()
 
-        self.fieldSpecs?.forEach { spec in
+        fieldSpecs.forEach { spec in
             if Modifier.equivalentAccessLevel(parentModifiers: self.modifiers, childModifiers: spec.modifiers) {
                 mb.addParameter(ParameterSpec.builder(spec.name, type: spec.type!)
                     .addModifiers(Array(spec.modifiers))
@@ -59,7 +59,7 @@ public class StructSpecBuilder: TypeSpecBuilderImpl, Builder {
 
         mb.addCode(cb.build())
 
-        self.addMethodSpec(mb.build())
+        return self.addMethodSpec(mb.build())
     }
 
     public func includeDefaultInit() -> StructSpecBuilder {
@@ -77,13 +77,13 @@ extension StructSpecBuilder {
     }
 
     public func addMethodSpec(methodSpec: MethodSpec) -> Self {
-        super.addMethodSpec(methodSpec: methodSpec)
+        super.addMethodSpec(internalMethodSpec: methodSpec)
         methodSpec.parentType = self.construct
         return self
     }
 
     public func addFieldSpec(fieldSpec: FieldSpec) -> Self {
-        super.addFieldSpec(fieldSpec)
+        super.addFieldSpec(internalFieldSpec: fieldSpec)
         fieldSpec.parentType = .Enum
         return self
     }
@@ -94,17 +94,17 @@ extension StructSpecBuilder {
     }
 
     public func addProtocol(protocolSpec: TypeName) -> Self {
-        super.addProtocol(protocolSpec)
+        super.addProtocol(internalProtocolSpec: protocolSpec)
         return self
     }
 
     public func addProtocols(protocolList: [TypeName]) -> Self {
-        super.addProtocols(protocolList)
+        super.addProtocols(internalProtocolSpecList: protocolList)
         return self
     }
 
     public func addSuperType(superClass: TypeName) -> Self {
-        super.addSuperType(superClass)
+        super.addSuperType(internalSuperClass: superClass)
         return self
     }
 
@@ -122,7 +122,7 @@ extension StructSpecBuilder {
     }
 
     public func addDescription(description: String?) -> Self {
-        super.addDescription(description)
+        super.addDescription(internalDescription: description)
         return self
     }
 
@@ -132,12 +132,12 @@ extension StructSpecBuilder {
     }
 
     public func addImport(imprt: String) -> Self {
-        super.addImport(imprt)
+        super.addImport(internalImport: imprt)
         return self
     }
 
     public func addImports(imports: [String]) -> Self {
-        super.addImports(imports)
+        super.addImports(internalImports: imports)
         return self
     }
 }

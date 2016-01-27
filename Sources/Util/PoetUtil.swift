@@ -11,6 +11,7 @@ import Foundation
 public struct PoetUtil {
     private static let template = "^^^^"
     private static let regexPattern = "\\s|_|\\.|-"
+    
     private static func getSpaceAndPunctuationRegex() -> NSRegularExpression? {
         do {
             return try NSRegularExpression(pattern: PoetUtil.regexPattern, options: NSRegularExpressionOptions.AnchorsMatchLines)
@@ -89,9 +90,4 @@ public struct PoetUtil {
         case .None:   return .None
         }
     }
-}
-
-public enum Either<A, B> {
-    case Left(A)
-    case Right(B)
 }

@@ -35,6 +35,9 @@ class EnumSpecTests: XCTestCase {
         "\n" +
         "}"
 
+//        print(e.toString())
+//        print(result)
+
         XCTAssertEqual(e.toString(), result)
     }
 
@@ -103,6 +106,9 @@ class EnumSpecTests: XCTestCase {
         "\n" +
         "}"
 
+        print(e.toString())
+        print(result)
+
         XCTAssertEqual(result, e.toString())
     }
 
@@ -133,7 +139,7 @@ class EnumSpecTests: XCTestCase {
         let f1 = FieldSpec.builder("test_case_one")
         f1.addDescription("This is the first test case")
         let cb1 = CodeBlock.builder()
-        cb1.addEmitObject(.EscapedString, any: "test_case_one")
+        cb1.addLiteral("\"test_case_one\"")
 
         f1.addInitializer(cb1.build())
 
@@ -165,7 +171,7 @@ class EnumSpecTests: XCTestCase {
 
             if (i % 2 == 0) {
                 let cb1 = CodeBlock.builder()
-                cb1.addEmitObject(.EscapedString, any: "test_case_\(i)")
+                cb1.addLiteral("\"test_case_\(i)\"")
                 f1.addInitializer(cb1.build())
             }
 
@@ -213,7 +219,7 @@ class EnumSpecTests: XCTestCase {
         let f1 = FieldSpec.builder("test_case_one")
         f1.addDescription("This is the first case")
         let cb1 = CodeBlock.builder()
-        cb1.addEmitObject(.EscapedString, any: "test_case_one")
+        cb1.addLiteral("\"test_case_one\"")
 
         f1.addInitializer(cb1.build())
 

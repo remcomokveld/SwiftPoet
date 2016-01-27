@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class ProtocolSpec: TypeSpecImpl {
+public class ProtocolSpec: TypeSpec {
     public static let fieldModifiers: [Modifier] = [.Static]
     public static let methodModifiers: [Modifier] = [.Static]
     public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
 
     private init(b: ProtocolSpecBuilder) {
-        super.init(builder: b as TypeSpecBuilderImpl)
+        super.init(builder: b as TypeSpecBuilder)
     }
 
     public static func builder(name: String) -> ProtocolSpecBuilder {
@@ -22,15 +22,15 @@ public class ProtocolSpec: TypeSpecImpl {
     }
 }
 
-public class ProtocolSpecBuilder: TypeSpecBuilderImpl, Builder {
+public class ProtocolSpecBuilder: TypeSpecBuilder, Builder {
     public typealias Result = ProtocolSpec
     public static let defaultConstruct: Construct = .Protocol
 
     public init(name: String) {
-        super.init(name: name, construct: ProtocolSpecBuilder.defaultConstruct, methodSpecs: [MethodSpec](), fieldSpecs: [FieldSpec](), superProtocols: nil)
+        super.init(name: name, construct: ProtocolSpecBuilder.defaultConstruct)
     }
 
-    public func build() -> ProtocolSpec {
+    public func build() -> Result {
         return ProtocolSpec(b: self)
     }
 }
@@ -44,13 +44,13 @@ extension ProtocolSpecBuilder {
     }
 
     public func addMethodSpec(methodSpec: MethodSpec) -> Self {
-        super.addMethodSpec(methodSpec: methodSpec)
+        super.addMethodSpec(internalMethodSpec: methodSpec)
         methodSpec.parentType = self.construct
         return self
     }
 
     public func addFieldSpec(fieldSpec: FieldSpec) -> Self {
-        super.addFieldSpec(fieldSpec)
+        super.addFieldSpec(internalFieldSpec: fieldSpec)
         fieldSpec.parentType = .Enum
         return self
     }
@@ -61,17 +61,17 @@ extension ProtocolSpecBuilder {
     }
 
     public func addProtocol(protocolSpec: TypeName) -> Self {
-        super.addProtocol(protocolSpec)
+        super.addProtocol(internalProtocolSpec: protocolSpec)
         return self
     }
 
     public func addProtocols(protocolList: [TypeName]) -> Self {
-        super.addProtocols(protocolList)
+        super.addProtocols(internalProtocolSpecList: protocolList)
         return self
     }
 
     public func addSuperType(superClass: TypeName) -> Self {
-        super.addSuperType(superClass)
+        super.addSuperType(internalSuperClass: superClass)
         return self
     }
 
@@ -89,7 +89,7 @@ extension ProtocolSpecBuilder {
     }
 
     public func addDescription(description: String?) -> Self {
-        super.addDescription(description)
+        super.addDescription(internalDescription: description)
         return self
     }
 
@@ -99,12 +99,12 @@ extension ProtocolSpecBuilder {
     }
 
     public func addImport(imprt: String) -> Self {
-        super.addImport(imprt)
+        super.addImport(internalImport: imprt)
         return self
     }
 
     public func addImports(imports: [String]) -> Self {
-        super.addImports(imports)
+        super.addImports(internalImports: imports)
         return self
     }
 }

@@ -23,7 +23,6 @@ public enum Modifier: String {
     case Override = "override"
     case Required = "required"
 
-    //    case Extension
     //    case DidSet
     //    case Lazy
     //    case WillSet

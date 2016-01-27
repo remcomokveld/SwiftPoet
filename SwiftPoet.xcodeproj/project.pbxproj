@@ -18,6 +18,7 @@
 		591504591C56ED9100A9844A /* PoetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591504571C56ED9100A9844A /* PoetFile.swift */; };
 		595E1B3B1C58200300AC3B08 /* TypeNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E1B391C58200300AC3B08 /* TypeNameTests.swift */; };
 		599EABD61C46DAD1002DEAB3 /* Importable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EABD41C46DAD1002DEAB3 /* Importable.swift */; };
+		59A2C6EA1C5834290093AF3F /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A2C6E91C5834290093AF3F /* Either.swift */; };
 		59AA667A1C3B1853003CD1A2 /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66751C3B1853003CD1A2 /* CodeBlock.swift */; };
 		59AA667B1C3B1853003CD1A2 /* CodeWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66761C3B1853003CD1A2 /* CodeWriter.swift */; };
 		59AA667C1C3B1853003CD1A2 /* ControlFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA66771C3B1853003CD1A2 /* ControlFlow.swift */; };
@@ -111,6 +112,7 @@
 		595E1B381C58200300AC3B08 /* SwiftPoetUnitTests-tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftPoetUnitTests-tvOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		595E1B391C58200300AC3B08 /* TypeNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeNameTests.swift; sourceTree = "<group>"; };
 		599EABD41C46DAD1002DEAB3 /* Importable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Importable.swift; sourceTree = "<group>"; };
+		59A2C6E91C5834290093AF3F /* Either.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		59AA66751C3B1853003CD1A2 /* CodeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
 		59AA66761C3B1853003CD1A2 /* CodeWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeWriter.swift; sourceTree = "<group>"; };
 		59AA66771C3B1853003CD1A2 /* ControlFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlFlow.swift; sourceTree = "<group>"; };
@@ -317,16 +319,16 @@
 		59AA668A1C3B1865003CD1A2 /* Spec */ = {
 			isa = PBXGroup;
 			children = (
-				59AA668B1C3B1865003CD1A2 /* ClassSpec.swift */,
-				59AA668C1C3B1865003CD1A2 /* EnumSpec.swift */,
+				59AA66901C3B1865003CD1A2 /* PoetSpec.swift */,
 				59AA668D1C3B1865003CD1A2 /* FieldSpec.swift */,
 				59AA668E1C3B1865003CD1A2 /* MethodSpec.swift */,
 				59AA668F1C3B1865003CD1A2 /* ParameterSpec.swift */,
-				59AA66901C3B1865003CD1A2 /* PoetSpec.swift */,
+				59AA66931C3B1865003CD1A2 /* TypeSpec.swift */,
+				59AA668B1C3B1865003CD1A2 /* ClassSpec.swift */,
+				59AA668C1C3B1865003CD1A2 /* EnumSpec.swift */,
+				5915044D1C56EB7B00A9844A /* ExtensionSpec.swift */,
 				59AA66911C3B1865003CD1A2 /* ProtocolSpec.swift */,
 				59AA66921C3B1865003CD1A2 /* StructSpec.swift */,
-				59AA66931C3B1865003CD1A2 /* TypeSpec.swift */,
-				5915044D1C56EB7B00A9844A /* ExtensionSpec.swift */,
 			);
 			path = Spec;
 			sourceTree = "<group>";
@@ -334,9 +336,10 @@
 		59AA66941C3B1865003CD1A2 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				59A2C6E91C5834290093AF3F /* Either.swift */,
+				591504571C56ED9100A9844A /* PoetFile.swift */,
 				59AA66951C3B1865003CD1A2 /* PoetUtil.swift */,
 				59AA66961C3B1865003CD1A2 /* ReservedWords.swift */,
-				591504571C56ED9100A9844A /* PoetFile.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				59AA667E1C3B1853003CD1A2 /* TypeName.swift in Sources */,
 				5915044F1C56EB7B00A9844A /* ExtensionSpec.swift in Sources */,
 				59AA669D1C3B1865003CD1A2 /* MethodSpec.swift in Sources */,
+				59A2C6EA1C5834290093AF3F /* Either.swift in Sources */,
 				59AA66991C3B1865003CD1A2 /* Literal.swift in Sources */,
 				59AA667B1C3B1853003CD1A2 /* CodeWriter.swift in Sources */,
 				59AA66831C3B185A003CD1A2 /* Construct.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Importable {
+internal protocol Importable {
     var imports: Set<String> { get }
 
     func collectImports() -> Set<String>

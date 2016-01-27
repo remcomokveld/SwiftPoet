@@ -9,11 +9,18 @@
 import Foundation
 
 // Represents a list of PoetSpecs in a single file
+public protocol PoetFileProtocol {
+    var fileName: String? { get }
+    var specList: [PoetSpec] { get }
+    var fileContents: String { get }
 
-public class PoetFile: Importable {
-    private var specList: [PoetSpec]
-    public var fileName: String?
-    public var framework: String?
+    func append(item: PoetSpec)
+}
+
+
+public class PoetFile: PoetFileProtocol, Importable {
+    public private(set) var fileName: String?
+    public private(set) var specList: [PoetSpec]
     public var fileContents: String {
         return toFile()
     }
@@ -22,32 +29,22 @@ public class PoetFile: Importable {
         return collectImports()
     }
 
+    private var framework: String?
+
     public init(list: [PoetSpec], framework: String? = nil) {
-        if !list.isEmpty {
-            self.specList = list
-            self.fileName = list.first!.name
-            self.framework = framework
-        } else {
-            self.specList = []
-            self.fileName = nil
-            self.framework = nil
-        }
+        self.specList = list
+        self.fileName = list.first?.name
+        self.framework = framework
     }
 
     public convenience init(spec: PoetSpec, framework: String? = nil) {
         self.init(list: [spec], framework: framework)
     }
 
-    public func add(item: PoetSpec) {
+    public func append(item: PoetSpec) {
         specList.append(item)
         if fileName == nil {
             fileName = item.name
-        }
-    }
-
-    public func add(items: [PoetSpec]) {
-        items.forEach {
-            self.add($0)
         }
     }
 
@@ -64,5 +61,4 @@ public class PoetFile: Importable {
         codeWriter.emitSpecs(specList)
         return codeWriter.out
     }
-
 }
