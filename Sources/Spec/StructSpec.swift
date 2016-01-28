@@ -58,6 +58,7 @@ public class StructSpecBuilder: TypeSpecBuilder, Builder {
         }
 
         mb.addCode(cb.build())
+        mb.addModifier(Modifier.accessLevel(self.modifiers))
 
         return self.addMethodSpec(mb.build())
     }

@@ -43,7 +43,7 @@ public enum Modifier: String {
         return false
     }
 
-    private static func accessLevel(modifiers: Set<Modifier>) -> Modifier {
+    public static func accessLevel(modifiers: Set<Modifier>) -> Modifier {
         if modifiers.contains(.Private) {
             return .Private
         } else if modifiers.contains(.Public) {
