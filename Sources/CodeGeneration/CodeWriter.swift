@@ -245,11 +245,11 @@ extension CodeWriter {
             inheritance += st.literalValue()
             if let sp = superProtocols where sp.count > 0 {
                 inheritance += ", "
-                inheritance = emitProtocolInheritnace(superProtocols, output: inheritance)
+                inheritance = emitProtocolInheritance(superProtocols, output: inheritance)
             }
             _out.appendContentsOf(inheritance.characters)
         } else if let sp = superProtocols where sp.count > 0 {
-            inheritance = emitProtocolInheritnace(superProtocols, output: inheritance)
+            inheritance = emitProtocolInheritance(superProtocols, output: inheritance)
             _out.appendContentsOf(inheritance.characters)
 
         }
@@ -257,7 +257,7 @@ extension CodeWriter {
         return self
     }
 
-    private func emitProtocolInheritnace(superProtocols: [TypeName]?, output: String) -> String {
+    private func emitProtocolInheritance(superProtocols: [TypeName]?, output: String) -> String {
         -> String
     {
         var retVal = output
