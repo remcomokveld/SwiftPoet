@@ -240,38 +240,20 @@ extension CodeWriter {
     }
 
     public func emitInheritance(superType: TypeName?, superProtocols: [TypeName]?) -> CodeWriter {
-        var inheritance = ": "
-        if let st = superType {
-            inheritance += st.literalValue()
-            if let sp = superProtocols where sp.count > 0 {
-                inheritance += ", "
-                inheritance = emitProtocolInheritance(superProtocols, output: inheritance)
-            }
-            _out.appendContentsOf(inheritance.characters)
-        } else if let sp = superProtocols where sp.count > 0 {
-            inheritance = emitProtocolInheritance(superProtocols, output: inheritance)
-            _out.appendContentsOf(inheritance.characters)
 
+        var inheritanceValues: [String?] = [superType?.literalValue()]
+        if let superProtocols = superProtocols {
+            inheritanceValues.appendContentsOf(superProtocols.map({ $0.literalValue()}))
+        }
+
+        let stringValues = inheritanceValues.flatMap({ $0})
+
+        if stringValues.count > 0 {
+            _out.appendContentsOf(": ".characters)
+            _out.appendContentsOf(stringValues.joinWithSeparator(", ").characters)
         }
 
         return self
-    }
-
-    private func emitProtocolInheritance(superProtocols: [TypeName]?, output: String) -> String {
-        -> String
-    {
-        var retVal = output
-        if let sp = superProtocols {
-            sp.forEach { protocolType in
-                var literal = protocolType.literalValue()
-                let spacer = ", ".characters
-                literal.insertContentsOf(spacer, at: literal.endIndex)
-                retVal += literal
-            }
-
-            retVal.removeRange(output.endIndex.predecessor().predecessor()..<output.endIndex)
-        }
-        return retVal
     }
 
     private func emitBeginStatement() {
