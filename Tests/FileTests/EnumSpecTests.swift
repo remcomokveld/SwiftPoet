@@ -90,7 +90,7 @@ class EnumSpecTests: XCTestCase {
         XCTAssertEqual(result, e.toString())
     }
 
-    func testEnumWithClassAndProtocolInheritnace() {
+    func testEnumWithClassAndProtocolInheritance() {
         let eb = EnumSpec.builder("test")
         eb.addDescription("This is a test enum")
         eb.addModifiers([Modifier.Private, Modifier.Mutating])

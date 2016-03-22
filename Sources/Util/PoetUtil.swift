@@ -72,7 +72,7 @@ public struct PoetUtil {
 
         var chars = str.characters
         let first = str.substringToIndex(chars.startIndex.successor())
-        let range = Range(start: chars.startIndex, end: chars.startIndex.successor())
+        let range = chars.startIndex..<chars.startIndex.successor()
         chars.replaceRange(range, with: caseFn(str: first))
         return String(chars)
     }

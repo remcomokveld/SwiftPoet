@@ -2,19 +2,15 @@
 
 # SwiftPoet
 
-SwiftPoet is a Swift framework for generating Swift code. SwiftPoet is created under the premise that generating code for a language is best done in the same language.
-Based heavily on the thought process of [JavaPoet](https://github.com/square/javapoet), SwiftPoet is the base repository which will eventually generate Swift code
-from an (apidoc.json)[http://apidoc.me/doc/] file at Gilt. That said, SwiftPoet is meant to be generalized and usable in other generation scenarios.
+SwiftPoet is a Swift framework for generating Swift code.
 
 SwiftPoet is part of [the Cleanroom Project](https://github.com/gilt/Cleanroom) from [Gilt Tech](http://tech.gilt.com).
 
 
 
-### Swift 2.1 compatibility
+### Swift 2.2 compatibility
 
-The `master` branch of this project is **Swift 2.1 compliant** and therefore **requires Xcode 7.1 or higher** to compile.
-
-It is also known to work with Swift 2.1.1 in Xcode 7.2.
+The `master` branch of this project is **Swift 2.2 compliant** and therefore **requires Xcode 7.3 or higher** to compile.
 
 ### License
 
@@ -31,7 +27,7 @@ You’ll need to [integrate SwiftPoet into your project](https://github.com/kyle
 
 - [Manual integration](https://github.com/kyle-dorman/SwiftPoet/blob/master/INTEGRATION.md#manual-integration), wherein you embed SwiftPoet’s Xcode project within your own, **_or_**
 - [Using the Carthage dependency manager](https://github.com/kyle-dorman/SwiftPoet/blob/master/INTEGRATION.md#carthage-integration) to build a framework that you then embed in your application.
- 
+
 Once integrated, just add the following `import` statement to any Swift file where you want to use SwiftPoet:
 
 ```swift
@@ -46,7 +42,7 @@ For detailed information on using SwiftPoet, [API documentation](https://rawgit.
 
 ## About
 
-The Cleanroom Project began as an experiment to re-imagine Gilt’s iOS codebase in a legacy-free, Swift-based incarnation. 
+The Cleanroom Project began as an experiment to re-imagine Gilt’s iOS codebase in a legacy-free, Swift-based incarnation.
 
 Since then, we’ve expanded the Cleanroom Project to include multi-platform support. Much of our codebase now supports tvOS in addition to iOS, and our lower-level code is usable on Mac OS X and watchOS as well.
 
