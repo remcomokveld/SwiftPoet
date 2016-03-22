@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EnumSpecBuilder Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/EnumSpecBuilder" class="dashAnchor"></a>
+    <a title="EnumSpecBuilder Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SwiftPoet Docs</a> (0% documented)</p>
+        <p class="header-right"><a href="https://github.com/kyle-dorman/SwiftPoet"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SwiftPoet Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        EnumSpecBuilder Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ClassSpec.html">ClassSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ClassSpecBuilder.html">ClassSpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CodeBlockBuilder.html">CodeBlockBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CodeWriter.html">CodeWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EnumSpec.html">EnumSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EnumSpecBuilder.html">EnumSpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExtensionSpec.html">ExtensionSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExtensionSpecBuilder.html">ExtensionSpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FieldSpec.html">FieldSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FieldSpecBuilder.html">FieldSpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MethodSpec.html">MethodSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MethodSpecBuilder.html">MethodSpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ParameterSpec.html">ParameterSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ParameterSpecBuilder.html">ParameterSpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PoetFile.html">PoetFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PoetSpec.html">PoetSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ProtocolSpec.html">ProtocolSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ProtocolSpecBuilder.html">ProtocolSpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SpecBuilder.html">SpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StructSpec.html">StructSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StructSpecBuilder.html">StructSpecBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypeName.html">TypeName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypeSpec.html">TypeSpec</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypeSpecBuilder.html">TypeSpecBuilder</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/Comparator.html">Comparator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Construct.html">Construct</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ControlFlow.html">ControlFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Either.html">Either</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/EmitType.html">EmitType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Modifier.html">Modifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Requirement.html">Requirement</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftPoetoi2eeFTVS_9CodeBlockS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftPoetoi2eeFTCS_8PoetSpecS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftPoetoi2eeFTCS_8TypeNameS0__Sb">==(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Builder.html">Builder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Emitter.html">Emitter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FieldSpecProtocol.html">FieldSpecProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Literal.html">Literal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MethodSpecProtocol.html">MethodSpecProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ParameterSpecProtocol.html">ParameterSpecProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PoetFileProtocol.html">PoetFileProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PoetSpecProtocol.html">PoetSpecProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P9SwiftPoet9SwiftPoet">SwiftPoet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/TypeSpecProtocol.html">TypeSpecProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/CodeBlock.html">CodeBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Comparison.html">Comparison</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComparisonList.html">ComparisonList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComparisonListItem.html">ComparisonListItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmitObject.html">EmitObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PoetUtil.html">PoetUtil</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ReservedWords.html">ReservedWords</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>EnumSpecBuilder</h1>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC9SwiftPoet15EnumSpecBuilder16defaultConstructOS_9Construct"></a>
+                    <a name="//apple_ref/swift/Variable/defaultConstruct" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC9SwiftPoet15EnumSpecBuilder16defaultConstructOS_9Construct">defaultConstruct</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder5buildFT_CS_8EnumSpec"></a>
+                    <a name="//apple_ref/swift/Method/build()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder5buildFT_CS_8EnumSpec">build()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder14addMethodSpecsFGSaCS_10MethodSpec_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/addMethodSpecs(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder14addMethodSpecsFGSaCS_10MethodSpec_DS0_">addMethodSpecs(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder13addMethodSpecFCS_10MethodSpecDS0_"></a>
+                    <a name="//apple_ref/swift/Method/addMethodSpec(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder13addMethodSpecFCS_10MethodSpecDS0_">addMethodSpec(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder12addFieldSpecFCS_9FieldSpecDS0_"></a>
+                    <a name="//apple_ref/swift/Method/addFieldSpec(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder12addFieldSpecFCS_9FieldSpecDS0_">addFieldSpec(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder13addFieldSpecsFGSaCS_9FieldSpec_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/addFieldSpecs(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder13addFieldSpecsFGSaCS_9FieldSpec_DS0_">addFieldSpecs(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder11addProtocolFCS_8TypeNameDS0_"></a>
+                    <a name="//apple_ref/swift/Method/addProtocol(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder11addProtocolFCS_8TypeNameDS0_">addProtocol(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder12addProtocolsFGSaCS_8TypeName_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/addProtocols(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder12addProtocolsFGSaCS_8TypeName_DS0_">addProtocols(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder12addSuperTypeFCS_8TypeNameDS0_"></a>
+                    <a name="//apple_ref/swift/Method/addSuperType(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder12addSuperTypeFCS_8TypeNameDS0_">addSuperType(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder11addModifierFOS_8ModifierDS0_"></a>
+                    <a name="//apple_ref/swift/Method/addModifier(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder11addModifierFOS_8ModifierDS0_">addModifier(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder12addModifiersFGSaOS_8Modifier_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/addModifiers(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder12addModifiersFGSaOS_8Modifier_DS0_">addModifiers(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder14addDescriptionFGSqSS_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/addDescription(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder14addDescriptionFGSqSS_DS0_">addDescription(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder12addFrameworkFGSqSS_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/addFramework(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder12addFrameworkFGSqSS_DS0_">addFramework(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder9addImportFSSDS0_"></a>
+                    <a name="//apple_ref/swift/Method/addImport(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder9addImportFSSDS0_">addImport(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftPoet15EnumSpecBuilder10addImportsFGSaSS_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/addImports(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftPoet15EnumSpecBuilder10addImportsFGSaSS_DS0_">addImports(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016 <a class="link" href="http://tech.gilt.com/" target="_blank" rel="external">Gilt Groupe</a></p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
