@@ -257,17 +257,21 @@ extension CodeWriter {
         return self
     }
 
-    private func emitProtocolInheritnace(superProtocols: [TypeName]?, var output: String) -> String {
+    private func emitProtocolInheritnace(superProtocols: [TypeName]?, output: String) -> String {
+        -> String
+    {
+        var retVal = output
         if let sp = superProtocols {
             sp.forEach { protocolType in
                 var literal = protocolType.literalValue()
                 let spacer = ", ".characters
                 literal.insertContentsOf(spacer, at: literal.endIndex)
-                output += literal
+                retVal += literal
             }
-            output.removeRange(Range(start: output.endIndex.predecessor().predecessor(), end: output.endIndex))
+
+            retVal.removeRange(output.endIndex.predecessor().predecessor()..<output.endIndex)
         }
-        return output
+        return retVal
     }
 
     private func emitBeginStatement() {
@@ -313,17 +317,18 @@ extension CodeWriter {
 extension String {
     private static let indentSpacing = ("    ").characters
 
-    private static func indent(var s: String, i: Int) -> String {
+    private static func indent(s: String, i: Int) -> String {
+        var retVal = s
         i.times {
-            s.insertContentsOf(String.indentSpacing, at: s.startIndex)
+            retVal.insertContentsOf(String.indentSpacing, at: s.startIndex)
         }
-        return s
+        return retVal
     }
 }
 
 extension Int {
     private func times(fn: () -> Void) {
-        for var index = 0; index < self; index++ {
+        for _ in 0..<self {
             fn()
         }
     }

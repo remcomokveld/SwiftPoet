@@ -29,14 +29,14 @@ public class TypeName: Importable {
             let endIndex = isOptional ? chars.endIndex.predecessor().predecessor() : chars.endIndex.predecessor()
             let splitIndex = trimKeyWord.rangeOfString(":")!.startIndex
 
-            self.leftInnerType = TypeName(keyword: trimKeyWord.substringWithRange(Range(start: chars.startIndex.successor(), end: splitIndex)))
-            self.rightInnerType = TypeName(keyword: trimKeyWord.substringWithRange(Range(start: splitIndex.successor(), end: endIndex)))
+            self.leftInnerType = TypeName(keyword: trimKeyWord.substringWithRange(chars.startIndex.successor()..<splitIndex))
+            self.rightInnerType = TypeName(keyword: trimKeyWord.substringWithRange(splitIndex.successor()..<endIndex))
             self.keyword = PoetUtil.cleanTypeName("Dictionary")
             self.optional = isOptional || optional
             
         } else if TypeName.isArray(trimKeyWord) {
             let chars = trimKeyWord.characters
-            var range = Range(start: chars.startIndex.successor(), end: chars.endIndex.predecessor())
+            var range = chars.startIndex.successor()..<chars.endIndex.predecessor()
             let isOptional = TypeName.isOptional(trimKeyWord)
             range.endIndex = isOptional ? chars.endIndex.predecessor().predecessor() : chars.endIndex.predecessor()
 
@@ -56,7 +56,7 @@ public class TypeName: Importable {
             self.optional = optional
         }
 
-        self.imports = imports?.reduce(Set<String>()) { (var dict, s) in dict.insert(s); return dict; } ?? Set<String>()
+        self.imports = imports?.reduce(Set<String>()) { (dict, s) in var retVal = dict; retVal.insert(s); return retVal; } ?? Set<String>()
     }
 
     public func collectImports() -> Set<String> {
