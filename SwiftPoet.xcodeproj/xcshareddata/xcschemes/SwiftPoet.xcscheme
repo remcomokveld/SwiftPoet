@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B00E55C1BA3782D0011486D"
+               BlueprintIdentifier = "3B00E57B1BA379830011486D"
                BuildableName = "SwiftPoet.framework"
-               BlueprintName = "SwiftPoet-iOS"
+               BlueprintName = "SwiftPoet"
                ReferencedContainer = "container:SwiftPoet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B00E5661BA3782D0011486D"
+               BlueprintIdentifier = "3B00E5841BA379830011486D"
                BuildableName = "SwiftPoetUnitTests.xctest"
-               BlueprintName = "SwiftPoetUnitTests-iOS"
+               BlueprintName = "SwiftPoetUnitTests"
                ReferencedContainer = "container:SwiftPoet.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B00E55C1BA3782D0011486D"
+            BlueprintIdentifier = "3B00E57B1BA379830011486D"
             BuildableName = "SwiftPoet.framework"
-            BlueprintName = "SwiftPoet-iOS"
+            BlueprintName = "SwiftPoet"
             ReferencedContainer = "container:SwiftPoet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B00E55C1BA3782D0011486D"
+            BlueprintIdentifier = "3B00E57B1BA379830011486D"
             BuildableName = "SwiftPoet.framework"
-            BlueprintName = "SwiftPoet-iOS"
+            BlueprintName = "SwiftPoet"
             ReferencedContainer = "container:SwiftPoet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B00E55C1BA3782D0011486D"
+            BlueprintIdentifier = "3B00E57B1BA379830011486D"
             BuildableName = "SwiftPoet.framework"
-            BlueprintName = "SwiftPoet-iOS"
+            BlueprintName = "SwiftPoet"
             ReferencedContainer = "container:SwiftPoet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
