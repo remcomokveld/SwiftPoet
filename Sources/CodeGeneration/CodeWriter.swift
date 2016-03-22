@@ -258,8 +258,6 @@ extension CodeWriter {
     }
 
     private func emitProtocolInheritance(superProtocols: [TypeName]?, output: String) -> String {
-        -> String
-    {
         var retVal = output
         if let sp = superProtocols {
             sp.forEach { protocolType in
