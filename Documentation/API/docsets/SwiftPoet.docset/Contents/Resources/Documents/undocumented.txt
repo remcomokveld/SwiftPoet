@@ -1,0 +1,464 @@
+ProtocolSpec.swift
+	public class ProtocolSpec: TypeSpec
+	public static let fieldModifiers: [Modifier] = [.Static]
+	public static let methodModifiers: [Modifier] = [.Static]
+	public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+	public static func builder(name: String) -> ProtocolSpecBuilder
+	public class ProtocolSpecBuilder: TypeSpecBuilder, Builder
+	public static let defaultConstruct: Construct = .Protocol
+	public init(name: String)
+	public func build() -> Result
+	public class ProtocolSpecBuilder : TypeSpecBuilder, Builder
+	public func addMethodSpecs(methodSpecList: [MethodSpec]) -> Self
+	public func addMethodSpec(methodSpec: MethodSpec) -> Self
+	public func addFieldSpec(fieldSpec: FieldSpec) -> Self
+	public func addFieldSpecs(fieldSpecList: [FieldSpec]) -> Self
+	public func addProtocol(protocolSpec: TypeName) -> Self
+	public func addProtocols(protocolList: [TypeName]) -> Self
+	public func addSuperType(superClass: TypeName) -> Self
+	public func addModifier(m: Modifier) -> Self
+	public func addModifiers(modifiers mList: [Modifier]) -> Self
+	public func addDescription(description: String?) -> Self
+	public func addFramework(framework: String?) -> Self
+	public func addImport(imprt: String) -> Self
+	public func addImports(imports: [String]) -> Self
+CodeBlock.swift
+	public struct CodeBlock
+	public let emittableObjects: [Either<EmitObject, CodeBlock>]
+	public var isEmpty: Bool
+	public func toString() -> String
+	public static func builder() -> CodeBlockBuilder
+	public func ==(lhs: CodeBlock, rhs: CodeBlock) -> Bool
+	public struct CodeBlock
+	public var hashValue: Int
+	public class CodeBlockBuilder: Builder
+	public private(set) var emittableObjects = [Either<EmitObject, CodeBlock>]()
+	public func build() -> CodeBlock
+	public func addEmitObject(type: EmitType, any: Any? = nil) -> CodeBlockBuilder
+	public func addLiteral(any: Literal) -> CodeBlockBuilder
+	public func addCodeLine(any: Literal) -> CodeBlockBuilder
+	public func addEmitObjects(emitObjects: [Either<EmitObject, CodeBlock>]) -> CodeBlockBuilder
+	public func addCodeBlock(codeBlock: CodeBlock) -> CodeBlockBuilder
+EnumSpec.swift
+	public class EnumSpec: TypeSpec
+	public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
+	public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Throws]
+	public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+	public static func builder(name: String) -> EnumSpecBuilder
+	public class EnumSpecBuilder: TypeSpecBuilder, Builder
+	public static let defaultConstruct: Construct = .Enum
+	public func build() -> Result
+	public class EnumSpecBuilder : TypeSpecBuilder, Builder
+	public func addMethodSpecs(methodSpecList: [MethodSpec]) -> Self
+	public func addMethodSpec(methodSpec: MethodSpec) -> Self
+	public func addFieldSpec(fieldSpec: FieldSpec) -> Self
+	public func addFieldSpecs(fieldSpecList: [FieldSpec]) -> Self
+	public func addProtocol(protocolSpec: TypeName) -> Self
+	public func addProtocols(protocolList: [TypeName]) -> Self
+	public func addSuperType(superClass: TypeName) -> Self
+	public func addModifier(modifier: Modifier) -> Self
+	public func addModifiers(modifiers: [Modifier]) -> Self
+	public func addDescription(description: String?) -> Self
+	public func addFramework(framework: String?) -> Self
+	public func addImport(imprt: String) -> Self
+	public func addImports(imports: [String]) -> Self
+PoetFile.swift
+	public protocol PoetFileProtocol
+	var fileName: String? { get }
+	var specList: [PoetSpec] { get }
+	var fileContents: String { get }
+	func append(item: PoetSpec)
+	public class PoetFile: PoetFileProtocol, Importable
+	public private(set) var fileName: String?
+	public private(set) var specList: [PoetSpec]
+	public var fileContents: String
+	public var imports: Set<String>
+	public init(list: [PoetSpec], framework: String? = nil)
+	public convenience init(spec: PoetSpec, framework: String? = nil)
+	public func append(item: PoetSpec)
+	public func collectImports() -> Set<String>
+FieldSpec.swift
+	public protocol FieldSpecProtocol
+	var type: TypeName? { get }
+	var initializer: CodeBlock? { get }
+	var parentType: Construct? { get set }
+	public class FieldSpec: PoetSpec, FieldSpecProtocol
+	public let type: TypeName?
+	public let initializer: CodeBlock?
+	public var parentType: Construct?
+	public static func builder(name: String, type: TypeName? = nil, construct: Construct? = nil) -> FieldSpecBuilder
+	public override func collectImports() -> Set<String>
+	public override func emit(codeWriter: CodeWriter) -> CodeWriter
+	public class FieldSpecBuilder: SpecBuilder, Builder, FieldSpecProtocol
+	public let type: TypeName?
+	public private(set) var initializer: CodeBlock? = nil
+	public var parentType: Construct?
+	public func build() -> Result
+	public class FieldSpecBuilder : SpecBuilder, Builder, FieldSpecProtocol
+	public func addInitializer(i: CodeBlock) -> Self
+	public func addParentType(pt: Construct) -> Self
+	public class FieldSpecBuilder : SpecBuilder, Builder, FieldSpecProtocol
+	public func addModifier(m: Modifier) -> Self
+	public func addModifiers(modifiers: [Modifier]) -> Self
+	public func addDescription(description: String?) -> Self
+	public func addFramework(framework: String?) -> Self
+	public func addImport(imprt: String) -> Self
+	public func addImports(imports: [String]) -> Self
+Emitter.swift
+	public protocol Emitter
+	func emit(codeWriter: CodeWriter) -> CodeWriter
+	func toString() -> String
+	public protocol Emitter
+	public func toString() -> String
+ReservedWords.swift
+	public struct ReservedWords
+	public static func contains(s: String) -> Bool
+	public static func safeWord(s: String) -> String
+StringExtension.swift
+	public func toCodeBlock() -> CodeBlock
+PoetSpec.swift
+	public protocol PoetSpecProtocol
+	var name: String { get }
+	var construct: Construct { get }
+	var modifiers: Set<Modifier> { get }
+	var description: String? { get }
+	var framework: String? { get }
+	var imports: Set<String> { get }
+	public class PoetSpec: PoetSpecProtocol, Emitter, Importable
+	public let name: String
+	public let construct: Construct
+	public let modifiers: Set<Modifier>
+	public let description: String?
+	public let framework: String?
+	public let imports: Set<String>
+	public init(name: String, construct: Construct, modifiers: Set<Modifier>, description: String?, framework: String?, imports: Set<String>)
+	public func emit(codeWriter: CodeWriter) -> CodeWriter
+	public func collectImports() -> Set<String>
+	public func toFile() -> PoetFile
+	public func ==(lhs: PoetSpec, rhs: PoetSpec) -> Bool
+	public class PoetSpec : PoetSpecProtocol, Emitter, Importable
+	public var hashValue: Int
+	public class SpecBuilder: PoetSpecProtocol
+	public let name: String
+	public let construct: Construct
+	public private(set) var modifiers = Set<Modifier>()
+	public private(set) var description: String? = nil
+	public private(set) var framework: String? = nil
+	public private(set) var imports = Set<String>()
+	public init(name: String, construct: Construct)
+ControlFlow.swift
+	public enum ControlFlow: String
+	case Guard = "guard"
+	case If = "if"
+	case ElseIf = "else if"
+	case Else = "else"
+	case While = "while"
+	case RepeatWhile = "repeat"
+	case ForIn = "in"
+	case For = "for"
+	case Switch = "switch"
+	public static var guardControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.Guard)
+	public static var ifControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.If)
+	public static var elseIfControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.ElseIf)
+	public static var elseControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.Else)
+	public static var whileControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.While)
+	public static func repeatWhileControlFlow(comparisonList: ComparisonList, bodyFn: () -> CodeBlock) -> CodeBlock
+	public static func forInControlFlow(iterator: Literal, iterable: Literal, bodyFn: () -> CodeBlock) -> CodeBlock
+	public static func closureControlFlow(parameterBlock: Literal, canThrow: Bool, returnType: Literal? , bodyFn: () -> CodeBlock) -> CodeBlock
+	public static func forControlFlow(iterator: CodeBlock, iterable: CodeBlock, execution: CodeBlock) -> CodeBlock
+	public static func doCatchControlFlow(doFn: () -> CodeBlock, catchFn: () -> CodeBlock) -> CodeBlock
+	public static func switchControlFlow(switchValue: String, cases: [(String, CodeBlock)], defaultCase: CodeBlock? = nil) -> CodeBlock
+	public struct ComparisonList: Emitter
+	public init(lhs: CodeBlock, comparator: Comparator, rhs: CodeBlock)
+	public init(list: [ComparisonListItem], requirement: Requirement? = nil)
+	public init(list: [Either<ComparisonListItem, ComparisonList>], requirement: Requirement? = nil)
+	public func emit(codeWriter: CodeWriter) -> CodeWriter
+	public struct ComparisonListItem: Emitter
+	public init(comparison: Comparison, requirement: Requirement? = nil)
+	public func emit(codeWriter: CodeWriter) -> CodeWriter
+	public struct Comparison: Emitter
+	public init(lhs: CodeBlock, comparator: Comparator, rhs: CodeBlock)
+	public func emit(codeWriter: CodeWriter) -> CodeWriter
+	public enum Comparator: String
+	case Equals = "=="
+	case NotEquals = "!="
+	case LessThan = "<"
+	case GreaterThan = ">"
+	case LessThanOrEqualTo = "<="
+	case GreaterThanOrEqualTo = ">="
+	case OptionalCheck = "="
+	public enum Requirement: String
+	case And = "&&"
+	case Or = "||"
+	case OptionalList = ", "
+EmitType.swift
+	public enum EmitType
+	case Literal
+	case IncreaseIndentation
+	case DecreaseIndentation
+	case BeginStatement
+	case EndStatement
+	case NewLine
+	case CodeLine
+	case Emitter
+ParameterSpec.swift
+	public protocol ParameterSpecProtocol
+	var type: TypeName { get }
+	public class ParameterSpec: PoetSpec, ParameterSpecProtocol
+	public let type: TypeName
+	public static func builder(name: String, type: TypeName, construct: Construct? = nil) -> ParameterSpecBuilder
+	public override func collectImports() -> Set<String>
+	public override func emit(codeWriter: CodeWriter) -> CodeWriter
+	public class ParameterSpecBuilder: SpecBuilder, Builder, ParameterSpecProtocol
+	public static let defaultConstruct: Construct = .Param
+	public let type: TypeName
+	public func build() -> Result
+	public class ParameterSpecBuilder : SpecBuilder, Builder, ParameterSpecProtocol
+	public func addModifier(m: Modifier) -> Self
+	public func addModifiers(modifiers: [Modifier]) -> Self
+	public func addDescription(description: String?) -> Self
+	public func addFramework(framework: String?) -> Self
+	public func addImport(imprt: String) -> Self
+	public func addImports(imports: [String]) -> Self
+PoetUtil.swift
+	public struct PoetUtil
+	public static func cleanTypeName(name: String) -> String
+	public static func cleanCammelCaseString(name: String) -> String
+TypeName.swift
+	public class TypeName: Importable
+	public let keyword: String
+	public let leftInnerType: TypeName? // for arrays or dictionaries
+	public let rightInnerType: TypeName? // for dictionaries
+	public let optional: Bool
+	public var imports: Set<String>
+	public init(keyword: String, optional: Bool = false, imports: [String]? = nil)
+	public func collectImports() -> Set<String>
+	public var isPrimitive: Bool
+	public func ==(lhs: TypeName, rhs: TypeName) -> Bool
+	public class TypeName : Importable
+	public var hashValue: Int
+	public class TypeName : Importable
+	public func emit(codeWriter: CodeWriter) -> CodeWriter
+	public func toString() -> String
+	public class TypeName : Importable
+	public func literalValue() -> String
+	public class TypeName : Importable
+	public static let NilType = TypeName(keyword: "nil")
+	public static let BooleanType = TypeName(keyword: "Bool")
+	public static let IntegerType = TypeName(keyword: "Int")
+	public static let DoubleType = TypeName(keyword: "Double")
+	public static let AnyObjectType = TypeName(keyword: "AnyObject")
+	public static let StringType = TypeName(keyword: "String")
+	public static let NSDictionary = TypeName(keyword: "NSDictionary")
+	public static let BooleanOptional = TypeName(keyword: "Bool", optional: true)
+	public static let IntegerOptional = TypeName(keyword: "Int", optional: true)
+	public static let DoubleOptional = TypeName(keyword: "Double", optional: true)
+	public static let AnyObjectOptional = TypeName(keyword: "AnyObject", optional: true)
+	public static let StringOptional = TypeName(keyword: "String", optional: true)
+	public static let NSDictionaryOptional = TypeName(keyword: "NSDictionary", optional: true)
+ExtensionSpec.swift
+	public class ExtensionSpec: TypeSpec
+	public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Final, .Override, .Required]
+	public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Final, .Klass, .Throws, .Convenience, .Override, .Required]
+	public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+	public static func builder(name: String) -> ExtensionSpecBuilder
+	public class ExtensionSpecBuilder: TypeSpecBuilder, Builder
+	public static let defaultConstruct: Construct = .Extension
+	public init(name: String)
+	public func build() -> Result
+	public class ExtensionSpecBuilder : TypeSpecBuilder, Builder
+	public func addMethodSpecs(methodSpecList: [MethodSpec]) -> Self
+	public func addMethodSpec(methodSpec: MethodSpec) -> Self
+	public func addFieldSpec(fieldSpec: FieldSpec) -> Self
+	public func addFieldSpecs(fieldSpecList: [FieldSpec]) -> Self
+	public func addProtocol(protocolSpec: TypeName) -> Self
+	public func addProtocols(protocolList: [TypeName]) -> Self
+	public func addSuperType(superClass: TypeName) -> Self
+	public func addModifier(m: Modifier) -> Self
+	public func addModifiers(modifiers: [Modifier]) -> Self
+	public func addDescription(description: String?) -> Self
+	public func addFramework(framework: String?) -> Self
+	public func addImport(imprt: String) -> Self
+	public func addImports(imports: [String]) -> Self
+MethodSpec.swift
+	public protocol MethodSpecProtocol
+	var typeVariables: [TypeName] { get }
+	var throwsError: Bool { get }
+	var returnType: TypeName? { get }
+	var parameters: [ParameterSpec] { get }
+	var code: CodeBlock? { get }
+	var parentType: Construct? { get set}
+	public class MethodSpec: PoetSpec, MethodSpecProtocol
+	public let typeVariables: [TypeName]
+	public let throwsError: Bool
+	public let returnType: TypeName?
+	public let parameters: [ParameterSpec]
+	public let code: CodeBlock?
+	public var parentType: Construct?
+	public static func builder(name: String) -> MethodSpecBuilder
+	public override func collectImports() -> Set<String>
+	public override func emit(codeWriter: CodeWriter) -> CodeWriter
+	public class MethodSpecBuilder: SpecBuilder, Builder, MethodSpecProtocol
+	public static let defaultConstruct: Construct = .Method
+	public private(set) var typeVariables = [TypeName]()
+	public private(set) var throwsError = false
+	public private(set) var returnType: TypeName?
+	public private(set) var parameters = [ParameterSpec]()
+	public private(set) var code: CodeBlock?
+	public var parentType: Construct?
+	public func build() -> Result
+	public class MethodSpecBuilder : SpecBuilder, Builder, MethodSpecProtocol
+	public func addTypeVariable(type: TypeName) -> Self
+	public func addTypeVariables(types: [TypeName]) -> Self
+	public func addReturnType(type: TypeName) -> Self
+	public func addParameter(parameter: ParameterSpec) -> Self
+	public func addParameters(parameters: [ParameterSpec]) -> Self
+	public func addCode(code: CodeBlock) -> Self
+	public func addParentType(type: Construct) -> Self
+	public func canThrowError() -> Self
+	public class MethodSpecBuilder : SpecBuilder, Builder, MethodSpecProtocol
+	public func addModifier(m: Modifier) -> Self
+	public func addModifiers(modifiers: [Modifier]) -> Self
+	public func addDescription(description: String?) -> Self
+	public func addFramework(framework: String?) -> Self
+	public func addImport(imprt: String) -> Self
+	public func addImports(imports: [String]) -> Self
+Either.swift
+	public enum Either<A, B>
+	case Left(A)
+	case Right(B)
+Literal.swift
+	public protocol Literal
+	func literalValue() -> String
+	public func literalValue() -> String
+CodeWriter.swift
+	public class CodeWriter
+	public var out: String
+	public init(out: Appendable = Appendable(""), indentLevel: Int = 0)
+	public class CodeWriter
+	public func indent() -> CodeWriter
+	public func indent(levels: Int) -> CodeWriter
+	public func unindent() -> CodeWriter
+	public func unindent(levels: Int) -> CodeWriter
+	public class CodeWriter
+	public func emitFileHeader(fileName: String?, framework: String?, specs: [PoetSpec])
+	public func emitImports(imports: Set<String>)
+	public func emitDocumentation(o: AnyObject)
+	public func emitModifiers(modifiers: Set<Modifier>)
+	public func emit(codeBlock: CodeBlock) -> CodeWriter
+	public func emit(type: EmitType, any: Any? = nil) -> CodeWriter
+	public func emitInheritance(superType: TypeName?, superProtocols: [TypeName]?) -> CodeWriter
+	public func emitNewLine()
+	public func emitWithIndentation(cb: CodeBlock)
+	public func emitWithIndentation(any: Literal)
+	public func emitSpecs(specs: [PoetSpec])
+Construct.swift
+	public enum Construct
+	case Param
+	case MutableParam
+	case Field
+	case MutableField
+	case Method
+	case Enum
+	case Struct
+	case Class
+	case Protocol
+	case TypeAlias
+	case Extension
+	public var stringValue: String
+	public enum Construct
+	public func literalValue() -> String
+ClassSpec.swift
+	public class ClassSpec: TypeSpec
+	public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Final, .Klass, .Override, .Required]
+	public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Final, .Klass, .Throws, .Convenience, .Override, .Required]
+	public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+	public static func builder(name: String) -> ClassSpecBuilder
+	public class ClassSpecBuilder: TypeSpecBuilder, Builder
+	public static let defaultConstruct: Construct = .Class
+	public init(name: String)
+	public func build() -> Result
+	public class ClassSpecBuilder : TypeSpecBuilder, Builder
+	public func addMethodSpecs(methodSpecList: [MethodSpec]) -> Self
+	public func addMethodSpec(methodSpec: MethodSpec) -> Self
+	public func addFieldSpec(fieldSpec: FieldSpec) -> Self
+	public func addFieldSpecs(fieldSpecList: [FieldSpec]) -> Self
+	public func addProtocol(protocolSpec: TypeName) -> Self
+	public func addProtocols(protocolList: [TypeName]) -> Self
+	public func addSuperType(superClass: TypeName) -> Self
+	public func addModifier(modifier: Modifier) -> Self
+	public func addModifiers(modifiers: [Modifier]) -> Self
+	public func addDescription(description: String?) -> Self
+	public func addFramework(framework: String?) -> Self
+	public func addImport(imprt: String) -> Self
+	public func addImports(imports: [String]) -> Self
+StructSpec.swift
+	public class StructSpec: TypeSpec
+	public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
+	public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Mutating, .Throws]
+	public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+	public static func builder(name: String) -> StructSpecBuilder
+	public class StructSpecBuilder: TypeSpecBuilder, Builder
+	public static let defaultConstruct: Construct = .Struct
+	public init(name: String)
+	public func build() -> Result
+	public func includeDefaultInit() -> StructSpecBuilder
+	public class StructSpecBuilder : TypeSpecBuilder, Builder
+	public func addMethodSpecs(methodSpecList: [MethodSpec]) -> Self
+	public func addMethodSpec(methodSpec: MethodSpec) -> Self
+	public func addFieldSpec(fieldSpec: FieldSpec) -> Self
+	public func addFieldSpecs(fieldSpecList: [FieldSpec]) -> Self
+	public func addProtocol(protocolSpec: TypeName) -> Self
+	public func addProtocols(protocolList: [TypeName]) -> Self
+	public func addSuperType(superClass: TypeName) -> Self
+	public func addModifier(m: Modifier) -> Self
+	public func addModifiers(modifiers mList: [Modifier]) -> Self
+	public func addDescription(description: String?) -> Self
+	public func addFramework(framework: String?) -> Self
+	public func addImport(imprt: String) -> Self
+	public func addImports(imports: [String]) -> Self
+EmitObject.swift
+	public struct EmitObject
+	public let type: EmitType
+	public let any: Any?
+	public init(type: EmitType, any: Any? = nil)
+SwiftPoet.swift
+	public protocol SwiftPoet
+Modifier.swift
+	public enum Modifier: String
+	case Public = "public"
+	case Private = "private"
+	case Internal = "internal"
+	case Static = "static"
+	case Final = "final"
+	case Klass = "class"
+	case Mutating = "mutating"
+	case Throws = "throws"
+	case Convenience = "convenience"
+	case Override = "override"
+	case Required = "required"
+	public static func equivalentAccessLevel(parentModifiers pm: Set<Modifier>, childModifiers cm: Set<Modifier>) -> Bool
+	public static func accessLevel(modifiers: Set<Modifier>) -> Modifier
+Builder.swift
+	public protocol Builder
+	func build() -> Result
+TypeSpec.swift
+	public protocol TypeSpecProtocol
+	var methodSpecs: [MethodSpec] { get }
+	var fieldSpecs: [FieldSpec] { get }
+	var superType: TypeName? { get }
+	var superProtocols: [TypeName] { get }
+	public class TypeSpec: PoetSpec, TypeSpecProtocol
+	public let methodSpecs: [MethodSpec]
+	public let fieldSpecs: [FieldSpec]
+	public let superType: TypeName?
+	public let superProtocols: [TypeName]
+	public init(builder: TypeSpecBuilder)
+	public override func collectImports() -> Set<String>
+	public override func emit(codeWriter: CodeWriter) -> CodeWriter
+	public class TypeSpecBuilder: SpecBuilder, TypeSpecProtocol
+	public private(set) var methodSpecs = [MethodSpec]()
+	public private(set) var fieldSpecs = [FieldSpec]()
+	public private(set) var superProtocols = [TypeName]()
+	public private(set) var superType: TypeName? = nil
+	public override init(name: String, construct: Construct)

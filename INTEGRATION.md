@@ -10,9 +10,9 @@ SwiftPoet is built as a *Swift framework*, and as such, it has the following bas
 
 Platform|Minimum OS version
 --------|------------------------
-Apple TV|tvOS 9.0
-Apple Watch|watchOS 2.0
-iPhone/iPad|iOS 8.0
+
+
+
 Mac|OS X 10.10
 
 SwiftPoet is **Swift 2.2 compliant** and therefore **requires Xcode 7.3 or higher** to compile.
@@ -29,18 +29,6 @@ Some familiarity with the Terminal application, the bash command line, and the `
 
 The steps below have been tested with **git 2.6.4 (Apple Git-63)**, although they should be compatible with a wide range of recent git versions.
 
-
-### Of Frameworks and Simulators
-
-When developing for a platform with a simulator, there are some kinks in the process:
-
-- Simulators use a different processor architecture than real devices. As a result, **frameworks compiled only for device won’t work in the simulator, and vice-versa**. Sure, you *could* use `lipo` to stitch together a universal binary and use that instead, but...
-
-- **Apple will not accept App Store binaries containing simulator code.** That means if you go the universal binary route, you now need a custom build step to make the universal binary, and another step to un-make the universal binary when you’re building for submission. Okay, well, why not just build *two* frameworks: one specifically for the simulator and the other for devices?
-
-- **Xcode won’t be happy if you import two separate frameworks with the same symbols.** Xcode won’t notice that there really is no conflict because the frameworks are compiled for different processor architectures. All Xcode will care about is that you’re importing two separate frameworks that both claim to have the same module name.
-
-For these reasons, we do not release Cleanroom projects as framework binaries. Instead, we provide the source, the Xcode project file, and options for integrating so that you can use it from within your code and submit an app that Apple will accept. (Or, at the very least, if Apple *doesn’t* accept your app, we don’t want it to be the fault of *this* project!)
 
 ### Options for integration
 
@@ -113,9 +101,9 @@ To speed up the build process—and to avoid trying to build for a platform that
 
 To build for|Run the command
 --------|------------------------
-Apple TV|`carthage update --platform tvos`
-Apple Watch|`carthage update --platform watchos`
-iPhone/iPad|`carthage update --platform ios`
+
+
+
 Mac|`carthage update --platform mac`
 
 #### Where Carthage stores files
@@ -136,7 +124,7 @@ The command above opens the directory containing the iOS framework binary; to lo
 open Carthage/Build/Mac
 ```
 
-If all went well, the Carthage build directories should contain the file `SwiftPoet.framework`. If that file isn’t present, something went wrong with the build.
+If all went well, the Carthage build directory should contain the file `SwiftPoet.framework`. If that file isn’t present, something went wrong with the build.
 
 ### 3. Add the necessary framework to your app target
 
@@ -241,7 +229,7 @@ Before we can add `SwiftPoet.framework` to your app, we have to build it, so Xco
 
 **Important:** The next step will only work when the framework is built for a **device-based run destination**. That means that you must either select the “My Mac” or “iOS Device” run destination before building, or you must select an actual external device (an option that’s only available when such a device is connected to your development machine).
 
-Once a device-based run destination has been selected, select the appropriate build scheme for the target platform: “SwiftPoet-iOS”, “SwiftPoet-OSX”, “SwiftPoet-tvOS” or “SwiftPoet-watchOS”.
+Once a device-based run destination has been selected, select the “SwiftPoet” build scheme.
 
 Then, select *Build* (⌘B) from the *Product* menu.
 
