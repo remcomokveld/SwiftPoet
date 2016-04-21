@@ -50,7 +50,6 @@ extension EnumSpecBuilder {
 
     public func addFieldSpec(fieldSpec: FieldSpec) -> Self {
         super.addFieldSpec(internalFieldSpec: fieldSpec)
-        fieldSpec.parentType = .Enum
         return self
     }
 

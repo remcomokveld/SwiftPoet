@@ -12,17 +12,20 @@ public protocol FieldSpecProtocol {
     var type: TypeName? { get }
     var initializer: CodeBlock? { get }
     var parentType: Construct? { get set }
+    var associatedValues: [TypeName]? { get }
 }
 
 public class FieldSpec: PoetSpec, FieldSpecProtocol {
     public let type: TypeName?
     public let initializer: CodeBlock?
     public var parentType: Construct?
+    public var associatedValues: [TypeName]?
 
     private init(b: FieldSpecBuilder) {
         self.type = b.type
         self.initializer = b.initializer
         self.parentType = b.parentType
+        self.associatedValues = b.associatedValues
         super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, framework: b.framework, imports: b.imports)
     }
 
@@ -48,7 +51,6 @@ public class FieldSpec: PoetSpec, FieldSpecProtocol {
         case .Enum:
             emitEnumType(codeWriter)
             break
-
         case .Struct, .Class, .Extension:
             emitClassType(codeWriter)
             break
@@ -67,6 +69,14 @@ public class FieldSpec: PoetSpec, FieldSpecProtocol {
         let cbBuilder = CodeBlock.builder()
                     .addEmitObject(.Literal, any: "case")
                     .addEmitObject(.Literal, any: cleanName)
+        
+        if let associatedValues = associatedValues {
+            cbBuilder.addEmitObject(.Literal, any: "(")
+            cbBuilder.addLiteral(associatedValues.map {
+                return $0.toString()
+            }.joinWithSeparator(","))
+           cbBuilder.addEmitObject(.Literal, any: ")")
+        }
 
         if let initializer = initializer {
             cbBuilder.addEmitObject(.Literal, any: "=")
@@ -136,6 +146,7 @@ public class FieldSpecBuilder: SpecBuilder, Builder, FieldSpecProtocol {
     public let type: TypeName?
     public private(set) var initializer: CodeBlock? = nil
     public var parentType: Construct?
+    public var associatedValues: [TypeName]?
 
     private init(name: String, type: TypeName? = nil, construct: Construct? = nil) {
         self.type = type
@@ -192,6 +203,14 @@ extension FieldSpecBuilder {
 
     public func addImports(imports: [String]) -> Self {
         super.addImports(internalImports: imports)
+        return self
+    }
+}
+
+// MARK: Add enum specific info
+extension FieldSpecBuilder {
+    public func addAssociatedValues(associatedValues: [TypeName]) -> Self {
+        self.associatedValues = associatedValues
         return self
     }
 }
