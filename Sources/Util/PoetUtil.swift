@@ -10,7 +10,7 @@ import Foundation
 
 public struct PoetUtil {
     private static let template = "^^^^"
-    private static let regexPattern = "\\s|_|\\.|-"
+    private static let regexPattern = "\\s|_|\\.|-|\\[|\\]"
     
     private static func getSpaceAndPunctuationRegex() -> NSRegularExpression? {
         do {

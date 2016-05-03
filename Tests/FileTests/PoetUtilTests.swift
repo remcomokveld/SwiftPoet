@@ -46,6 +46,16 @@ class PoetUtilTests: XCTestCase {
 //        XCTAssertEqual("TestAllCaps", PoetUtil.cleanTypeName(name))
 //    }
 
+    func testTypeNameWithBrackets() {
+        let name = "billing_address[street_line1]"
+        XCTAssertEqual("BillingAddressStreetLine1", PoetUtil.cleanTypeName(name))
+    }
+
+    func testcammelCaseNameWithBrackets() {
+        let name = "billing_address[street_line1]"
+        XCTAssertEqual("billingAddressStreetLine1", PoetUtil.cleanCammelCaseString(name))
+    }
+
     func testCleanTypeNameSpaces() {
         let name = "test many spaces"
         XCTAssertEqual("TestManySpaces", PoetUtil.cleanTypeName(name))
