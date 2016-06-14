@@ -17,11 +17,11 @@ class GenerateModelFromJSON: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        if let path = NSBundle(forClass: GenerateModelFromJSON.self).pathForResource("gilt_public_api", ofType: "json"),
-            let jsonData = NSData(contentsOfFile: path) {
+        if let path = Bundle(for: GenerateModelFromJSON.self).pathForResource("gilt_public_api", ofType: "json"),
+            let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
 
                 do {
-                    publicApiJSON = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+                    publicApiJSON = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary
                 } catch {
                     publicApiJSON = nil
                 }
@@ -57,7 +57,7 @@ class GenerateModelFromJSON: XCTestCase {
         XCTAssertTrue(true)
     }
 
-    private func specialType(type: String) -> String {
+    private func specialType(_ type: String) -> String {
         if type == "uuid" {
             return "NSUUID"
         }

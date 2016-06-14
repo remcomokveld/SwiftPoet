@@ -60,7 +60,7 @@ extension CodeWriter {
     //  Created by SwiftPoet on MM/DD/YYYY
     //
     //
-    public func emitFileHeader(fileName: String?, framework: String?, specs: [PoetSpec]) {
+    public func emitFileHeader(fileName: String?, framework: String?, specs: [PoetSpecType]) {
         let specStr: [String] = specs.map { spec in
             return headerLine("\(spec.construct.stringValue) \(spec.name)")
         }
@@ -288,7 +288,7 @@ extension CodeWriter {
         self.emitLiteral(any, first: true)
     }
 
-    public func emitSpecs(specs: [PoetSpec]) {
+    public func emit(specs: [Emitter]) {
         _out.appendContentsOf((specs.map { spec in
             spec.toString()
         }).joinWithSeparator("\n\n").characters)

@@ -58,7 +58,7 @@ public class PoetFile: PoetFileProtocol, Importable {
         let codeWriter = CodeWriter()
         codeWriter.emitFileHeader(fileName, framework: framework, specs: specList)
         codeWriter.emitImports(imports)
-        codeWriter.emitSpecs(specList)
+        codeWriter.emit(specList)
         return codeWriter.out
     }
 }

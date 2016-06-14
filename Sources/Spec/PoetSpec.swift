@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol PoetSpecProtocol {
+public protocol PoetSpecType {
     var name: String { get }
     var construct: Construct { get }
     var modifiers: Set<Modifier> { get }
@@ -17,7 +17,7 @@ public protocol PoetSpecProtocol {
     var imports: Set<String> { get }
 }
 
-public class PoetSpec: PoetSpecProtocol, Emitter, Importable {
+public class PoetSpec: PoetSpecType, Emitter, Importable {
     public let name: String
     public let construct: Construct
     public let modifiers: Set<Modifier>
@@ -59,7 +59,7 @@ extension PoetSpec: Hashable {
     }
 }
 
-public class SpecBuilder: PoetSpecProtocol {
+public class PoetSpecBuilder: PoetSpecType {
     public let name: String
     public let construct: Construct
     public private(set) var modifiers = Set<Modifier>()
@@ -88,8 +88,8 @@ public class SpecBuilder: PoetSpecProtocol {
         self.framework = PoetUtil.fmap(PoetUtil.cleanTypeName, a: framework)
     }
 
-    internal func addImport(internalImport imprt: String) {
-        self.imports.insert(imprt)
+    internal func addImport(internalImport _import: String) {
+        self.imports.insert(_import)
     }
 
     internal func addImports(internalImports imports: [String]) {

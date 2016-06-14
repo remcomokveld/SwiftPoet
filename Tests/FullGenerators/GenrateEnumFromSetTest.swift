@@ -16,11 +16,11 @@ class GenrateEnumFromSetTest: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        if let path = NSBundle(forClass: GenrateEnumFromSetTest.self).pathForResource("gilt_public_api", ofType: "json"),
-            let jsonData = NSData(contentsOfFile: path) {
+        if let path = Bundle(for: GenrateEnumFromSetTest.self).pathForResource("gilt_public_api", ofType: "json"),
+            let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
 
                 do {
-                    publicApiJSON = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+                    publicApiJSON = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary
                 } catch {
                     publicApiJSON = nil
                 }

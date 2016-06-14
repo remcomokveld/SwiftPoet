@@ -41,7 +41,7 @@ public class ParameterSpec: PoetSpec, ParameterSpecProtocol {
     }
 }
 
-public class ParameterSpecBuilder: SpecBuilder, Builder, ParameterSpecProtocol {
+public class ParameterSpecBuilder: PoetSpecBuilder, Builder, ParameterSpecProtocol {
     public typealias Result = ParameterSpec
     public static let defaultConstruct: Construct = .Param
 

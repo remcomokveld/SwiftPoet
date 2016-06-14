@@ -92,7 +92,7 @@ public class TypeSpec: PoetSpec, TypeSpecProtocol {
     }
 }
 
-public class TypeSpecBuilder: SpecBuilder, TypeSpecProtocol {
+public class TypeSpecBuilder: PoetSpecBuilder, TypeSpecProtocol {
     public private(set) var methodSpecs = [MethodSpec]()
     public private(set) var fieldSpecs = [FieldSpec]()
     public private(set) var superProtocols = [TypeName]()

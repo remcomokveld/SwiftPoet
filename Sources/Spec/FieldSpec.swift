@@ -8,14 +8,14 @@
 
 import Foundation
 
-public protocol FieldSpecProtocol {
+public protocol FieldSpecType {
     var type: TypeName? { get }
     var initializer: CodeBlock? { get }
     var parentType: Construct? { get set }
     var associatedValues: [TypeName]? { get }
 }
 
-public class FieldSpec: PoetSpec, FieldSpecProtocol {
+public class FieldSpec: PoetSpec, FieldSpecType {
     public let type: TypeName?
     public let initializer: CodeBlock?
     public var parentType: Construct?
@@ -139,10 +139,11 @@ public class FieldSpec: PoetSpec, FieldSpecProtocol {
     }
 }
 
-public class FieldSpecBuilder: SpecBuilder, Builder, FieldSpecProtocol {
+public class FieldSpecBuilder: PoetSpecBuilder, Builder, FieldSpecType {
     private static let defaultConstruct: Construct = .Field
     
     public typealias Result = FieldSpec
+
     public let type: TypeName?
     public private(set) var initializer: CodeBlock? = nil
     public var parentType: Construct?
@@ -150,14 +151,13 @@ public class FieldSpecBuilder: SpecBuilder, Builder, FieldSpecProtocol {
 
     private init(name: String, type: TypeName? = nil, construct: Construct? = nil) {
         self.type = type
-        let c = construct == nil ? FieldSpecBuilder.defaultConstruct : construct!
-        super.init(name: PoetUtil.cleanCammelCaseString(name), construct: c)
+        let requiredConstruct = construct == nil ? FieldSpecBuilder.defaultConstruct : construct!
+        super.init(name: PoetUtil.cleanCammelCaseString(name), construct: requiredConstruct)
     }
 
     public func build() -> Result {
         return FieldSpec(b: self)
     }
-
 }
 
 // MARK: Add field specific info

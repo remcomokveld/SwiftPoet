@@ -119,7 +119,7 @@ public class MethodSpec: PoetSpec, MethodSpecProtocol {
     }
 }
 
-public class MethodSpecBuilder: SpecBuilder, Builder, MethodSpecProtocol {
+public class MethodSpecBuilder: PoetSpecBuilder, Builder, MethodSpecProtocol {
     public typealias Result = MethodSpec
     public static let defaultConstruct: Construct = .Method
 
