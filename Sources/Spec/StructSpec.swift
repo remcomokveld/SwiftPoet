@@ -13,8 +13,8 @@ public class StructSpec: TypeSpec {
     public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Mutating, .Throws]
     public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
 
-    private init(b: StructSpecBuilder) {
-        super.init(builder: b as TypeSpecBuilder)
+    private init(builder: StructSpecBuilder) {
+        super.init(builder: builder as TypeSpecBuilder)
     }
 
     public static func builder(name: String) -> StructSpecBuilder {
@@ -32,37 +32,40 @@ public class StructSpecBuilder: TypeSpecBuilder, Builder {
     }
 
     public func build() -> Result {
-        if !(methodSpecs.contains { $0.name == "init" }) || includeInit {
+        if !(methods.contains { $0.name == "init" }) || includeInit {
             addInitMethod()
         }
-        return StructSpec(b: self)
+        return StructSpec(builder: self)
     }
 
+    @discardableResult
     private func addInitMethod() -> Self {
-        let mb = MethodSpec.builder("init")
+        var mb = MethodSpec.builder(name: "init")
         let cb = CodeBlock.builder()
 
-        fieldSpecs.forEach { spec in
-            if Modifier.equivalentAccessLevel(parentModifiers: self.modifiers, childModifiers: spec.modifiers) && !spec.modifiers.contains(.Static) {
-                mb.addParameter(ParameterSpec.builder(spec.name, type: spec.type!)
-                    .addModifiers(Array(spec.modifiers))
-                    .addDescription(spec.description)
+        fields.forEach { spec in
+
+            if Modifier.equivalentAccessLevel(parentModifiers: modifiers, childModifiers: spec.modifiers)
+                && !spec.modifiers.contains(.Static) {
+
+                mb.add(parameter: ParameterSpec.builder(name: spec.name, type: spec.type!)
+                    .add(modifiers: Array(spec.modifiers))
+                    .add(description: spec.description)
                     .build()
                 )
 
-                cb.addCodeBlock(CodeBlock.builder()
-                    .addEmitObject(.Literal, any: "self.\(spec.name) = \(spec.name)")
-                    .build()
-                )
+                cb.addCodeBlock(codeBlock: "self.\(spec.name) = \(spec.name)".toCodeBlock())
             }
         }
 
-        mb.addCode(cb.build())
-        mb.addModifier(Modifier.accessLevel(self.modifiers))
+        mb.add(codeBlock: cb.build())
 
-        return self.addMethodSpec(mb.build())
+        mb = mb.add(modifier: Modifier.accessLevel(modifiers: self.modifiers))
+
+        return add(method: mb.build())
     }
 
+    @discardableResult
     public func includeDefaultInit() -> StructSpecBuilder {
         includeInit = true
         return self;
@@ -72,71 +75,84 @@ public class StructSpecBuilder: TypeSpecBuilder, Builder {
 // MARK: Chaining
 extension StructSpecBuilder {
 
-    public func addMethodSpecs(methodSpecList: [MethodSpec]) -> Self {
-        methodSpecList.forEach { self.addMethodSpec($0) }
+    @discardableResult
+    public func add(method: MethodSpec) -> Self {
+        mutatingAdd(method: method)
         return self
     }
 
-    public func addMethodSpec(methodSpec: MethodSpec) -> Self {
-        super.addMethodSpec(internalMethodSpec: methodSpec)
+    @discardableResult
+    public func add(methods: [MethodSpec]) -> Self {
+        methods.forEach { mutatingAdd(method: $0) }
         return self
     }
 
-    public func addFieldSpec(fieldSpec: FieldSpec) -> Self {
-        super.addFieldSpec(internalFieldSpec: fieldSpec)
+    @discardableResult
+    public func add(field: FieldSpec) -> Self {
+        mutatingAdd(field: field)
         return self
     }
 
-    public func addFieldSpecs(fieldSpecList: [FieldSpec]) -> Self {
-        fieldSpecList.forEach { addFieldSpec($0) }
+    @discardableResult
+    public func add(fields: [FieldSpec]) -> Self {
+        fields.forEach { mutatingAdd(field: $0) }
         return self
     }
 
-    public func addProtocol(protocolSpec: TypeName) -> Self {
-        super.addProtocol(internalProtocolSpec: protocolSpec)
+    @discardableResult
+    public func add(protocol _protocol: TypeName) -> Self {
+        mutatingAdd(protocol: _protocol)
         return self
     }
 
-    public func addProtocols(protocolList: [TypeName]) -> Self {
-        super.addProtocols(internalProtocolSpecList: protocolList)
+    @discardableResult
+    public func add(protocols: [TypeName]) -> Self {
+        mutatingAdd(protocols: protocols)
         return self
     }
 
-    public func addSuperType(superClass: TypeName) -> Self {
-        super.addSuperType(internalSuperClass: superClass)
+    @discardableResult
+    public func add(superType: TypeName) -> Self {
+        mutatingAdd(superType: superType)
         return self
     }
 
-    public func addModifier(m: Modifier) -> Self {
-        guard StructSpec.asMemberModifiers.contains(m) else {
+    @discardableResult
+    public func add(modifier: Modifier) -> Self {
+        guard StructSpec.asMemberModifiers.contains(modifier) else {
             return self
         }
-        super.addModifier(internalModifier: m)
+        mutatingAdd(modifier: modifier)
         return self
     }
 
-    public func addModifiers(modifiers mList: [Modifier]) -> Self {
-        mList.forEach { self.addModifier($0) }
+    @discardableResult
+    public func add(modifiers: [Modifier]) -> Self {
+        modifiers.forEach { let _ = add(modifier: $0) }
         return self
     }
 
-    public func addDescription(description: String?) -> Self {
-        super.addDescription(internalDescription: description)
+    @discardableResult
+    public func add(description: String?) -> Self {
+        mutatingAdd(description: description)
         return self
     }
 
-    public func addFramework(framework: String?) -> Self {
-        super.addFramework(internalFramework: framework)
+    @discardableResult
+    public func add(framework: String?) -> Self {
+        mutatingAdd(framework: framework)
         return self
     }
 
-    public func addImport(imprt: String) -> Self {
-        super.addImport(internalImport: imprt)
+    @discardableResult
+    public func add(import _import: String) -> Self {
+        mutatingAdd(import: _import)
         return self
     }
 
-    public func addImports(imports: [String]) -> Self {
-        super.addImports(internalImports: imports)
+    @discardableResult
+    public func add(imports: [String]) -> Self {
+        mutatingAdd(imports: imports)
         return self
     }
 }

@@ -10,6 +10,6 @@ import Foundation
 
 extension String {
     public func toCodeBlock() -> CodeBlock {
-        return CodeBlock.builder().addLiteral(self).build()
+        return CodeBlock.builder().addLiteral(any: self).build()
     }
 }

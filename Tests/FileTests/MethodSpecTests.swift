@@ -22,8 +22,8 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testEmptyProtocolMethod() {
-        let mb = MethodSpec.builder("Test")
-        mb.addParentType(.Protocol)
+        let mb = MethodSpec.builder(name: "Test")
+        mb.add(parentType: .Protocol)
 
         let method = mb.build()
 
@@ -31,12 +31,12 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testProtocolMethodOneParam() {
-        let mb = MethodSpec.builder("Test")
-        mb.addParentType(.Protocol)
-        mb.addReturnType(TypeName.StringType)
+        let mb = MethodSpec.builder(name: "Test")
+        mb.add(parentType: .Protocol)
+        mb.add(returnType: TypeName.StringType)
 
-        let pb = ParameterSpec.builder("name", type: TypeName.StringType)
-        mb.addParameter(pb.build())
+        let pb = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        mb.add(parameter: pb.build())
 
         let method = mb.build()
 
@@ -53,18 +53,18 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testProtocolMethodManyParam() {
-        let mb = MethodSpec.builder("build_person")
-        mb.addParentType(.Protocol)
-        mb.addReturnType(TypeName(keyword: "Person"))
+        let mb = MethodSpec.builder(name: "build_person")
+        mb.add(parentType: .Protocol)
+        mb.add(returnType: TypeName(keyword: "Person"))
 
-        let pb1 = ParameterSpec.builder("name", type: TypeName.StringType)
-        mb.addParameter(pb1.build())
-        let pb2 = ParameterSpec.builder("age", type: TypeName.IntegerType)
-        mb.addParameter(pb2.build())
-        let pb3 = ParameterSpec.builder("homeOwner", type: TypeName.BooleanType)
-        mb.addParameter(pb3.build())
-        let pb4 = ParameterSpec.builder("petName", type: TypeName.StringOptional)
-        mb.addParameter(pb4.build())
+        let pb1 = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        mb.add(parameter: pb1.build())
+        let pb2 = ParameterSpec.builder(name: "age", type: TypeName.IntegerType)
+        mb.add(parameter: pb2.build())
+        let pb3 = ParameterSpec.builder(name: "homeOwner", type: TypeName.BooleanType)
+        mb.add(parameter: pb3.build())
+        let pb4 = ParameterSpec.builder(name: "petName", type: TypeName.StringOptional)
+        mb.add(parameter: pb4.build())
 
         let method = mb.build()
 
@@ -84,15 +84,15 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testProtocolMethodOneParamWithDocs() {
-        let mb = MethodSpec.builder("Test")
-            .addParentType(.Protocol)
-            .addReturnType(TypeName.StringType)
-            .addDescription("This is a test description")
+        let mb = MethodSpec.builder(name: "Test")
+            .add(parentType: .Protocol)
+            .add(returnType: TypeName.StringType)
+            .add(description: "This is a test description")
 
-        let pb = ParameterSpec.builder("name", type: TypeName.StringType)
-            .addDescription("The name of the test")
+        let pb = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+            .add(description: "The name of the test")
 
-        mb.addParameter(pb.build())
+        mb.add(parameter: pb.build())
 
         let method = mb.build()
 
@@ -111,8 +111,8 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testEmptyMethod() {
-        let method = MethodSpec.builder("Test")
-            .addReturnType(TypeName.StringType)
+        let method = MethodSpec.builder(name: "Test")
+            .add(returnType: TypeName.StringType)
             .build()
 
         let result =
@@ -126,10 +126,10 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testMethodWithCodeBlock() {
-        let method = MethodSpec.builder("Test")
-            .addReturnType(TypeName.StringType)
-            .addCode(CodeBlock.builder()
-                .addLiteral("return \"test\"")
+        let method = MethodSpec.builder(name: "Test")
+            .add(returnType: TypeName.StringType)
+            .add(codeBlock: CodeBlock.builder()
+                .addLiteral(any: "return \"test\"")
                 .build())
             .build()
 
@@ -145,15 +145,15 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testMethodWithCodeBlockAndParam() {
-        let mb = MethodSpec.builder("Test")
-        mb.addReturnType(TypeName.StringType)
+        let mb = MethodSpec.builder(name: "Test")
+        mb.add(returnType: TypeName.StringType)
 
         let cbBuilder = CodeBlock.builder()
-        cbBuilder.addEmitObject(.Literal, any: "return name")
-        mb.addCode(cbBuilder.build())
+        cbBuilder.addEmitObject(type: .Literal, any: "return name")
+        mb.add(codeBlock: cbBuilder.build())
 
-        let pb = ParameterSpec.builder("name", type: TypeName.StringType)
-        mb.addParameter(pb.build())
+        let pb = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        mb.add(parameter: pb.build())
 
         let method = mb.build()
 
@@ -172,15 +172,15 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testMethodWithGuard() {
-        let mb = MethodSpec.builder("Test")
-        mb.addReturnType(TypeName.StringType)
+        let mb = MethodSpec.builder(name: "Test")
+        .add(returnType: TypeName.StringType)
 
         let cbBuilder = CodeBlock.builder()
-        cbBuilder.addEmitObject(.Literal, any: "return name")
-        mb.addCode(cbBuilder.build())
+        cbBuilder.addEmitObject(type: .Literal, any: "return name")
+        mb.add(codeBlock: cbBuilder.build())
 
-        let pb = ParameterSpec.builder("name", type: TypeName.StringType)
-        mb.addParameter(pb.build())
+        let pb = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        mb.add(parameter: pb.build())
 
         let method = mb.build()
 

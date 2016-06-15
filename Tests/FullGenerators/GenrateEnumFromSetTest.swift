@@ -36,18 +36,18 @@ class GenrateEnumFromSetTest: XCTestCase {
         let data: JSON = (publicApiJSON["enums"] as! [JSON]).first!
         let values = data["values"] as! [JSON]
 
-        let e = EnumSpec.builder(data["name"] as! String)
-                .addSuperType(TypeName.StringType)
-                .addModifier(.Public)
-                .addDescription(data["description"] as? String)
-                .addFieldSpecs(
+        let e = EnumSpec.builder(name: data["name"] as! String)
+            .add(superType: TypeName.StringType)
+            .add(modifier: .Public)
+            .add(description: data["description"] as? String)
+            .add(fields:
                     values.map { value in
                         let name = value["name"] as! String
                         let description = value["description"] as? String
-                        return FieldSpec.builder(name)
-                                .addInitializer(CodeBlock.builder().addLiteral(name).build())
-                                .addDescription(description)
-                                .build()
+                        return FieldSpec.builder(name: name)
+                            .add(initializer: name.toCodeBlock())
+                            .add(description: description)
+                            .build()
                     }
                 ).build()
 

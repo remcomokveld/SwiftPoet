@@ -56,9 +56,9 @@ public class PoetFile: PoetFileProtocol, Importable {
 
     private func toFile() -> String {
         let codeWriter = CodeWriter()
-        codeWriter.emitFileHeader(fileName, framework: framework, specs: specList)
-        codeWriter.emitImports(imports)
-        codeWriter.emit(specList)
+        codeWriter.emitFileHeader(fileName: fileName, framework: framework, specs: specList)
+        codeWriter.emit(imports: imports)
+        codeWriter.emit(specs: specList)
         return codeWriter.out
     }
 }

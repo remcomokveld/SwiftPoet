@@ -9,42 +9,36 @@
 import Foundation
 
 public protocol TypeSpecProtocol {
-    // Class variables are not supported yet. Impliment class variables in each child class
-//    class var implicitFieldModifiers: [Modifier] { get }
-//    class var implicitMethodModifiers: [Modifier] { get }
-//    class var implicitTypeModifiers: [Modifier] { get }
-//    class var asMemberModifiers: [Modifier] { get }
-
-    var methodSpecs: [MethodSpec] { get }
-    var fieldSpecs: [FieldSpec] { get }
+    var methods: [MethodSpec] { get }
+    var fields: [FieldSpec] { get }
     var superType: TypeName? { get }
-    var superProtocols: [TypeName] { get }
+    var protocols: [TypeName] { get }
 }
 
 public class TypeSpec: PoetSpec, TypeSpecProtocol {
-    public let methodSpecs: [MethodSpec]
-    public let fieldSpecs: [FieldSpec]
+    public let methods: [MethodSpec]
+    public let fields: [FieldSpec]
     public let superType: TypeName?
-    public let superProtocols: [TypeName]
+    public let protocols: [TypeName]
 
     public init(builder: TypeSpecBuilder) {
-        methodSpecs = builder.methodSpecs
-        fieldSpecs = builder.fieldSpecs
+        methods = builder.methods
+        fields = builder.fields
         superType = builder.superType
-        superProtocols = builder.superProtocols
+        protocols = builder.protocols
 
         super.init(name: builder.name, construct: builder.construct, modifiers: builder.modifiers, description: builder.description, framework: builder.framework, imports: builder.imports)
     }
 
     public override func collectImports() -> Set<String> {
         let externalImports = [
-            methodSpecs.reduce(Set<String>()) { set, m in
+            methods.reduce(Set<String>()) { set, m in
             return set.union(m.collectImports())
             },
-            fieldSpecs.reduce(Set<String>()) { set, f in
+            fields.reduce(Set<String>()) { set, f in
                 return set.union(f.collectImports())
             },
-            superProtocols.reduce(Set<String>()) { set, sp in
+            protocols.reduce(Set<String>()) { set, sp in
                 set.union(sp.collectImports())
             },
             superType?.collectImports()]
@@ -58,83 +52,89 @@ public class TypeSpec: PoetSpec, TypeSpecProtocol {
     }
 
     public override func emit(codeWriter: CodeWriter) -> CodeWriter {
-        codeWriter.emitDocumentation(self)
-        codeWriter.emitModifiers(modifiers)
+        codeWriter.emitDocumentation(forType: self)
+        codeWriter.emitModifiers(modifiers: modifiers)
         let cbBuilder = CodeBlock.builder()
-        cbBuilder.addLiteral(construct)
-        cbBuilder.addLiteral(name)
-        codeWriter.emit(cbBuilder.build())
-        codeWriter.emitInheritance(superType, superProtocols: superProtocols)
-        codeWriter.emit(.BeginStatement)
+        cbBuilder.addLiteral(any: construct)
+        cbBuilder.addLiteral(any: name)
+        codeWriter.emit(codeBlock: cbBuilder.build())
+        codeWriter.emitInheritance(superType: superType, protocols: protocols)
+        codeWriter.emit(type: .BeginStatement)
         codeWriter.emitNewLine()
 
         var first = true
 
-        fieldSpecs.forEach { spec in
+        fields.forEach { spec in
             if !first { codeWriter.emitNewLine() }
-            spec.emit(codeWriter)
+            spec.emit(codeWriter: codeWriter)
             first = false
         }
 
-        if !methodSpecs.isEmpty {
+        if !methods.isEmpty {
             codeWriter.emitNewLine()
         }
 
-        methodSpecs.forEach { spec in
+        methods.forEach { spec in
             codeWriter.emitNewLine()
-            spec.emit(codeWriter)
+            spec.emit(codeWriter: codeWriter)
             codeWriter.emitNewLine()
         }
 
-        codeWriter.emit(.EndStatement)
+        codeWriter.emit(type: .EndStatement)
         
         return codeWriter
     }
 }
 
 public class TypeSpecBuilder: PoetSpecBuilder, TypeSpecProtocol {
-    public private(set) var methodSpecs = [MethodSpec]()
-    public private(set) var fieldSpecs = [FieldSpec]()
-    public private(set) var superProtocols = [TypeName]()
+    public private(set) var methods = [MethodSpec]()
+    public private(set) var fields = [FieldSpec]()
+    public private(set) var protocols = [TypeName]()
     public private(set) var superType: TypeName? = nil
 
     public override init(name: String, construct: Construct) {
-        super.init(name: PoetUtil.cleanTypeName(name), construct: construct)
+        super.init(name: name.cleaned(case: .TypeName), construct: construct)
     }
 
-    internal func addMethodSpec(internalMethodSpec methodSpec: MethodSpec) {
-        if !methodSpecs.contains(methodSpec) {
-            self.methodSpecs.append(methodSpec)
-        }
-        methodSpec.parentType = self.construct
-    }
-
-    internal func addMethodSpecs(internalMethodSpecList methodSpecList: [MethodSpec]) {
-        PoetUtil.addDataToList(methodSpecList, fn: addMethodSpec)
-    }
-
-    internal func addFieldSpec(internalFieldSpec fieldSpec: FieldSpec) {
-        if !fieldSpecs.contains(fieldSpec) {
-            self.fieldSpecs.append(fieldSpec)
-            fieldSpec.parentType = self.construct
+    internal func mutatingAdd(method: MethodSpec) {
+        if !methods.contains(method) {
+            self.methods.append(method)
+            method.parentType = self.construct
         }
     }
 
-    internal func addFieldSpecs(internalFieldSpecList fieldSpecList: [FieldSpec]) {
-        PoetUtil.addDataToList(fieldSpecList, fn: addFieldSpec)
-    }
-
-    internal func addProtocol(internalProtocolSpec protocolSpec: TypeName) {
-        if !superProtocols.contains(protocolSpec) {
-            superProtocols.append(protocolSpec)
+    internal func mutatingAdd(methods: [MethodSpec]) {
+        for method in methods {
+            mutatingAdd(method: method)
         }
     }
 
-    internal func addProtocols(internalProtocolSpecList protocolList: [TypeName]) {
-        PoetUtil.addDataToList(protocolList, fn: addProtocol)
+    internal func mutatingAdd(field: FieldSpec) {
+        if !fields.contains(field) {
+            self.fields.append(field)
+            field.parentType = self.construct
+        }
     }
 
-    internal func addSuperType(internalSuperClass superClass: TypeName) {
-        superType = superClass
+    internal func mutatingAdd(fields: [FieldSpec]) {
+        for field in fields {
+            mutatingAdd(field: field)
+        }
+    }
+
+    internal func mutatingAdd(protocol _protocol: TypeName) {
+        if !protocols.contains(_protocol) {
+            protocols.append(_protocol)
+        }
+    }
+
+    internal func mutatingAdd(protocols: [TypeName]) {
+        for _protocol in protocols {
+            mutatingAdd(protocol: _protocol)
+        }
+    }
+
+    internal func mutatingAdd(superType: TypeName) {
+        self.superType = superType
     }
 }

@@ -72,27 +72,27 @@ public class PoetSpecBuilder: PoetSpecType {
         self.construct = construct
     }
 
-    internal func addModifier(internalModifier modifier: Modifier) {
-        self.modifiers.insert(modifier)
+    internal func mutatingAdd(modifier: Modifier) {
+        modifiers.insert(modifier)
     }
 
-    internal func addModifiers(internalModifiers modifiers: [Modifier]) {
-        modifiers.forEach { addModifier(internalModifier: $0) }
+    internal func mutatingAdd(modifiers: [Modifier]) {
+        modifiers.forEach { mutatingAdd(modifier: $0) }
     }
 
-    internal func addDescription(internalDescription description: String?) {
+    internal func mutatingAdd(description: String?) {
         self.description = description
     }
 
-    internal func addFramework(internalFramework framework: String?) {
-        self.framework = PoetUtil.fmap(PoetUtil.cleanTypeName, a: framework)
+    internal func mutatingAdd(framework: String?) {
+        self.framework = framework?.cleaned(case: .TypeName)
     }
 
-    internal func addImport(internalImport _import: String) {
+    internal func mutatingAdd(import _import: String) {
         self.imports.insert(_import)
     }
 
-    internal func addImports(internalImports imports: [String]) {
-        imports.forEach { addImport(internalImport: $0) }
+    internal func mutatingAdd(imports: [String]) {
+        imports.forEach { mutatingAdd(import: $0) }
     }
 }

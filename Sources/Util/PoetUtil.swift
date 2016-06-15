@@ -8,60 +8,64 @@
 
 import Foundation
 
+extension String {
+    public func cleaned(case _case: Case) -> String {
+        switch _case {
+        case .TypeName:
+            return ReservedWords.safeWord(word: PoetUtil.stripSpaceAndPunctuation(name: self).joined(separator: ""))
+        case .ParamName:
+            let cleanedNameChars = PoetUtil.stripSpaceAndPunctuation(name: self).joined(separator: "")
+            return ReservedWords.safeWord(word: PoetUtil.lowercaseFirstChar(str: cleanedNameChars))
+        }
+    }
+
+    public enum Case {
+        case TypeName
+        case ParamName
+    }
+}
+
 public struct PoetUtil {
     private static let template = "^^^^"
     private static let regexPattern = "\\s|_|\\.|-|\\[|\\]"
     
-    private static func getSpaceAndPunctuationRegex() -> NSRegularExpression? {
+    private static var spaceAndPunctuationRegex: RegularExpression? {
         do {
-            return try NSRegularExpression(pattern: PoetUtil.regexPattern, options: NSRegularExpressionOptions.AnchorsMatchLines)
+            return try RegularExpression(pattern: PoetUtil.regexPattern, options: .anchorsMatchLines)
         } catch {
             return nil
         }
     }
 
-    internal static func addDataToList<T: Equatable>(data: T, inout list: [T]) {
-        if (list.filter { $0 == data }).count == 0 {
+    internal static func addUnique<T: Equatable>(data: T, toList list: inout [T]) {
+        if !list.contains(data) {
             list.append(data)
         }
     }
 
-    internal static func addDataToList<T>(data: [T], fn: (T) -> Any) {
-        for d in data { fn(d) }
-    }
-
-    // CapitalizedCammelCase
-    public static func cleanTypeName(name: String) -> String {
-        return ReservedWords.safeWord(PoetUtil.stripSpaceAndPunctuation(name).joinWithSeparator(""))
-    }
-
-    // cammelCase
-    public static func cleanCammelCaseString(name: String) -> String {
-        let cleanedNameChars = PoetUtil.stripSpaceAndPunctuation(name).joinWithSeparator("")
-        return ReservedWords.safeWord(PoetUtil.lowercaseFirstChar(cleanedNameChars))
-    }
-
     private static func stripSpaceAndPunctuation(name: String) -> [String] {
-        guard let regex = getSpaceAndPunctuationRegex() else {
+        guard let regex = spaceAndPunctuationRegex else {
             return [name]
         }
 
-        return regex.stringByReplacingMatchesInString(name, options: [], range: NSMakeRange(0, name.characters.count), withTemplate: PoetUtil.template).componentsSeparatedByString(PoetUtil.template).map { s in
-            PoetUtil.capitalizeFirstChar(s)
-        }
+        return regex.stringByReplacingMatches(
+            in: name, options: [],
+            range: NSMakeRange(0, name.characters.count), withTemplate: template)
+                .components(separatedBy: template)
+                .map { capitalizeFirstChar(str: $0) }
     }
 
     // capitalize first letter without removing cammel case on other characters
     private static func capitalizeFirstChar(str: String) -> String {
-        return PoetUtil.caseFirstChar(str) { str in
-            return str.uppercaseString.characters
+        return caseFirstChar(str: str) {
+            return $0.uppercased().characters
         }
     }
 
     // lowercase first letter without removing cammel case on other characters
     private static func lowercaseFirstChar(str: String) -> String {
-        return PoetUtil.caseFirstChar(str) { str in
-            return str.lowercaseString.characters
+        return caseFirstChar(str: str) {
+            return $0.lowercased().characters
         }
     }
 
@@ -71,23 +75,23 @@ public struct PoetUtil {
         }
 
         var chars = str.characters
-        let first = str.substringToIndex(chars.startIndex.successor())
-        let range = chars.startIndex..<chars.startIndex.successor()
-        chars.replaceRange(range, with: caseFn(str: first))
+        let first = str.substring(to: chars.index(after: chars.startIndex))
+        let range = chars.startIndex..<chars.index(after: chars.startIndex)
+        chars.replaceSubrange(range, with: caseFn(str: first))
         return String(chars)
     }
 
-    internal static func fmap<A, B>(f: A -> B?, a: A?) -> B? {
-        switch a {
-        case .Some(let x): return f(x)
-        case .None: return .None
+    internal static func fmap<A, B>(data: A?, function: (A) -> B?) -> B? {
+        switch data {
+        case .some(let x): return function(x)
+        case .none: return .none
         }
     }
 
-    internal static func fmap<A, B>(f: A -> B, a: A?) -> B? {
-        switch a {
-        case .Some(let x): return f(x)
-        case .None:   return .None
+    internal static func fmap<A, B>(data: A?, function: (A) -> B) -> B? {
+        switch data {
+        case .some(let x): return function(x)
+        case .none: return .none
         }
     }
 }

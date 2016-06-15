@@ -343,6 +343,8 @@
 				TargetAttributes = {
 					3B00E57B1BA379830011486D = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 8253J6YY47;
+						DevelopmentTeamName = "Kyle Dorman (Personal Team)";
 						LastSwiftMigration = 0800;
 					};
 					3B00E5841BA379830011486D = {

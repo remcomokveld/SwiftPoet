@@ -9,6 +9,7 @@
 import Foundation
 
 public protocol Emitter {
+    @discardableResult
     func emit(codeWriter: CodeWriter) -> CodeWriter
 
     func toString() -> String
@@ -16,6 +17,6 @@ public protocol Emitter {
 
 extension Emitter {
     public func toString() -> String {
-        return emit(CodeWriter()).out
+        return emit(codeWriter: CodeWriter()).out
     }
 }

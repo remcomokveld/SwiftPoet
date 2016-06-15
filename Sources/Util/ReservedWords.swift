@@ -25,14 +25,14 @@ public struct ReservedWords {
         "right", "set", "Type", "unowned", "weak", "willSet"
     ]
 
-    public static func contains(s: String) -> Bool {
-        return ReservedWords.all.contains(s)
+    public static func contains(word: String) -> Bool {
+        return ReservedWords.all.contains(word)
     }
 
-    public static func safeWord(s: String) -> String {
-        guard ReservedWords.contains(s) == false else {
-            return "_" + s
+    public static func safeWord(word: String) -> String {
+        guard ReservedWords.contains(word: word) == false else {
+            return "_" + word
         }
-        return s
+        return word
     }
 }

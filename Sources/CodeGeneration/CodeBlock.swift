@@ -25,31 +25,31 @@ public struct CodeBlock {
 
     public func toString() -> String {
         let codeWriter = CodeWriter()
-        return codeWriter.emit(self).out
+        return codeWriter.emit(codeBlock: self).out
     }
     
     public func addCodeBlock(codeBlock: CodeBlock) -> CodeBlock {
-        _builder.addCodeBlock(codeBlock)
+        _builder.addCodeBlock(codeBlock: codeBlock)
         return self
     }
     
     public func addEmitObject(type: EmitType, any: Any? = nil) -> CodeBlock {
-         _builder.addEmitObject(EmitObject(type: type, any: any))
+        _builder.addEmitObject(eo: EmitObject(type: type, any: any))
         return self
     }
     
     public func addLiteral(any: Literal) -> CodeBlock {
-        _builder.addEmitObject(.Literal, any: any)
+        _builder.addEmitObject(type: .Literal, any: any)
         return self
     }
     
     public func addCodeLine(any: Literal) -> CodeBlock {
-        _builder.addEmitObject(.CodeLine, any: any)
+        _builder.addEmitObject(type: .CodeLine, any: any)
         return self
     }
     
     public func addEmitObjects(emitObjects: [Either<EmitObject, CodeBlock>]) -> CodeBlock {
-        _builder.emittableObjects.appendContentsOf(emitObjects)
+        _builder.emittableObjects.append(contentsOf: emitObjects)
         return self
     }
 
@@ -82,28 +82,34 @@ public class CodeBlockBuilder: Builder {
         return CodeBlock(builder: self)
     }
 
+    @discardableResult
     internal func addEmitObject(eo: EmitObject) -> CodeBlockBuilder {
         emittableObjects.append(Either.Left(eo))
         return self
     }
 
+    @discardableResult
     public func addEmitObject(type: EmitType, any: Any? = nil) -> CodeBlockBuilder {
-        return self.addEmitObject(EmitObject(type: type, any: any))
+        return self.addEmitObject(eo: EmitObject(type: type, any: any))
     }
 
+    @discardableResult
     public func addLiteral(any: Literal) -> CodeBlockBuilder {
-        return self.addEmitObject(.Literal, any: any)
+        return self.addEmitObject(type: .Literal, any: any)
     }
 
+    @discardableResult
     public func addCodeLine(any: Literal) -> CodeBlockBuilder {
-        return self.addEmitObject(.CodeLine, any: any)
+        return self.addEmitObject(type: .CodeLine, any: any)
     }
 
+    @discardableResult
     public func addEmitObjects(emitObjects: [Either<EmitObject, CodeBlock>]) -> CodeBlockBuilder {
-        emittableObjects.appendContentsOf(emitObjects)
+        emittableObjects.append(contentsOf: emitObjects)
         return self
     }
 
+    @discardableResult
     public func addCodeBlock(codeBlock: CodeBlock) -> CodeBlockBuilder {
         emittableObjects.append(Either.Right(codeBlock))
         return self

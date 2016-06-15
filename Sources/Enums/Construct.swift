@@ -17,7 +17,7 @@ public enum Construct {
     case Enum
     case Struct
     case Class
-    case Protocol
+    case `Protocol`
     case TypeAlias
     case Extension
 

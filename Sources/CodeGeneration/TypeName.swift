@@ -16,43 +16,47 @@ public class TypeName: Importable {
     public var imports: Set<String>
 
     public init(keyword: String, optional: Bool = false, imports: [String]? = nil) {
-        let trimKeyWord = keyword.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let trimKeyWord = keyword.trimmingCharacters(in: .whitespaces)
 
-        if TypeName.isObject(trimKeyWord) {
+        if TypeName.isObject(keyword: trimKeyWord) {
             self.keyword = "Dictionary"
             self.leftInnerType = TypeName.StringType
             self.rightInnerType = TypeName.StringType
             self.optional = optional
-        } else if TypeName.isDictionary(trimKeyWord) {
+        } else if TypeName.isDictionary(keyword: trimKeyWord) {
             let chars = trimKeyWord.characters
-            let isOptional = TypeName.isOptional(trimKeyWord)
-            let endIndex = isOptional ? chars.endIndex.predecessor().predecessor() : chars.endIndex.predecessor()
-            let splitIndex = trimKeyWord.rangeOfString(":")!.startIndex
 
-            self.leftInnerType = TypeName(keyword: trimKeyWord.substringWithRange(chars.startIndex.successor()..<splitIndex))
-            self.rightInnerType = TypeName(keyword: trimKeyWord.substringWithRange(splitIndex.successor()..<endIndex))
-            self.keyword = PoetUtil.cleanTypeName("Dictionary")
+            let isOptional = TypeName.isOptional(keyword: trimKeyWord)
+            let endIndex = isOptional ? chars.index(chars.endIndex, offsetBy: -2) : chars.index(before: chars.endIndex)
+            let splitIndex = trimKeyWord.range(of: ":")!.lowerBound//.startIndex //.rangeOfString(":")!.startIndex
+
+            self.leftInnerType = TypeName(keyword: trimKeyWord.substring(with: chars.index(after: chars.startIndex)..<splitIndex))
+            self.rightInnerType = TypeName(keyword: trimKeyWord.substring(with: chars.index(after: splitIndex)..<endIndex))
+            self.keyword = "Dictionary".cleaned(case: .TypeName)
             self.optional = isOptional || optional
             
-        } else if TypeName.isArray(trimKeyWord) {
+        } else if TypeName.isArray(keyword: trimKeyWord) {
             let chars = trimKeyWord.characters
-            var range = chars.startIndex.successor()..<chars.endIndex.predecessor()
-            let isOptional = TypeName.isOptional(trimKeyWord)
-            range.endIndex = isOptional ? chars.endIndex.predecessor().predecessor() : chars.endIndex.predecessor()
+            let isOptional = TypeName.isOptional(keyword: trimKeyWord)
+            let endIndex = isOptional ? chars.index(chars.endIndex, offsetBy: -2) : chars.index(before: chars.endIndex)
+            let range = chars.index(after: chars.startIndex)..<endIndex
 
-            self.leftInnerType = TypeName(keyword: trimKeyWord.substringWithRange(range))
+            self.leftInnerType = TypeName(keyword: trimKeyWord.substring(with: range))
             self.rightInnerType = nil
-            self.keyword = PoetUtil.cleanTypeName("Array")
+            self.keyword = "Array".cleaned(case: .TypeName)
             self.optional = isOptional || optional
-        } else if TypeName.isOptional(trimKeyWord) {
+
+        } else if TypeName.isOptional(keyword: trimKeyWord) {
+
             self.leftInnerType = nil
             self.rightInnerType = nil
-            self.keyword = PoetUtil.cleanTypeName(trimKeyWord.substringToIndex(trimKeyWord.characters.endIndex.predecessor()))
+            let index = trimKeyWord.characters.index(before: trimKeyWord.characters.endIndex)
+            self.keyword = trimKeyWord.substring(to: index).cleaned(case: .TypeName)
             self.optional = true
         } else {
             self.leftInnerType = nil
             self.rightInnerType = nil
-            self.keyword = PoetUtil.cleanTypeName(trimKeyWord)
+            self.keyword = trimKeyWord.cleaned(case: .TypeName)
             self.optional = optional
         }
 
@@ -71,46 +75,46 @@ public class TypeName: Importable {
     }
 
     private static func isObject(keyword: String) -> Bool {
-        return keyword.lowercaseString == "object"
+        return keyword.lowercased() == "object"
     }
 
     private static func isArray(keyword: String) -> Bool {
-        var arrayMatch: NSRegularExpression?
+        var arrayMatch: RegularExpression?
         let range = NSRange(location: 0, length: keyword.characters.count)
 
         do {
-            arrayMatch = try NSRegularExpression(pattern: "^\\[.+\\]\\??$", options: .CaseInsensitive)
+            arrayMatch = try RegularExpression(pattern: "^\\[.+\\]\\??$", options: .caseInsensitive)
         } catch {
             arrayMatch = nil // this should never happen
         }
 
-        return arrayMatch?.numberOfMatchesInString(keyword, options: .Anchored, range: range) == 1
+        return arrayMatch?.numberOfMatches(in: keyword, options: .anchored, range: range) == 1
     }
 
     private static func isDictionary(keyword: String) -> Bool {
-        var dictionaryMatch: NSRegularExpression?
+        var dictionaryMatch: RegularExpression?
         let range = NSRange(location: 0, length: keyword.characters.count)
 
         do {
-            dictionaryMatch = try NSRegularExpression(pattern: "^\\[.+:.+\\]\\??$", options: .CaseInsensitive)
+            dictionaryMatch = try RegularExpression(pattern: "^\\[.+:.+\\]\\??$", options: .caseInsensitive)
         } catch {
             dictionaryMatch = nil // this should never happen
         }
 
-        return dictionaryMatch?.numberOfMatchesInString(keyword, options: .Anchored, range: range) == 1
+        return dictionaryMatch?.numberOfMatches(in: keyword, options: .anchored, range: range) == 1
     }
 
     private static func isOptional(keyword: String) -> Bool {
-        var optionalMatch: NSRegularExpression?
+        var optionalMatch: RegularExpression?
         let range = NSRange(location: 0, length: keyword.characters.count)
 
         do {
-            optionalMatch = try NSRegularExpression(pattern: "^.+\\?$", options: .CaseInsensitive)
+            optionalMatch = try RegularExpression(pattern: "^.+\\?$", options: .caseInsensitive)
         } catch {
             optionalMatch = nil // this should never happen
         }
 
-        return optionalMatch?.numberOfMatchesInString(keyword, options: .Anchored, range: range) == 1
+        return optionalMatch?.numberOfMatches(in: keyword, options: .anchored, range: range) == 1
     }
 }
 
@@ -128,11 +132,11 @@ extension TypeName: Hashable {
 
 extension TypeName: Emitter {
     public func emit(codeWriter: CodeWriter) -> CodeWriter {
-        return codeWriter.emit(.Literal, any: literalValue())
+        return codeWriter.emit(type: .Literal, any: literalValue())
     }
 
     public func toString() -> String {
-        let cw = self.emit(CodeWriter())
+        let cw = self.emit(codeWriter: CodeWriter())
         return cw.out
     }
 }

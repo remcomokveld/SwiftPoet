@@ -30,8 +30,8 @@ public enum Modifier: String {
     //    case Optional
 
     public static func equivalentAccessLevel(parentModifiers pm: Set<Modifier>, childModifiers cm: Set<Modifier>) -> Bool {
-        let parentAccessLevel = Modifier.accessLevel(pm)
-        let childAccessLevel = Modifier.accessLevel(cm)
+        let parentAccessLevel = Modifier.accessLevel(modifiers: pm)
+        let childAccessLevel = Modifier.accessLevel(modifiers: cm)
 
         if parentAccessLevel == .Private {
             return true
