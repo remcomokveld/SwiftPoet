@@ -21,3 +21,6 @@ DerivedData
 *.ipa
 *.xcuserstate
 *.xcscmblueprint
+
+# Swift Package Manager
+.build/

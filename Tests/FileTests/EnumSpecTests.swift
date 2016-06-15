@@ -35,8 +35,8 @@ class EnumSpecTests: XCTestCase {
         "\n" +
         "}"
 
-        print(e.toString())
-        print(result)
+//        print(e.toString())
+//        print(result)
 
         XCTAssertEqual(e.toString(), result)
     }
@@ -105,8 +105,8 @@ class EnumSpecTests: XCTestCase {
         "\n" +
         "}"
 
-        print(e.toString())
-        print(result)
+//        print(e.toString())
+//        print(result)
 
         XCTAssertEqual(result, e.toString())
     }
@@ -225,8 +225,8 @@ class EnumSpecTests: XCTestCase {
         eb.add(field: f1.build())
 
 
-        let e = eb.build()
-        print(e.toString())
+        _ = eb.build()
+//        print(e.toString())
 
         XCTAssertTrue(true)
     }

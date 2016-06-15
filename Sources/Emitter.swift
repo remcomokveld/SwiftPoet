@@ -1,0 +1,24 @@
+//
+//  Emitter.swift
+//  SwiftPoet
+//
+//  Created by Kyle Dorman on 11/10/15.
+//
+//
+
+#if SWIFT_PACKAGE
+    import Foundation
+#endif
+
+public protocol Emitter {
+    @discardableResult
+    func emit(codeWriter: CodeWriter) -> CodeWriter
+
+    func toString() -> String
+}
+
+extension Emitter {
+    public func toString() -> String {
+        return emit(codeWriter: CodeWriter()).out
+    }
+}

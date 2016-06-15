@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SwiftPoet
+import SwiftPoet
 
 class TypeNameTests: XCTestCase {
 

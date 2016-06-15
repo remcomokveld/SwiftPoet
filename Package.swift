@@ -1,5 +1,6 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftPoet"
+    name: "SwiftPoet",
+    exclude: ["Tests/FullGeneratorTests"]
 )

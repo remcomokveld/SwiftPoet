@@ -160,8 +160,8 @@ class ControlFlowTests: XCTestCase {
         "        return result\n" +
         "}"
 
-        print(closure.toString())
-        print(result)
+//        print(closure.toString())
+//        print(result)
 
         XCTAssertEqual(closure.toString(), result)
     }

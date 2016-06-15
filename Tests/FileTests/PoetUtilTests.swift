@@ -14,7 +14,6 @@ class PoetUtilTests: XCTestCase {
     func testAddDataToList() {
         var list = [1, 2, 3, 4]
         PoetUtil.addUnique(data: 5, toList: &list)
-        print(list)
         XCTAssertEqual(5, list.count)
     }
 
