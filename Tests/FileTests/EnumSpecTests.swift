@@ -230,4 +230,26 @@ class EnumSpecTests: XCTestCase {
 
         XCTAssertTrue(true)
     }
+
+    func testEnumAsFile() {
+        let eb = EnumSpec.builder(name: "test")
+        eb.add(description: "This is a test enum")
+        eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
+        eb.add(protocols: [TypeName(keyword: "TestProtocol"), TypeName(keyword: "OtherProtocol")])
+
+        let f1 = FieldSpec.builder(name: "test_case_one")
+        f1.add(description: "This is the first case")
+        let cb1 = CodeBlock.builder()
+        cb1.addLiteral(any: "\"test_case_one\"")
+
+        f1.add(initializer: cb1.build())
+
+        eb.add(field: f1.build())
+
+
+        _ = eb.build().toFile().fileContents
+        //        print(e.toString())
+        
+        XCTAssertTrue(true)
+    }
 }

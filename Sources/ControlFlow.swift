@@ -162,7 +162,7 @@ public enum ControlFlow: String {
     }
 }
 
-public struct ComparisonList: Emitter {
+public class ComparisonList: Emitter {
     private let requirement: Requirement?
     private let list: [Either<ComparisonListItem, ComparisonList>]
 
@@ -204,9 +204,13 @@ public struct ComparisonList: Emitter {
 
         return codeWriter
     }
+
+    public func toString() -> String {
+        return emit(codeWriter: CodeWriter()).out
+    }
 }
 
-public struct ComparisonListItem: Emitter {
+public class ComparisonListItem: Emitter {
     let comparison: Comparison
     let requirement: Requirement?
 
@@ -222,9 +226,13 @@ public struct ComparisonListItem: Emitter {
         }
         return comparison.emit(codeWriter: codeWriter)
     }
+
+    public func toString() -> String {
+        return emit(codeWriter: CodeWriter()).out
+    }
 }
 
-public struct Comparison: Emitter {
+public class Comparison: Emitter {
     let lhs: CodeBlock
     let comparator: Comparator
     let rhs: CodeBlock
@@ -243,6 +251,10 @@ public struct Comparison: Emitter {
         codeWriter.emit(codeBlock: cbBuilder.build())
 
         return codeWriter
+    }
+
+    public func toString() -> String {
+        return emit(codeWriter: CodeWriter()).out
     }
 }
 

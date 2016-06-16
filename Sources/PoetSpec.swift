@@ -6,11 +6,10 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
 
-public protocol PoetSpecType {
+import Foundation
+
+@objc public protocol PoetSpecType {
     var name: String { get }
     var construct: Construct { get }
     var modifiers: Set<Modifier> { get }
@@ -46,6 +45,10 @@ public class PoetSpec: PoetSpecType, Emitter, Importable {
 
     public func toFile() -> PoetFile {
         return PoetFile(spec: self, framework: framework)
+    }
+
+    public func toString() -> String {
+        return emit(codeWriter: CodeWriter()).out
     }
 }
 

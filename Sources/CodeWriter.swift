@@ -10,7 +10,7 @@ import Foundation
 
 public typealias Appendable = String.CharacterView
 
-public class CodeWriter {
+@objc public class CodeWriter: NSObject {
     private var _out: Appendable
     public var out: String {
         return String(_out)
@@ -188,7 +188,7 @@ extension CodeWriter {
         }
 
         let modListStr = Array(modifiers).map { m in
-            return m.rawValue
+            return m.rawString
         }.joined(separator: " ") + " "
 
         _out.append(contentsOf: String.indent(s: modListStr, i: indentLevel).characters)

@@ -6,19 +6,11 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
-public protocol Emitter {
+@objc public protocol Emitter {
     @discardableResult
     func emit(codeWriter: CodeWriter) -> CodeWriter
 
     func toString() -> String
-}
-
-extension Emitter {
-    public func toString() -> String {
-        return emit(codeWriter: CodeWriter()).out
-    }
 }

@@ -6,24 +6,33 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
-public enum Modifier: String {
-    case Public = "public"
-    case Private = "private"
-    case Internal = "internal"
+@objc public class Modifier: NSObject {
 
-    case Static = "static"
-    case Final = "final"
-    case Klass = "class"
+    public let rawString: String
 
-    case Mutating = "mutating"
-    case Throws = "throws"
-    case Convenience = "convenience"
-    case Override = "override"
-    case Required = "required"
+    public init(rawString: String) {
+        self.rawString = rawString
+    }
+
+    public static let Public = Modifier(rawString: "public")
+    public static let Private = Modifier(rawString: "private")
+    public static let Internal = Modifier(rawString: "internal")
+
+    public static let Static = Modifier(rawString: "static")
+    public static let Final = Modifier(rawString: "final")
+    public static let Klass = Modifier(rawString: "class")
+
+    public static let Mutating = Modifier(rawString: "mutating")
+    public static let Throws = Modifier(rawString: "throws")
+    public static let Convenience = Modifier(rawString: "convenience")
+    public static let Override = Modifier(rawString: "override")
+    public static let Required = Modifier(rawString: "required")
+
+    public override var hashValue: Int {
+        return rawString.hashValue
+    }
 
     //    case DidSet
     //    case Lazy
@@ -54,4 +63,8 @@ public enum Modifier: String {
             return .Internal
         }
     }
+}
+
+public func ==(lhs: Modifier, rhs: Modifier) -> Bool {
+    return lhs.rawString == rhs.rawString
 }

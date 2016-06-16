@@ -6,12 +6,10 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
-public enum Construct {
-    case Param
+@objc public enum Construct: Int {
+    case Param = 0
     case MutableParam
     case Field
     case MutableField
