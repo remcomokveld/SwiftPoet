@@ -16,6 +16,9 @@ class GenerateModelFromJSON: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        let b = Bundle(for: GenerateModelFromJSON.self)
+        print(b.bundlePath)
+        print(b.resourcePath)
 
         if let path = Bundle(for: GenerateModelFromJSON.self).pathForResource("gilt_public_api", ofType: "json"),
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
@@ -23,8 +26,11 @@ class GenerateModelFromJSON: XCTestCase {
                 do {
                     publicApiJSON = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary
                 } catch {
+                    print("Failed to load bundle json")
                     publicApiJSON = nil
                 }
+        } else {
+            print("Failed to find bundle")
         }
 
     }
