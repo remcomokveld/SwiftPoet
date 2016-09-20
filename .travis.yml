@@ -1,0 +1,17 @@
+language: objective-c
+xcode_project: SwiftPoet.xcodeproj
+osx_image: xcode8
+
+git:
+  depth: 1
+  submodules: false
+
+before_install:
+  git submodule update --init
+
+install:
+  gem install xcpretty
+
+script:
+- set -o pipefail && xcodebuild -project SwiftPoet.xcodeproj -configuration Release -scheme 'SwiftPoet' -destination 'platform=macOS' -destination-timeout 300 clean build | xcpretty
+- set -o pipefail && xcodebuild -project SwiftPoet.xcodeproj -configuration Release -scheme 'SwiftPoet' -destination 'platform=macOS' -destination-timeout 300 test | xcpretty
