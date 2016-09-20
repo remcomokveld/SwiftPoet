@@ -8,14 +8,11 @@ This document describes how to integrate SwiftPoet into your application.
 
 SwiftPoet is built as a *Swift framework*, and as such, it has the following base platform requirements:
 
-Platform|Minimum OS version
---------|------------------------
+Platform|Latest supported OS|Oldest supported OS
+--------|-------------------|-------------------
+Macintosh|macOS 10.12|macOS 10.10
 
-
-
-Mac|OS X 10.10
-
-SwiftPoet is **Swift 2.2 compliant** and therefore **requires Xcode 7.3 or higher** to compile.
+SwiftPoet uses **Swift 2.3** and **requires Xcode 8** to compile.
 
 ### Contents
 
@@ -27,7 +24,7 @@ SwiftPoet is **Swift 2.2 compliant** and therefore **requires Xcode 7.3 or highe
 
 Some familiarity with the Terminal application, the bash command line, and the `git` command is assumed.
 
-The steps below have been tested with **git 2.6.4 (Apple Git-63)**, although they should be compatible with a wide range of recent git versions.
+The steps below have been tested with **git 2.7.4 (Apple Git-73)**, although they should be compatible with a wide range of recent git versions.
 
 
 ### Options for integration
@@ -42,7 +39,7 @@ Whether you choose one over the other largely depends on your preferences and—
 
 ## Carthage Integration
 
-Carthage is a third-party package dependency manager for iOS and Mac OS X. Carthage works by building frameworks for each of a project’s dependencies.
+Carthage is a third-party package dependency manager for Apple platforms. Carthage works by building frameworks for each of a project’s dependencies.
 
 ### Verifying Carthage availability
 
@@ -54,7 +51,7 @@ carthage version
 
 If Carthage is available, the version you have installed will be shown.
 
-> As of this writing, the current version of Carthage is 0.15.2.
+> As of this writing, the current version of Carthage is 0.17.2.
 
 If Carthage is not present, you will see an error that looks like:
 
@@ -77,7 +74,7 @@ Carthage integration is a little simpler than manual integration:
 1. Update the `Cartfile` with an entry for SwiftPoet
 2. Download and build SwiftPoet
 3. Add `SwiftPoet.framework` to your application target
-4. Create a build phase to strip the extra processor architectures from the Carthage framework (not necessary for Mac OS X builds)
+4. Create a build phase to strip the extra processor architectures from the Carthage framework (not necessary for macOS builds)
 
 ### Getting Started
 
@@ -88,7 +85,7 @@ We’ll start in the Terminal, by `cd`ing into to your project’s root director
 In your project’s root directory, edit the file named `Cartfile`—creating it if necessary—to add the following line:
 
 ```
-github "kyle-dorman/SwiftPoet"
+github "gilt/SwiftPoet"
 ```
 
 ### 2. Download & Build using Carthage
@@ -101,10 +98,7 @@ To speed up the build process—and to avoid trying to build for a platform that
 
 To build for|Run the command
 --------|------------------------
-
-
-
-Mac|`carthage update --platform mac`
+Macintosh|`carthage update --platform mac`
 
 #### Where Carthage stores files
 
@@ -118,7 +112,7 @@ Once Carthage is done building SwiftPoet, you can use the `open` command to loca
 open Carthage/Build/iOS
 ```
 
-The command above opens the directory containing the iOS framework binary; to locate the Mac OS X binary, execute:
+The command above opens the directory containing the iOS framework binary; to locate the macOS binary, execute:
 
 ```bash
 open Carthage/Build/Mac
@@ -136,7 +130,7 @@ If successful, you should see `SwiftPoet.framework` listed under both the *Embed
 
 ### 4. Create a build phase to strip the Carthage framework
 
-> **Note:** You do *not* need to perform this step when building for Mac OS X. This step is only necessary when building for targets that can be run in a simulator.
+> **Note:** You do *not* need to perform this step when building for macOS. This step is only necessary when building for targets that can be run in a simulator.
 
 In Xcode, select the *Build Phases* tab in the build settings for your application target.
 
@@ -201,7 +195,7 @@ If you’re using some other form of version control of if you’re not using ve
 From within the `Libraries` directory, issue the following commands to download SwiftPoet:
 
 ```bash
-git submodule add https://github.com/kyle-dorman/SwiftPoet
+git submodule add https://github.com/gilt/SwiftPoet
 git submodule update --init --recursive
 ```
 
@@ -214,7 +208,7 @@ Next, you’re ready to [embed the `SwiftPoet.xcodeproj` project file in your Xc
 From within the `Libraries` directory, issue the following command to clone the SwiftPoet repository:
 
 ```bash
-git clone https://github.com/kyle-dorman/SwiftPoet
+git clone https://github.com/gilt/SwiftPoet
 ```
 
 ### 2. Embed SwiftPoet in your project
@@ -275,6 +269,6 @@ Once SwiftPoet has been successfully integrated, all you will need to do is add 
 import SwiftPoet
 ```
 
-Want to learn more about SwiftPoet? Check out [the README](https://github.com/kyle-dorman/SwiftPoet/blob/master/README.md).
+Want to learn more about SwiftPoet? Check out [the README](https://github.com/gilt/SwiftPoet/blob/master/README.md).
 
 **_Happy coding!_**

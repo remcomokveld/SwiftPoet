@@ -7,11 +7,12 @@ git:
   submodules: false
 
 before_install:
-  git submodule update --init
+  - git submodule update --init
 
 install:
-  gem install xcpretty
+  - gem install xcpretty
 
 script:
-- set -o pipefail && xcodebuild -project SwiftPoet.xcodeproj -configuration Release -scheme 'SwiftPoet' -destination 'platform=macOS' -destination-timeout 300 clean build | xcpretty
-- set -o pipefail && xcodebuild -project SwiftPoet.xcodeproj -configuration Release -scheme 'SwiftPoet' -destination 'platform=macOS' -destination-timeout 300 test | xcpretty
+- set -o pipefail && xcodebuild -project SwiftPoet.xcodeproj -configuration Release -scheme SwiftPoet-OSX -destination 'platform=macOS' -destination-timeout 300 clean build | xcpretty
+- set -o pipefail && xcodebuild -project SwiftPoet.xcodeproj -configuration Release -scheme SwiftPoet-OSX -destination 'platform=macOS' -destination-timeout 300 test | xcpretty
+
