@@ -22,5 +22,8 @@ DerivedData
 *.xcuserstate
 *.xcscmblueprint
 
-# Swift Package Manager
-.build/
+# Carthage: we --use-submodules for our non-leaf dependencies
+#
+Carthage/*
+!Carthage/Checkouts/
+**/Carthage/
