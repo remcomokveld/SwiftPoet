@@ -1,0 +1,23 @@
+language: objective-c
+xcode_project: SwiftPoet.xcodeproj
+osx_image: xcode8
+
+git:
+  depth: 1
+  submodules: false
+
+before_install:
+  - git submodule update --init
+
+install:
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+
+script:
+  - ./BuildControl/bin/travisBuildHelper.sh build OSX
+  - ./BuildControl/bin/travisBuildHelper.sh test OSX
+
+after_failure:
+  - test -f "SwiftPoet-macOS-build.log" && tail -n 2500 "SwiftPoet-macOS-build.log"
+  - test -f "SwiftPoet-macOS-test.log" && tail -n 2500 "SwiftPoet-macOS-test.log"
+  - test -f "SwiftPoet-macOS-test.log" && LINE_BEFORE=`cat "SwiftPoet-macOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "SwiftPoet-macOS-test.log" | tail -n 1` && cat "$LOG_FILE"
+

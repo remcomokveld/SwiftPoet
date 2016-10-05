@@ -1,4 +1,4 @@
-![Gilt Tech logo](https://raw.githubusercontent.com/gilt/Cleanroom/master/Assets/gilt-tech-logo.png)
+![Gilt Tech logo](https://raw.githubusercontent.com/gilt/Cleanroom/swift3/Assets/gilt-tech-logo.png)
 
 # SwiftPoet
 
@@ -7,14 +7,25 @@ SwiftPoet is a Swift framework for generating Swift code.
 SwiftPoet is part of [the Cleanroom Project](https://github.com/gilt/Cleanroom) from [Gilt Tech](http://tech.gilt.com).
 
 
+### Swift compatibility
 
-### Swift 2.2 compatibility
+**Important:** This is the `swift3` branch. It uses **Swift 3.0** and **requires Xcode 8** to compile.
 
-The `master` branch of this project is **Swift 2.2 compliant** and therefore **requires Xcode 7.3 or higher** to compile.
+The `swift3` branch is still under active development. Expect breaking changes to the API, the build system and/or the project structure at any time. **Be sure to lock against a specific commit if you simultaneously require Swift 3 and stability.**
+
+If you need Swift 2.3 compatibility, use the [`master`](https://github.com/gilt/SwiftPoet) branch, which requires Xcode 8.
+
+#### Current status
+
+Branch|Build status
+--------|------------------------
+[`master`](https://github.com/gilt/SwiftPoet)|[![Build status: master branch](https://travis-ci.org/gilt/SwiftPoet.svg?branch=master)](https://travis-ci.org/gilt/SwiftPoet)
+[`swift3`](https://github.com/gilt/SwiftPoet/tree/swift3)|[![Build status: swift3 branch](https://travis-ci.org/gilt/SwiftPoet.svg?branch=swift3)](https://travis-ci.org/gilt/SwiftPoet)
+
 
 ### License
 
-SwiftPoet is distributed under [the MIT license](/blob/master/LICENSE).
+SwiftPoet is distributed under [the MIT license](https://github.com/gilt/SwiftPoet/blob/swift3/LICENSE).
 
 SwiftPoet is provided for your use—free-of-charge—on an as-is basis. We make no guarantees, promises or apologies. *Caveat developer.*
 
@@ -23,10 +34,10 @@ SwiftPoet is provided for your use—free-of-charge—on an as-is basis. We make
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-You’ll need to [integrate SwiftPoet into your project](https://github.com/kyle-dorman/SwiftPoet/blob/master/INTEGRATION.md) in order to use [the API](https://rawgit.com/kyle-dorman/SwiftPoet/master/Documentation/API/index.html) it provides. You can choose:
+You’ll need to [integrate SwiftPoet into your project](https://github.com/gilt/SwiftPoet/blob/swift3/INTEGRATION.md) in order to use [the API](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html) it provides. You can choose:
 
-- [Manual integration](https://github.com/kyle-dorman/SwiftPoet/blob/master/INTEGRATION.md#manual-integration), wherein you embed SwiftPoet’s Xcode project within your own, **_or_**
-- [Using the Carthage dependency manager](https://github.com/kyle-dorman/SwiftPoet/blob/master/INTEGRATION.md#carthage-integration) to build a framework that you then embed in your application.
+- [Manual integration](https://github.com/gilt/SwiftPoet/blob/swift3/INTEGRATION.md#manual-integration), wherein you embed SwiftPoet’s Xcode project within your own, **_or_**
+- [Using the Carthage dependency manager](https://github.com/gilt/SwiftPoet/blob/swift3/INTEGRATION.md#carthage-integration) to build a framework that you then embed in your application.
 
 Once integrated, just add the following `import` statement to any Swift file where you want to use SwiftPoet:
 
@@ -37,14 +48,14 @@ import SwiftPoet
 
 ### API documentation
 
-For detailed information on using SwiftPoet, [API documentation](https://rawgit.com/kyle-dorman/SwiftPoet/master/Documentation/API/index.html) is available.
+For detailed information on using SwiftPoet, [API documentation](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html) is available.
 
 
 ## About
 
 The Cleanroom Project began as an experiment to re-imagine Gilt’s iOS codebase in a legacy-free, Swift-based incarnation.
 
-Since then, we’ve expanded the Cleanroom Project to include multi-platform support. Much of our codebase now supports tvOS in addition to iOS, and our lower-level code is usable on Mac OS X and watchOS as well.
+Since then, we’ve expanded the Cleanroom Project to include multi-platform support. Much of our codebase now supports tvOS in addition to iOS, and our lower-level code is usable on macOS and watchOS as well.
 
 Cleanroom Project code serves as the foundation of Gilt on TV, our tvOS app [featured by Apple during the launch of the new Apple TV](http://www.apple.com/apple-events/september-2015/). And as time goes on, we'll be replacing more and more of our existing Objective-C codebase with Cleanroom implementations.
 
@@ -60,5 +71,5 @@ If you’d like to contribute to this or any other Cleanroom Project repo, pleas
 
 ### Acknowledgements
 
-[API documentation for SwiftPoet](https://rawgit.com/kyle-dorman/SwiftPoet/master/Documentation/API/index.html) is generated using [Realm](http://realm.io)’s [jazzy](https://github.com/realm/jazzy/) project, maintained by [JP Simard](https://github.com/jpsim) and [Samuel E. Giddins](https://github.com/segiddins).
+[API documentation for SwiftPoet](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html) is generated using [Realm](http://realm.io)’s [jazzy](https://github.com/realm/jazzy/) project, maintained by [JP Simard](https://github.com/jpsim) and [Samuel E. Giddins](https://github.com/segiddins).
 

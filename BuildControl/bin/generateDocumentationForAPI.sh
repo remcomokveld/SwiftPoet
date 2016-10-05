@@ -12,7 +12,7 @@ fi
 
 pushd "`dirname $0`/../.." > /dev/null
 
-PUBLIC_GITHUB_URL="https://github.com/kyle-dorman/SwiftPoet"
+PUBLIC_GITHUB_URL="https://github.com/gilt/SwiftPoet"
 if [[ -z "$PUBLIC_GITHUB_URL" ]]; then
 	PUBLIC_GITHUB_URL=$(git remote -v | grep fetch | awk '{ print $2 }' | sed s/.git\$// | sed s/^ssh/https/ | sed s#git@github.com:#https://github.com/# )
 fi
@@ -24,12 +24,13 @@ if [[ "$COPYRIGHT_YEAR" != "$CURRENT_YEAR" ]]; then
 	COPYRIGHT_YEAR="${COPYRIGHT_YEAR}-${CURRENT_YEAR}"
 fi
 
+rm -rf Documentation/API	# clear out any old docs; they may have remnant files
+
 "$JAZZY_EXECUTABLE" -o Documentation/API \
-	-m "$MODULE_NAME" \
-	--swift-version 2.2 \
+	--module "$MODULE_NAME" \
 	--readme Sources/README.md \
 	--github_url "$PUBLIC_GITHUB_URL" \
-	--author ", Gilt Groupe" \
+	--author "Kyle Dorman, Gilt Groupe" \
 	--author_url "$AUTHOR_GITHUB_URL" \
 	--copyright "© $COPYRIGHT_YEAR [Gilt Groupe](http://tech.gilt.com/)"
 
