@@ -13,8 +13,8 @@ install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
 script:
-  - ./BuildControl/bin/travisBuildHelper.sh build OSX
-  - ./BuildControl/bin/travisBuildHelper.sh test OSX
+  - ./BuildControl/bin/travisBuildHelper.sh build macOS
+  - ./BuildControl/bin/travisBuildHelper.sh test macOS
 
 after_failure:
   - test -f "SwiftPoet-macOS-build.log" && tail -n 2500 "SwiftPoet-macOS-build.log"
