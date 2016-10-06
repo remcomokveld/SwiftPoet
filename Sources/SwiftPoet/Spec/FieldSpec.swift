@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
 public protocol FieldSpecType {
     var type: TypeName? { get }

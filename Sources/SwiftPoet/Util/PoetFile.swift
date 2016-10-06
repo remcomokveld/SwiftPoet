@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
 // Represents a list of PoetSpecs in a single file
 public protocol PoetFileProtocol {

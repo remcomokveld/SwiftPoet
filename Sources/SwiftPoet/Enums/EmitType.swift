@@ -6,9 +6,8 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
+
 public enum EmitType {
     case literal
     case increaseIndentation

@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
 public enum ControlFlow: String {
     case Guard = "guard"

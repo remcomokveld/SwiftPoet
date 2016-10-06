@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
 open class ProtocolSpec: TypeSpec {
     open static let fieldModifiers: [Modifier] = [.Static]

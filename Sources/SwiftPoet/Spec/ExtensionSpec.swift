@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
 open class ExtensionSpec: TypeSpec {
     open static let fieldModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private, .Static, .Final, .Override, .Required]

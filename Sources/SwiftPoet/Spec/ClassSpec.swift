@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
 public class ClassSpec: TypeSpec {
     public static let fieldModifiers: [Modifier] = [.Open, .Public, .Internal, .Fileprivate, .Private, .Static, .Final, .Klass, .Override, .Required]
