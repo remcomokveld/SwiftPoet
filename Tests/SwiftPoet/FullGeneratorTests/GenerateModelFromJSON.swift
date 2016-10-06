@@ -45,14 +45,14 @@ class GenerateModelFromJSON: XCTestCase {
         let name = data["name"]! as! String
         let fields: [JSON] = data["fields"]! as! [JSON]
 
-        _ = StructSpec.builder(name: name)
+        _ = StructSpec.builder(for: name)
             .includeDefaultInit()
             .add(modifier: .Public)
             .add(description: data["description"] as? String)
             .add(fields: fields.map { field in
                 let typeStr = specialType(field["type"] as! String)
                 let typeName = TypeName(keyword: typeStr, optional: !(field["required"] as! Bool))
-                return FieldSpec.builder(name: field["name"]! as! String, type: typeName)
+                return FieldSpec.builder(for: field["name"]! as! String, type: typeName)
                     .add(description: field["description"] as? String)
                     .add(modifier: .Public)
                     .build()

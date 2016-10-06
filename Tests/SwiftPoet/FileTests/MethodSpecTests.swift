@@ -22,7 +22,7 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testEmptyProtocolMethod() {
-        let mb = MethodSpec.builder(name: "Test")
+        let mb = MethodSpec.builder(for: "Test")
         mb.add(parentType: .protocol)
 
         let method = mb.build()
@@ -31,11 +31,11 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testProtocolMethodOneParam() {
-        let mb = MethodSpec.builder(name: "Test")
+        let mb = MethodSpec.builder(for: "Test")
         mb.add(parentType: .protocol)
         mb.add(returnType: TypeName.StringType)
 
-        let pb = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        let pb = ParameterSpec.builder(for: "name", type: TypeName.StringType)
         mb.add(parameter: pb.build())
 
         let method = mb.build()
@@ -53,17 +53,17 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testProtocolMethodManyParam() {
-        let mb = MethodSpec.builder(name: "build_person")
+        let mb = MethodSpec.builder(for: "build_person")
         mb.add(parentType: .protocol)
         mb.add(returnType: TypeName(keyword: "Person"))
 
-        let pb1 = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        let pb1 = ParameterSpec.builder(for: "name", type: TypeName.StringType)
         mb.add(parameter: pb1.build())
-        let pb2 = ParameterSpec.builder(name: "age", type: TypeName.IntegerType)
+        let pb2 = ParameterSpec.builder(for: "age", type: TypeName.IntegerType)
         mb.add(parameter: pb2.build())
-        let pb3 = ParameterSpec.builder(name: "homeOwner", type: TypeName.BooleanType)
+        let pb3 = ParameterSpec.builder(for: "homeOwner", type: TypeName.BooleanType)
         mb.add(parameter: pb3.build())
-        let pb4 = ParameterSpec.builder(name: "petName", type: TypeName.StringOptional)
+        let pb4 = ParameterSpec.builder(for: "petName", type: TypeName.StringOptional)
         mb.add(parameter: pb4.build())
 
         let method = mb.build()
@@ -84,12 +84,12 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testProtocolMethodOneParamWithDocs() {
-        let mb = MethodSpec.builder(name: "Test")
+        let mb = MethodSpec.builder(for: "Test")
             .add(parentType: .protocol)
             .add(returnType: TypeName.StringType)
             .add(description: "This is a test description")
 
-        let pb = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        let pb = ParameterSpec.builder(for: "name", type: TypeName.StringType)
             .add(description: "The name of the test")
 
         mb.add(parameter: pb.build())
@@ -111,7 +111,7 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testEmptyMethod() {
-        let method = MethodSpec.builder(name: "Test")
+        let method = MethodSpec.builder(for: "Test")
             .add(returnType: TypeName.StringType)
             .build()
 
@@ -126,7 +126,7 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testMethodWithCodeBlock() {
-        let method = MethodSpec.builder(name: "Test")
+        let method = MethodSpec.builder(for: "Test")
             .add(returnType: TypeName.StringType)
             .add(codeBlock: CodeBlock.builder()
                 .add(literal: "return \"test\"")
@@ -145,14 +145,14 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testMethodWithCodeBlockAndParam() {
-        let mb = MethodSpec.builder(name: "Test")
+        let mb = MethodSpec.builder(for: "Test")
         mb.add(returnType: TypeName.StringType)
 
         let cbBuilder = CodeBlock.builder()
         cbBuilder.add(type: .literal, data: "return name")
         mb.add(codeBlock: cbBuilder.build())
 
-        let pb = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        let pb = ParameterSpec.builder(for: "name", type: TypeName.StringType)
         mb.add(parameter: pb.build())
 
         let method = mb.build()
@@ -172,14 +172,14 @@ class MethodSpecTests: XCTestCase {
     }
 
     func testMethodWithGuard() {
-        let mb = MethodSpec.builder(name: "Test")
+        let mb = MethodSpec.builder(for: "Test")
         .add(returnType: TypeName.StringType)
 
         let cbBuilder = CodeBlock.builder()
         cbBuilder.add(literal: "return name")
         mb.add(codeBlock: cbBuilder.build())
 
-        let pb = ParameterSpec.builder(name: "name", type: TypeName.StringType)
+        let pb = ParameterSpec.builder(for: "name", type: TypeName.StringType)
         mb.add(parameter: pb.build())
 
         let method = mb.build()

@@ -17,7 +17,7 @@ open class EnumSpec: TypeSpec {
         super.init(builder: builder as TypeSpecBuilder)
     }
 
-    open static func builder(name: String) -> EnumSpecBuilder {
+    open static func builder(for name: String) -> EnumSpecBuilder {
         return EnumSpecBuilder(name: name)
     }
 }

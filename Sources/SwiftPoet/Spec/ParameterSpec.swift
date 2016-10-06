@@ -20,7 +20,7 @@ open class ParameterSpec: PoetSpec, ParameterSpecProtocol {
                    description: builder.description, framework: builder.framework, imports: builder.imports)
     }
 
-    open static func builder(name: String, type: TypeName, construct: Construct? = nil) -> ParameterSpecBuilder {
+    open static func builder(for name: String, type: TypeName, construct: Construct? = nil) -> ParameterSpecBuilder {
         return ParameterSpecBuilder(name: name, type: type, construct: construct)
     }
 

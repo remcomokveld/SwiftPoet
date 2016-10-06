@@ -17,7 +17,7 @@ open class ProtocolSpec: TypeSpec {
         super.init(builder: builder as TypeSpecBuilder)
     }
 
-    open static func builder(name: String) -> ProtocolSpecBuilder {
+    open static func builder(for name: String) -> ProtocolSpecBuilder {
         return ProtocolSpecBuilder(name: name)
     }
 }

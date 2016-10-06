@@ -37,7 +37,7 @@ open class MethodSpec: PoetSpec, MethodSpecProtocol {
                    description: builder.description, framework: builder.framework, imports: builder.imports)
     }
 
-    open static func builder(name: String) -> MethodSpecBuilder {
+    open static func builder(for name: String) -> MethodSpecBuilder {
         return MethodSpecBuilder(name: name)
     }
 

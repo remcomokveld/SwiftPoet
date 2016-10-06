@@ -17,7 +17,7 @@ open class StructSpec: TypeSpec {
         super.init(builder: builder as TypeSpecBuilder)
     }
 
-    open static func builder(name: String) -> StructSpecBuilder {
+    open static func builder(for name: String) -> StructSpecBuilder {
         return StructSpecBuilder(name: name)
     }
 }
@@ -40,7 +40,7 @@ open class StructSpecBuilder: TypeSpecBuilder, Builder {
 
     @discardableResult
     fileprivate func addInitMethod() -> Self {
-        var mb = MethodSpec.builder(name: "init")
+        var mb = MethodSpec.builder(for: "init")
         let cb = CodeBlock.builder()
 
         fields.forEach { spec in
@@ -48,7 +48,7 @@ open class StructSpecBuilder: TypeSpecBuilder, Builder {
             if Modifier.equivalentAccessLevel(parentModifiers: modifiers, childModifiers: spec.modifiers)
                 && !spec.modifiers.contains(.Static) {
 
-                mb.add(parameter: ParameterSpec.builder(name: spec.name, type: spec.type!)
+                mb.add(parameter: ParameterSpec.builder(for: spec.name, type: spec.type!)
                     .add(modifiers: Array(spec.modifiers))
                     .add(description: spec.description)
                     .build()

@@ -31,7 +31,7 @@ open class FieldSpec: PoetSpec, FieldSpecType {
                    framework: builder.framework, imports: builder.imports)
     }
 
-    open static func builder(name: String, type: TypeName? = nil, construct: Construct? = nil) -> FieldSpecBuilder {
+    open static func builder(for name: String, type: TypeName? = nil, construct: Construct? = nil) -> FieldSpecBuilder {
         return FieldSpecBuilder(name: name, type: type, construct: construct)
     }
 

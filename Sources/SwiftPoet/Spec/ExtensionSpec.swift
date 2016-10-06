@@ -17,7 +17,7 @@ open class ExtensionSpec: TypeSpec {
         super.init(builder: builder as TypeSpecBuilder)
     }
 
-    open static func builder(name: String) -> ExtensionSpecBuilder {
+    open static func builder(for name: String) -> ExtensionSpecBuilder {
         return ExtensionSpecBuilder(name: name)
     }
 }

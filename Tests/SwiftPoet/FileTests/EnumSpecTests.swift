@@ -22,7 +22,7 @@ class EnumSpecTests: XCTestCase {
     }
     
     func testEnumNoInheritance() {
-        let eb = EnumSpec.builder(name: "test")
+        let eb = EnumSpec.builder(for: "test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
 
@@ -42,7 +42,7 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumCamelCaseName() {
-        let eb = EnumSpec.builder(name: "testName")
+        let eb = EnumSpec.builder(for: "testName")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
 
@@ -52,7 +52,7 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumNameWithSpace() {
-        let eb = EnumSpec.builder(name: "test test")
+        let eb = EnumSpec.builder(for: "test test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
 
@@ -62,7 +62,7 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumNameWithUnderscore() {
-        let eb = EnumSpec.builder(name: "test_test")
+        let eb = EnumSpec.builder(for: "test_test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
 
@@ -72,7 +72,7 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumWithClassInheritance() {
-        let eb = EnumSpec.builder(name: "test")
+        let eb = EnumSpec.builder(for: "test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
         eb.add(superType: TypeName.StringType)
@@ -90,7 +90,7 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumWithClassAndProtocolInheritance() {
-        let eb = EnumSpec.builder(name: "test")
+        let eb = EnumSpec.builder(for: "test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
         eb.add(superType: TypeName.StringType)
@@ -112,7 +112,7 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumWithProtocolInheritance() {
-        let eb = EnumSpec.builder(name: "test")
+        let eb = EnumSpec.builder(for: "test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
         eb.add(protocols: [TypeName(keyword: "TestProtocol"), TypeName(keyword: "OtherProtocol")])
@@ -130,12 +130,12 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumSingleField() {
-        let eb = EnumSpec.builder(name: "test")
+        let eb = EnumSpec.builder(for: "test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
         eb.add(protocols: [TypeName(keyword: "TestProtocol"), TypeName(keyword: "OtherProtocol")])
 
-        let f1 = FieldSpec.builder(name: "test_case_one")
+        let f1 = FieldSpec.builder(for: "test_case_one")
         f1.add(description: "This is the first test case")
         let cb1 = CodeBlock.builder()
         cb1.add(literal: "\"test_case_one\"")
@@ -159,13 +159,13 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumManyFeilds() {
-        let eb = EnumSpec.builder(name: "test")
+        let eb = EnumSpec.builder(for: "test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
         eb.add(protocols: [TypeName(keyword: "TestProtocol"), TypeName(keyword: "OtherProtocol")])
 
         for i in 1...10 {
-            let f1 = FieldSpec.builder(name: "test_case_\(i)")
+            let f1 = FieldSpec.builder(for: "test_case_\(i)")
             f1.add(description: "This is the \(i)th case")
 
             if (i % 2 == 0) {
@@ -210,12 +210,12 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumWithFunction() {
-        let eb = EnumSpec.builder(name: "test")
+        let eb = EnumSpec.builder(for: "test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
         eb.add(protocols: [TypeName(keyword: "TestProtocol"), TypeName(keyword: "OtherProtocol")])
 
-        let f1 = FieldSpec.builder(name: "test_case_one")
+        let f1 = FieldSpec.builder(for: "test_case_one")
         f1.add(description: "This is the first case")
         let cb1 = CodeBlock.builder()
         cb1.add(literal: "\"test_case_one\"")
@@ -232,12 +232,12 @@ class EnumSpecTests: XCTestCase {
     }
 
     func testEnumAsFile() {
-        let eb = EnumSpec.builder(name: "test")
+        let eb = EnumSpec.builder(for: "test")
         eb.add(description: "This is a test enum")
         eb.add(modifiers: [Modifier.Private, Modifier.Mutating])
         eb.add(protocols: [TypeName(keyword: "TestProtocol"), TypeName(keyword: "OtherProtocol")])
 
-        let f1 = FieldSpec.builder(name: "test_case_one")
+        let f1 = FieldSpec.builder(for: "test_case_one")
         f1.add(description: "This is the first case")
         let cb1 = CodeBlock.builder()
         cb1.add(literal: "\"test_case_one\"")

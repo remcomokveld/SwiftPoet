@@ -17,7 +17,7 @@ public class ClassSpec: TypeSpec {
         super.init(builder: builder as TypeSpecBuilder)
     }
 
-    public static func builder(name: String) -> ClassSpecBuilder {
+    public static func builder(for name: String) -> ClassSpecBuilder {
         return ClassSpecBuilder(name: name)
     }
 }
