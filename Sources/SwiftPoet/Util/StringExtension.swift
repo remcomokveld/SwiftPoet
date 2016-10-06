@@ -15,8 +15,8 @@ extension String {
 }
 
 extension String {
-    public func cleaned(case _case: String.Case) -> String {
-        switch _case {
+    public func cleaned(_ stringCase: String.Case) -> String {
+        switch stringCase {
         case .typeName:
             return ReservedWords.safeWord(PoetUtil.stripSpaceAndPunctuation(self).joined(separator: ""))
         case .paramName:

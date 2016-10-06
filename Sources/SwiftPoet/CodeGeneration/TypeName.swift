@@ -32,7 +32,7 @@ open class TypeName: Importable {
 
             self.leftInnerType = TypeName(keyword: trimKeyWord.substring(with: chars.index(after: chars.startIndex)..<splitIndex))
             self.rightInnerType = TypeName(keyword: trimKeyWord.substring(with: chars.index(after: splitIndex)..<endIndex))
-            self.keyword = "Dictionary".cleaned(case: .typeName)
+            self.keyword = "Dictionary".cleaned(.typeName)
             self.optional = isOptional || optional
             
         } else if TypeName.isArray(trimKeyWord) {
@@ -43,7 +43,7 @@ open class TypeName: Importable {
 
             self.leftInnerType = TypeName(keyword: trimKeyWord.substring(with: range))
             self.rightInnerType = nil
-            self.keyword = "Array".cleaned(case: .typeName)
+            self.keyword = "Array".cleaned(.typeName)
             self.optional = isOptional || optional
 
         } else if TypeName.isOptional(trimKeyWord) {
@@ -51,12 +51,12 @@ open class TypeName: Importable {
             self.leftInnerType = nil
             self.rightInnerType = nil
             let index = trimKeyWord.characters.index(before: trimKeyWord.characters.endIndex)
-            self.keyword = trimKeyWord.substring(to: index).cleaned(case: .typeName)
+            self.keyword = trimKeyWord.substring(to: index).cleaned(.typeName)
             self.optional = true
         } else {
             self.leftInnerType = nil
             self.rightInnerType = nil
-            self.keyword = trimKeyWord.cleaned(case: .typeName)
+            self.keyword = trimKeyWord.cleaned(.typeName)
             self.optional = optional
         }
 

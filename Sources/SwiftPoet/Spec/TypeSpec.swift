@@ -94,7 +94,7 @@ open class TypeSpecBuilder: PoetSpecBuilder, TypeSpecProtocol {
     open fileprivate(set) var superType: TypeName? = nil
 
     public override init(name: String, construct: Construct) {
-        super.init(name: name.cleaned(case: .typeName), construct: construct)
+        super.init(name: name.cleaned(.typeName), construct: construct)
     }
 
     internal func mutatingAdd(method toAdd: MethodSpec) {
