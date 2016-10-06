@@ -16,9 +16,11 @@ open class Modifier: NSObject {
         self.rawString = rawString
     }
 
+    open static let Open = Modifier(rawString: "open")
     open static let Public = Modifier(rawString: "public")
-    open static let Private = Modifier(rawString: "private")
     open static let Internal = Modifier(rawString: "internal")
+    open static let Fileprivate = Modifier(rawString: "fileprivate")
+    open static let Private = Modifier(rawString: "private")
 
     open static let Static = Modifier(rawString: "static")
     open static let Final = Modifier(rawString: "final")
@@ -40,26 +42,49 @@ open class Modifier: NSObject {
     //    case Weak
     //    case Optional
 
-    open static func equivalentAccessLevel(parentModifiers pm: Set<Modifier>, childModifiers cm: Set<Modifier>) -> Bool {
+    open static func equivalentAccessLevel(parentModifiers pm: Set<Modifier>, childModifiers cm: Set<Modifier>)
+        -> Bool
+    {
         let parentAccessLevel = Modifier.accessLevel(pm)
         let childAccessLevel = Modifier.accessLevel(cm)
 
+        // TODO: fix this algorithm; checking childAccessLevel should be <= not !=
+        // therefore, we should split out access modifiers to its own type, and
+        // implement comparison operations
         if parentAccessLevel == .Private {
             return true
-        } else if parentAccessLevel == .Internal && childAccessLevel != .Private {
+        }
+        else if parentAccessLevel == .Fileprivate && childAccessLevel != .Private {
             return true
-        } else if parentAccessLevel == .Public && childAccessLevel == .Public {
+        }
+        else if parentAccessLevel == .Internal && childAccessLevel != .Fileprivate {
+            return true
+        }
+        else if parentAccessLevel == .Public && childAccessLevel != .Internal {
+            return true
+        }
+        else if parentAccessLevel == .Open && childAccessLevel == .Open {
             return true
         }
         return false
     }
 
-    open static func accessLevel(_ modifiers: Set<Modifier>) -> Modifier {
+    open static func accessLevel(_ modifiers: Set<Modifier>)
+        -> Modifier
+    {
         if modifiers.contains(.Private) {
             return .Private
-        } else if modifiers.contains(.Public) {
+        }
+        else if modifiers.contains(.Fileprivate) {
+            return .Fileprivate
+        }
+        else if modifiers.contains(.Public) {
             return .Public
-        } else {
+        }
+        else if modifiers.contains(.Open) {
+            return .Open
+        }
+        else {
             return .Internal
         }
     }

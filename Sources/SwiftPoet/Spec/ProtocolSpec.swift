@@ -13,7 +13,7 @@
 open class ProtocolSpec: TypeSpec {
     open static let fieldModifiers: [Modifier] = [.Static]
     open static let methodModifiers: [Modifier] = [.Static]
-    open static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+    open static let asMemberModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private]
 
     fileprivate init(builder: ProtocolSpecBuilder) {
         super.init(builder: builder as TypeSpecBuilder)

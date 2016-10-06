@@ -11,9 +11,9 @@
 #endif
 
 open class EnumSpec: TypeSpec {
-    open static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
-    open static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Throws]
-    open static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+    open static let fieldModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private, .Static]
+    open static let methodModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private, .Static, .Throws]
+    open static let asMemberModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private]
 
     fileprivate init(builder: EnumSpecBuilder) {
         super.init(builder: builder as TypeSpecBuilder)

@@ -11,9 +11,9 @@
 #endif
 
 open class ExtensionSpec: TypeSpec {
-    open static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Final, .Override, .Required]
-    open static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Final, .Klass, .Throws, .Convenience, .Override, .Required]
-    open static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+    open static let fieldModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private, .Static, .Final, .Override, .Required]
+    open static let methodModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private, .Static, .Final, .Klass, .Throws, .Convenience, .Override, .Required]
+    open static let asMemberModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private]
 
     fileprivate init(builder: ExtensionSpecBuilder) {
         super.init(builder: builder as TypeSpecBuilder)

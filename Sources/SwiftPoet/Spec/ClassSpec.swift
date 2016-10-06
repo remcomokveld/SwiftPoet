@@ -11,9 +11,9 @@
 #endif
 
 public class ClassSpec: TypeSpec {
-    public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Final, .Klass, .Override, .Required]
-    public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Final, .Klass, .Throws, .Convenience, .Override, .Required]
-    public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+    public static let fieldModifiers: [Modifier] = [.Open, .Public, .Internal, .Fileprivate, .Private, .Static, .Final, .Klass, .Override, .Required]
+    public static let methodModifiers: [Modifier] = [.Open, .Public, .Internal, .Fileprivate, .Private, .Static, .Final, .Klass, .Throws, .Convenience, .Override, .Required]
+    public static let asMemberModifiers: [Modifier] = [.Open, .Public, .Internal, .Fileprivate, .Private]
 
     fileprivate init(builder: ClassSpecBuilder) {
         super.init(builder: builder as TypeSpecBuilder)

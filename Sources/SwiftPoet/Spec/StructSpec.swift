@@ -11,9 +11,9 @@
 #endif
 
 open class StructSpec: TypeSpec {
-    open static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
-    open static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Mutating, .Throws]
-    open static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+    open static let fieldModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private, .Static]
+    open static let methodModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private, .Static, .Mutating, .Throws]
+    open static let asMemberModifiers: [Modifier] = [.Public, .Internal, .Fileprivate, .Private]
 
     fileprivate init(builder: StructSpecBuilder) {
         super.init(builder: builder as TypeSpecBuilder)
