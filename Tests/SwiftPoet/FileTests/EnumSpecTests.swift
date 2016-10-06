@@ -138,7 +138,7 @@ class EnumSpecTests: XCTestCase {
         let f1 = FieldSpec.builder(name: "test_case_one")
         f1.add(description: "This is the first test case")
         let cb1 = CodeBlock.builder()
-        cb1.addLiteral(any: "\"test_case_one\"")
+        cb1.add(literal: "\"test_case_one\"")
 
         f1.add(initializer: cb1.build())
 
@@ -170,7 +170,7 @@ class EnumSpecTests: XCTestCase {
 
             if (i % 2 == 0) {
                 let cb1 = CodeBlock.builder()
-                cb1.addLiteral(any: "\"test_case_\(i)\"")
+                cb1.add(literal: "\"test_case_\(i)\"")
                 f1.add(initializer: cb1.build())
             }
 
@@ -218,7 +218,7 @@ class EnumSpecTests: XCTestCase {
         let f1 = FieldSpec.builder(name: "test_case_one")
         f1.add(description: "This is the first case")
         let cb1 = CodeBlock.builder()
-        cb1.addLiteral(any: "\"test_case_one\"")
+        cb1.add(literal: "\"test_case_one\"")
 
         f1.add(initializer: cb1.build())
 
@@ -240,7 +240,7 @@ class EnumSpecTests: XCTestCase {
         let f1 = FieldSpec.builder(name: "test_case_one")
         f1.add(description: "This is the first case")
         let cb1 = CodeBlock.builder()
-        cb1.addLiteral(any: "\"test_case_one\"")
+        cb1.add(literal: "\"test_case_one\"")
 
         f1.add(initializer: cb1.build())
 

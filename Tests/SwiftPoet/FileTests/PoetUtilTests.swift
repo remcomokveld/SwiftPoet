@@ -13,65 +13,65 @@ class PoetUtilTests: XCTestCase {
 
     func testAddDataToList() {
         var list = [1, 2, 3, 4]
-        PoetUtil.addUnique(data: 5, toList: &list)
+        PoetUtil.addUnique(5, to: &list)
         XCTAssertEqual(5, list.count)
     }
 
     func testAddDataToListNoRepeat() {
         var list = [1, 2, 3, 4]
-        PoetUtil.addUnique(data: 4, toList: &list)
+        PoetUtil.addUnique(4, to: &list)
 
         XCTAssertEqual(4, list.count)
     }
 
     func testCleanTypeNameUnderscore() {
         let name = "test_underscore"
-        XCTAssertEqual("TestUnderscore", name.cleaned(case: .TypeName))
+        XCTAssertEqual("TestUnderscore", name.cleaned(case: .typeName))
     }
 
 //    func testCleanTypeNameAllCaps() {
 //        let name = "TEST_ALL_CAPS"
-//        XCTAssertEqual("TestAllCaps", name.cleaned(case: .TypeName))
+//        XCTAssertEqual("TestAllCaps", name.cleaned(case: .typeName))
 //    }
 
     func testTypeNameWithBrackets() {
         let name = "billing_address[street_line1]"
-        XCTAssertEqual("BillingAddressStreetLine1", name.cleaned(case: .TypeName))
+        XCTAssertEqual("BillingAddressStreetLine1", name.cleaned(case: .typeName))
     }
 
     func testcammelCaseNameWithBrackets() {
         let name = "billing_address[street_line1]"
-        XCTAssertEqual("billingAddressStreetLine1", name.cleaned(case: .ParamName))
+        XCTAssertEqual("billingAddressStreetLine1", name.cleaned(case: .paramName))
     }
 
     func testCleanTypeNameSpaces() {
         let name = "test many spaces"
-        XCTAssertEqual("TestManySpaces", name.cleaned(case: .TypeName))
+        XCTAssertEqual("TestManySpaces", name.cleaned(case: .typeName))
     }
 
     func testCamelCaseName() {
         let name = "test"
-        XCTAssertEqual("test", name.cleaned(case: .ParamName))
+        XCTAssertEqual("test", name.cleaned(case: .paramName))
     }
 
     func testCamelCaseNameSpaces() {
         let name = "test test test"
-        XCTAssertEqual("testTestTest", name.cleaned(case: .ParamName))
+        XCTAssertEqual("testTestTest", name.cleaned(case: .paramName))
     }
 
     func testCamelCaseNameUnderscores() {
         let name = "test_test_test"
-        XCTAssertEqual("testTestTest", name.cleaned(case: .ParamName))
+        XCTAssertEqual("testTestTest", name.cleaned(case: .paramName))
     }
 
 //    func testCamelCaseNameAllCaps() {
 //        let name = "TEST_ALL_CAPS"
-//        XCTAssertEqual("testAllCaps", name.cleaned(case: .ParamName))
+//        XCTAssertEqual("testAllCaps", name.cleaned(case: .paramName))
 //    }
 
     func testPeriodsInName() {
         let name = "test.periods.in.name"
-        XCTAssertEqual("testPeriodsInName", name.cleaned(case: .ParamName))
+        XCTAssertEqual("testPeriodsInName", name.cleaned(case: .paramName))
     }
 
 }

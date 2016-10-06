@@ -11,6 +11,6 @@
 #endif
 
 public enum Either<A, B> {
-    case Left(A)
-    case Right(B)
+    case left(A)
+    case right(B)
 }

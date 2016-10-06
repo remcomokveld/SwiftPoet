@@ -6,12 +6,10 @@
 //
 //
 
-#if SWIFT_PACKAGE
-    import Foundation
-#endif
+import Foundation
 
 public struct ReservedWords {
-    private static let all: Set = [
+    fileprivate static let all: Set = [
         "class", "deinit", "enum", "extension", "func", "import", "init",
         "inout", "internal", "let", "operator", "private", "protocol", "public",
         "static", "struct", "subscript", "typealias", "var", "break", "case",
@@ -26,12 +24,12 @@ public struct ReservedWords {
         "right", "set", "Type", "unowned", "weak", "willSet"
     ]
 
-    public static func contains(word: String) -> Bool {
+    public static func contains(_ word: String) -> Bool {
         return ReservedWords.all.contains(word)
     }
 
-    public static func safeWord(word: String) -> String {
-        guard ReservedWords.contains(word: word) == false else {
+    public static func safeWord(_ word: String) -> String {
+        guard ReservedWords.contains(word) == false else {
             return "_" + word
         }
         return word

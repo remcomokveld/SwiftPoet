@@ -22,160 +22,169 @@ public enum ControlFlow: String {
     case For = "for"
     case Switch = "switch"
 
-    public static var guardControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(type: .Guard)
+    public static var guardControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.Guard)
 
-    public static var ifControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(type: .If)
+    public static var ifControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.If)
 
-    public static var elseIfControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(type: .ElseIf)
+    public static var elseIfControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.ElseIf)
 
-    public static var elseControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(type: .Else)
+    public static var elseControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.Else)
 
-    public static var whileControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(type: .While)
+    public static var whileControlFlow: (ComparisonList?, () -> CodeBlock) -> CodeBlock = ControlFlow.fnGenerator(.While)
 
-    public static func repeatWhileControlFlow(comparisonList: ComparisonList, bodyFn: () -> CodeBlock) -> CodeBlock {
+    public static func repeatWhileControlFlow(_ comparisonList: ComparisonList, bodyFn: () -> CodeBlock) -> CodeBlock {
         return CodeBlock.builder()
-            .addLiteral(any: ControlFlow.RepeatWhile.rawValue)
-            .addEmitObject(type: .BeginStatement)
-            .addCodeBlock(codeBlock: bodyFn())
-            .addEmitObject(type: .EndStatement)
-            .addLiteral(any: ControlFlow.While.rawValue)
-            .addEmitObject(type: .Emitter, any: comparisonList)
+            .add(literal: ControlFlow.RepeatWhile.rawValue)
+            .add(type: .beginStatement)
+            .add(codeBlock: bodyFn())
+            .add(type: .endStatement)
+            .add(literal: ControlFlow.While.rawValue)
+            .add(type: .emitter, data: comparisonList)
             .build()
     }
 
-    public static func forInControlFlow(iterator: Literal, iterable: Literal, bodyFn: () -> CodeBlock) -> CodeBlock {
+    public static func forInControlFlow(_ iterator: Literal, iterable: Literal, bodyFn: () -> CodeBlock) -> CodeBlock {
         return CodeBlock.builder()
-            .addLiteral(any: ControlFlow.For.rawValue)
-            .addLiteral(any: iterator)
-            .addEmitObject(type: .Literal, any: ControlFlow.ForIn.rawValue)
-            .addLiteral(any: iterable)
-            .addEmitObject(type: .BeginStatement)
-            .addCodeBlock(codeBlock: bodyFn())
-            .addEmitObject(type: .EndStatement)
+            .add(literal: ControlFlow.For.rawValue)
+            .add(literal: iterator)
+            .add(literal: ControlFlow.ForIn.rawValue)
+            .add(literal: iterable)
+            .add(type: .beginStatement)
+            .add(codeBlock: bodyFn())
+            .add(type: .endStatement)
             .build()
     }
 
-    public static func closureControlFlow(parameterBlock: Literal, canThrow: Bool, returnType: Literal? , bodyFn: () -> CodeBlock) -> CodeBlock {
+    public static func closure(parameterList: Literal, canThrow: Bool, returnType: Literal? , bodyFn: () -> CodeBlock) -> CodeBlock {
         let cb = CodeBlock.builder()
         let closureBlock = CodeBlock.builder()
 
-        cb.addEmitObject(type: .BeginStatement)
+        cb.add(type: .beginStatement)
 
-        closureBlock.addLiteral(any: "(")
-        closureBlock.addLiteral(any: parameterBlock)
-        closureBlock.addLiteral(any: ")")
+        closureBlock.add(literal: "(")
+        closureBlock.add(literal: parameterList)
+        closureBlock.add(literal: ")")
         if canThrow {
-            closureBlock.addLiteral(any: "throws")
+            closureBlock.add(literal: "throws")
         }
-        closureBlock.addLiteral(any: "->")
+        closureBlock.add(literal: "->")
         if let returnType = returnType {
-            closureBlock.addLiteral(any: returnType)
+            closureBlock.add(literal: returnType)
         } else {
-            closureBlock.addLiteral(any: "Void")
+            closureBlock.add(literal: "Void")
         }
-        closureBlock.addLiteral(any: ControlFlow.ForIn.rawValue)
+        closureBlock.add(literal: ControlFlow.ForIn.rawValue)
 
-        closureBlock.addEmitObject(type: .IncreaseIndentation)
-        closureBlock.addCodeBlock(codeBlock: bodyFn())
-        closureBlock.addEmitObject(type: .DecreaseIndentation)
+        closureBlock.add(type: .increaseIndentation)
+        closureBlock.add(codeBlock: bodyFn())
+        closureBlock.add(type: .decreaseIndentation)
 
-        cb.addCodeBlock(codeBlock: closureBlock.build())
-        cb.addEmitObject(type: .EndStatement)
+        cb.add(codeBlock: closureBlock.build())
+        cb.add(type: .endStatement)
 
         return cb.build()
     }
 
-    public static func forControlFlow(iterator: CodeBlock, iterable: CodeBlock, execution: CodeBlock) -> CodeBlock {
+    public static func forControlFlow(_ iterator: CodeBlock, iterable: CodeBlock, execution: CodeBlock) -> CodeBlock {
         fatalError("So many loops so little time")
     }
 
-    public static func doCatchControlFlow(doFn: () -> CodeBlock, catchFn: () -> CodeBlock) -> CodeBlock {
+    public static func doCatchControlFlow(_ doFn: () -> CodeBlock, catchFn: () -> CodeBlock) -> CodeBlock {
         let doCB = CodeBlock.builder()
-        doCB.addLiteral(any: "do")
-        doCB.addEmitObject(type: .BeginStatement)
-        doCB.addCodeBlock(codeBlock: doFn())
-        doCB.addEmitObject(type: .EndStatement)
+        doCB.add(literal: "do")
+        doCB.add(type: .beginStatement)
+        doCB.add(codeBlock: doFn())
+        doCB.add(type: .endStatement)
 
         let catchCB = CodeBlock.builder()
-        catchCB.addLiteral(any: "catch")
-        catchCB.addEmitObject(type: .BeginStatement)
-        catchCB.addCodeBlock(codeBlock: catchFn())
-        catchCB.addEmitObject(type: .EndStatement)
+        catchCB.add(literal: "catch")
+        catchCB.add(type: .beginStatement)
+        catchCB.add(codeBlock: catchFn())
+        catchCB.add(type: .endStatement)
 
-        return doCB.addCodeBlock(codeBlock: catchCB.build()).build()
+        return doCB.add(codeBlock: catchCB.build()).build()
     }
 
-    public static func switchControlFlow(switchValue: String, cases: [(String, CodeBlock)], defaultCase: CodeBlock? = nil) -> CodeBlock {
+    public static func switchControlFlow(_ switchValue: String, cases: [(String, CodeBlock)], defaultCase: CodeBlock? = nil) -> CodeBlock {
         let cb = CodeBlock.builder()
-        cb.addEmitObject(type: .Literal, any: ControlFlow.Switch.rawValue)
-        cb.addEmitObject(type: .Literal, any: switchValue)
-        cb.addEmitObject(type: .BeginStatement)
+        cb.add(literal: ControlFlow.Switch.rawValue)
+        cb.add(literal: switchValue)
+        cb.add(type: .beginStatement)
 
         cases.forEach { caseItem in
-            cb.addCodeBlock(codeBlock: ControlFlow.switchCase(caseLine: caseItem.0, execution: caseItem.1))
+            cb.add(codeBlock: ControlFlow.switchCase(caseItem.0, execution: caseItem.1))
         }
 
         if let defaultCase = defaultCase {
-            cb.addCodeBlock(codeBlock: ControlFlow.switchCase(caseLine: nil, execution: defaultCase))
+            cb.add(codeBlock: ControlFlow.switchCase(nil, execution: defaultCase))
         }
 
-        cb.addEmitObject(type: .EndStatement)
+        cb.add(type: .endStatement)
         return cb.build()
     }
 
-    private static func switchCase(caseLine: String?, execution: CodeBlock) -> CodeBlock {
-        let caseWord = caseLine == nil ? "default" : "case"
+    fileprivate static func switchCase(_ caseLine: String?, execution: CodeBlock)
+        -> CodeBlock
+    {
         let cbCase = CodeBlock.builder()
+
+        let caseWord = caseLine == nil ? "default" : "case"
+        cbCase.add(literal: caseWord)
+
+        if let caseLine = caseLine {
+            cbCase.add(literal: "case ")
+            cbCase.add(literal: caseLine)
+        }
+        else {
+            cbCase.add(literal: "case _")
+        }
+        cbCase.add(literal: ":")
+
         let cbCaseLineTwo = CodeBlock.builder()
+        cbCaseLineTwo.add(type: .increaseIndentation)
+        cbCaseLineTwo.add(codeBlock: execution)
+        cbCaseLineTwo.add(type: .decreaseIndentation)
 
-        cbCase.addEmitObject(type: .Literal, any: caseWord)
-        cbCase.addEmitObject(type: .Literal, any: caseLine)
-        cbCase.addEmitObject(type: .Literal, any: ":")
-
-        cbCaseLineTwo.addEmitObject(type: .IncreaseIndentation)
-        cbCaseLineTwo.addCodeBlock(codeBlock: execution)
-        cbCaseLineTwo.addEmitObject(type: .DecreaseIndentation)
-
-        cbCase.addCodeBlock(codeBlock: cbCaseLineTwo.build())
+        cbCase.add(codeBlock: cbCaseLineTwo.build())
 
         return cbCase.build()
     }
 
-    private static func fnGenerator(type: ControlFlow) -> (ComparisonList?, () -> CodeBlock) -> CodeBlock {
+    fileprivate static func fnGenerator(_ type: ControlFlow) -> (ComparisonList?, () -> CodeBlock) -> CodeBlock {
         return { (comparisonList: ComparisonList?, bodyFn: () -> CodeBlock) -> CodeBlock in
             let cb = CodeBlock.builder()
-                .addLiteral(any: type.rawValue)
+                .add(literal: type.rawValue)
 
             if type != .Else && comparisonList != nil {
-                cb.addEmitObject(type: .Emitter, any: comparisonList!)
+                cb.add(type: .emitter, data: comparisonList!)
             }
 
             if type == .Guard {
-                cb.addLiteral(any: "else")
+                cb.add(literal: "else")
             }
 
-            cb.addEmitObject(type: .BeginStatement)
-            cb.addCodeBlock(codeBlock: bodyFn())
-            cb.addEmitObject(type: .EndStatement)
+            cb.add(type: .beginStatement)
+            cb.add(codeBlock: bodyFn())
+            cb.add(type: .endStatement)
             return cb.build()
         }
     }
 }
 
-public class ComparisonList: Emitter {
-    private let requirement: Requirement?
-    private let list: [Either<ComparisonListItem, ComparisonList>]
+open class ComparisonList: Emitter {
+    fileprivate let requirement: Requirement?
+    fileprivate let list: [Either<ComparisonListItem, ComparisonList>]
 
     public init(lhs: CodeBlock, comparator: Comparator, rhs: CodeBlock) {
         let comparison = Comparison(lhs: lhs, comparator: comparator, rhs: rhs)
         let listItem = ComparisonListItem(comparison: comparison)
-        self.list = [Either.Left(listItem)]
+        self.list = [Either.left(listItem)]
         self.requirement = nil
     }
 
     public init(list: [ComparisonListItem], requirement: Requirement? = nil) {
         self.list = list.map { item in
-            return Either.Left(item)
+            return Either.left(item)
         }
         self.requirement = requirement
     }
@@ -186,31 +195,31 @@ public class ComparisonList: Emitter {
     }
 
     @discardableResult
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    open func emit(to writer: CodeWriter) -> CodeWriter {
         if requirement != nil {
-            codeWriter.emit(type: .Literal, any: requirement!)
+            writer.emit(literal: requirement!)
         }
 
         list.forEach { listItem in
             switch listItem {
-            case .Left(let item):
-                item.emit(codeWriter: codeWriter)
-            case .Right(let cList):
-                codeWriter.emit(type: .Literal, any: "(")
-                cList.emit(codeWriter: codeWriter)
-                codeWriter.emit(type: .Literal, any: ")")
+            case .left(let item):
+                item.emit(to: writer)
+            case .right(let cList):
+                writer.emit(type: .literal, data: "(")
+                cList.emit(to: writer)
+                writer.emit(type: .literal, data: ")")
             }
         }
 
-        return codeWriter
+        return writer
     }
 
-    public func toString() -> String {
-        return emit(codeWriter: CodeWriter()).out
+    open func toString() -> String {
+        return emit(to: CodeWriter()).out
     }
 }
 
-public class ComparisonListItem: Emitter {
+open class ComparisonListItem: Emitter {
     let comparison: Comparison
     let requirement: Requirement?
 
@@ -220,19 +229,19 @@ public class ComparisonListItem: Emitter {
     }
 
     @discardableResult
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    open func emit(to writer: CodeWriter) -> CodeWriter {
         if requirement != nil {
-            codeWriter.emit(type: .Literal, any: requirement!.rawValue)
+            writer.emit(type: .literal, data: requirement!.rawValue)
         }
-        return comparison.emit(codeWriter: codeWriter)
+        return comparison.emit(to: writer)
     }
 
-    public func toString() -> String {
-        return emit(codeWriter: CodeWriter()).out
+    open func toString() -> String {
+        return emit(to: CodeWriter()).out
     }
 }
 
-public class Comparison: Emitter {
+open class Comparison: Emitter {
     let lhs: CodeBlock
     let comparator: Comparator
     let rhs: CodeBlock
@@ -243,18 +252,18 @@ public class Comparison: Emitter {
         self.rhs = rhs
     }
 
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    open func emit(to writer: CodeWriter) -> CodeWriter {
         let cbBuilder = CodeBlock.builder()
-        cbBuilder.addEmitObjects(emitObjects: lhs.emittableObjects)
-        cbBuilder.addEmitObject(type: .Literal, any: comparator.rawValue)
-        cbBuilder.addEmitObjects(emitObjects: rhs.emittableObjects)
-        codeWriter.emit(codeBlock: cbBuilder.build())
+        cbBuilder.add(objects: lhs.emittableObjects)
+        cbBuilder.add(literal: comparator.rawValue)
+        cbBuilder.add(objects: rhs.emittableObjects)
+        writer.emit(codeBlock: cbBuilder.build())
 
-        return codeWriter
+        return writer
     }
 
-    public func toString() -> String {
-        return emit(codeWriter: CodeWriter()).out
+    open func toString() -> String {
+        return emit(to: CodeWriter()).out
     }
 }
 

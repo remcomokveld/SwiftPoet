@@ -8,9 +8,9 @@
 
 import Foundation
 
-@objc public protocol Emitter {
+public protocol Emitter {
     @discardableResult
-    func emit(codeWriter: CodeWriter) -> CodeWriter
+    func emit(to writer: CodeWriter) -> CodeWriter
 
     func toString() -> String
 }

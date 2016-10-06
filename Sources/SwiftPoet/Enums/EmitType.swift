@@ -10,12 +10,12 @@
     import Foundation
 #endif
 public enum EmitType {
-    case Literal
-    case IncreaseIndentation
-    case DecreaseIndentation
-    case BeginStatement
-    case EndStatement
-    case NewLine
-    case CodeLine
-    case Emitter
+    case literal
+    case increaseIndentation
+    case decreaseIndentation
+    case beginStatement
+    case endStatement
+    case newLine
+    case codeLine
+    case emitter
 }

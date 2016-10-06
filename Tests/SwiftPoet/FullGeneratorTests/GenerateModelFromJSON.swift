@@ -20,7 +20,7 @@ class GenerateModelFromJSON: XCTestCase {
         print(b.bundlePath)
         print(b.resourcePath)
 
-        if let path = Bundle(for: GenerateModelFromJSON.self).pathForResource("gilt_public_api", ofType: "json"),
+        if let path = Bundle(for: GenerateModelFromJSON.self).path(forResource: "gilt_public_api", ofType: "json"),
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
 
                 do {
@@ -63,7 +63,7 @@ class GenerateModelFromJSON: XCTestCase {
         XCTAssertTrue(true)
     }
 
-    private func specialType(_ type: String) -> String {
+    fileprivate func specialType(_ type: String) -> String {
         if type == "uuid" {
             return "NSUUID"
         }

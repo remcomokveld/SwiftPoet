@@ -16,7 +16,7 @@ class GenrateEnumFromSetTest: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        if let path = Bundle(for: GenrateEnumFromSetTest.self).pathForResource("gilt_public_api", ofType: "json"),
+        if let path = Bundle(for: GenrateEnumFromSetTest.self).path(forResource: "gilt_public_api", ofType: "json"),
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
 
                 do {

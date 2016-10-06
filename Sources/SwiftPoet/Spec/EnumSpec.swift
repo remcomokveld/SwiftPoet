@@ -10,29 +10,29 @@
     import Foundation
 #endif
 
-public class EnumSpec: TypeSpec {
-    public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
-    public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Throws]
-    public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+open class EnumSpec: TypeSpec {
+    open static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
+    open static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Throws]
+    open static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
 
-    private init(builder: EnumSpecBuilder) {
+    fileprivate init(builder: EnumSpecBuilder) {
         super.init(builder: builder as TypeSpecBuilder)
     }
 
-    public static func builder(name: String) -> EnumSpecBuilder {
+    open static func builder(name: String) -> EnumSpecBuilder {
         return EnumSpecBuilder(name: name)
     }
 }
 
-public class EnumSpecBuilder: TypeSpecBuilder, Builder {
+open class EnumSpecBuilder: TypeSpecBuilder, Builder {
     public typealias Result = EnumSpec
-    public static let defaultConstruct: Construct = .Enum
+    open static let defaultConstruct: Construct = .enum
 
-    private init(name: String) {
+    fileprivate init(name: String) {
         super.init(name: name, construct: EnumSpecBuilder.defaultConstruct)
     }
 
-    public func build() -> Result {
+    open func build() -> Result {
         return EnumSpec(builder: self)
     }
 }
@@ -41,83 +41,83 @@ public class EnumSpecBuilder: TypeSpecBuilder, Builder {
 extension EnumSpecBuilder {
 
     @discardableResult
-    public func add(method: MethodSpec) -> Self {
-        super.mutatingAdd(method: method)
+    public func add(method toAdd: MethodSpec) -> Self {
+        super.mutatingAdd(method: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(methods: [MethodSpec]) -> Self {
-        methods.forEach { mutatingAdd(method: $0) }
+    public func add(methods toAdd: [MethodSpec]) -> Self {
+        toAdd.forEach { mutatingAdd(method: $0) }
         return self
     }
 
     @discardableResult
-    public func add(field: FieldSpec) -> Self {
-        super.mutatingAdd(field: field)
+    public func add(field toAdd: FieldSpec) -> Self {
+        super.mutatingAdd(field: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(fields: [FieldSpec]) -> Self {
-        fields.forEach { mutatingAdd(field: $0) }
+    public func add(fields toAdd: [FieldSpec]) -> Self {
+        toAdd.forEach { mutatingAdd(field: $0) }
         return self
     }
 
     @discardableResult
-    public func add(protocol _protocol: TypeName) -> Self {
-        super.mutatingAdd(protocol: _protocol)
+    public func add(protocol toAdd: TypeName) -> Self {
+        super.mutatingAdd(protocol: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(protocols: [TypeName]) -> Self {
-        super.mutatingAdd(protocols: protocols)
+    public func add(protocols toAdd: [TypeName]) -> Self {
+        super.mutatingAdd(protocols: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(superType: TypeName) -> Self {
-        super.mutatingAdd(superType: superType)
+    public func add(superType toAdd: TypeName) -> Self {
+        super.mutatingAdd(superType: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(modifier: Modifier) -> Self {
-        guard EnumSpec.asMemberModifiers.contains(modifier) else {
+    public func add(modifier toAdd: Modifier) -> Self {
+        guard EnumSpec.asMemberModifiers.contains(toAdd) else {
             return self
         }
-        mutatingAdd(modifier: modifier)
+        mutatingAdd(modifier: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(modifiers: [Modifier]) -> Self {
-        modifiers.forEach { let _ = add(modifier: $0) }
+    public func add(modifiers toAdd: [Modifier]) -> Self {
+        toAdd.forEach { _ = add(modifier: $0) }
         return self
     }
 
     @discardableResult
-    public func add(description: String?) -> Self {
-        super.mutatingAdd(description: description)
+    public func add(description toAdd: String?) -> Self {
+        super.mutatingAdd(description: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(framework: String?) -> Self {
-        super.mutatingAdd(framework: framework)
+    public func add(framework toAdd: String?) -> Self {
+        super.mutatingAdd(framework: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(import _import: String) -> Self {
-        super.mutatingAdd(import: _import)
+    public func add(import toAdd: String) -> Self {
+        super.mutatingAdd(import: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(imports: [String]) -> Self {
-        super.mutatingAdd(imports: imports)
+    public func add(imports toAdd: [String]) -> Self {
+        super.mutatingAdd(imports: toAdd)
         return self
     }
 }

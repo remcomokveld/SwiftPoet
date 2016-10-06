@@ -10,29 +10,29 @@
     import Foundation
 #endif
 
-public class ProtocolSpec: TypeSpec {
-    public static let fieldModifiers: [Modifier] = [.Static]
-    public static let methodModifiers: [Modifier] = [.Static]
-    public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+open class ProtocolSpec: TypeSpec {
+    open static let fieldModifiers: [Modifier] = [.Static]
+    open static let methodModifiers: [Modifier] = [.Static]
+    open static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
 
-    private init(builder: ProtocolSpecBuilder) {
+    fileprivate init(builder: ProtocolSpecBuilder) {
         super.init(builder: builder as TypeSpecBuilder)
     }
 
-    public static func builder(name: String) -> ProtocolSpecBuilder {
+    open static func builder(name: String) -> ProtocolSpecBuilder {
         return ProtocolSpecBuilder(name: name)
     }
 }
 
-public class ProtocolSpecBuilder: TypeSpecBuilder, Builder {
+open class ProtocolSpecBuilder: TypeSpecBuilder, Builder {
     public typealias Result = ProtocolSpec
-    public static let defaultConstruct: Construct = .Protocol
+    open static let defaultConstruct: Construct = .protocol
 
     public init(name: String) {
         super.init(name: name, construct: ProtocolSpecBuilder.defaultConstruct)
     }
 
-    public func build() -> Result {
+    open func build() -> Result {
         return ProtocolSpec(builder: self)
     }
 }
@@ -41,83 +41,83 @@ public class ProtocolSpecBuilder: TypeSpecBuilder, Builder {
 extension ProtocolSpecBuilder {
 
     @discardableResult
-    public func add(method: MethodSpec) -> Self {
-        mutatingAdd(method: method)
+    public func add(method toAdd: MethodSpec) -> Self {
+        mutatingAdd(method: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(methods: [MethodSpec]) -> Self {
-        methods.forEach { mutatingAdd(method: $0) }
+    public func add(methods toAdd: [MethodSpec]) -> Self {
+        toAdd.forEach { mutatingAdd(method: $0) }
         return self
     }
 
     @discardableResult
-    public func add(field: FieldSpec) -> Self {
-        mutatingAdd(field: field)
+    public func add(field toAdd: FieldSpec) -> Self {
+        mutatingAdd(field: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(fields: [FieldSpec]) -> Self {
-        fields.forEach { mutatingAdd(field: $0) }
+    public func add(fields toAdd: [FieldSpec]) -> Self {
+        toAdd.forEach { mutatingAdd(field: $0) }
         return self
     }
 
     @discardableResult
-    public func add(protocol _protocol: TypeName) -> Self {
-        mutatingAdd(protocol: _protocol)
+    public func add(protocol toAdd: TypeName) -> Self {
+        mutatingAdd(protocol: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(protocols: [TypeName]) -> Self {
-        mutatingAdd(protocols: protocols)
+    public func add(protocols toAdd: [TypeName]) -> Self {
+        mutatingAdd(protocols: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(superType: TypeName) -> Self {
+    public func add(_ superType: TypeName) -> Self {
         mutatingAdd(superType: superType)
         return self
     }
 
     @discardableResult
-    public func add(modifier: Modifier) -> Self {
-        guard ProtocolSpec.asMemberModifiers.contains(modifier) else {
+    public func add(modifier toAdd: Modifier) -> Self {
+        guard ProtocolSpec.asMemberModifiers.contains(toAdd) else {
             return self
         }
-        mutatingAdd(modifier: modifier)
+        mutatingAdd(modifier: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(modifiers: [Modifier]) -> Self {
-        modifiers.forEach { let _ = add(modifier: $0) }
+    public func add(_ modifiers: [Modifier]) -> Self {
+        modifiers.forEach { _ = add(modifier: $0) }
         return self
     }
 
     @discardableResult
-    public func add(description: String?) -> Self {
-        mutatingAdd(description: description)
+    public func add(description toAdd: String?) -> Self {
+        mutatingAdd(description: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(framework: String?) -> Self {
+    public func add(framework toAdd: String?) -> Self {
         mutatingAdd(framework: framework)
         return self
     }
 
     @discardableResult
-    public func add(import _import: String) -> Self {
-        mutatingAdd(import: _import)
+    public func add(import toAdd: String) -> Self {
+        mutatingAdd(import: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(imports: [String]) -> Self {
-        mutatingAdd(imports: imports)
+    public func add(imports toAdd: [String]) -> Self {
+        mutatingAdd(imports: toAdd)
         return self
     }
 }

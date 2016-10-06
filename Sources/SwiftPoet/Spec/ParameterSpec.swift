@@ -13,50 +13,50 @@ public protocol ParameterSpecProtocol {
     var type: TypeName { get }
 }
 
-public class ParameterSpec: PoetSpec, ParameterSpecProtocol {
-    public let type: TypeName
+open class ParameterSpec: PoetSpec, ParameterSpecProtocol {
+    open let type: TypeName
 
-    private init(builder: ParameterSpecBuilder) {
+    fileprivate init(builder: ParameterSpecBuilder) {
         self.type = builder.type
         super.init(name: builder.name, construct: builder.construct, modifiers: builder.modifiers,
                    description: builder.description, framework: builder.framework, imports: builder.imports)
     }
 
-    public static func builder(name: String, type: TypeName, construct: Construct? = nil) -> ParameterSpecBuilder {
+    open static func builder(name: String, type: TypeName, construct: Construct? = nil) -> ParameterSpecBuilder {
         return ParameterSpecBuilder(name: name, type: type, construct: construct)
     }
 
-    public override func collectImports() -> Set<String> {
+    open override func collectImports() -> Set<String> {
         return type.collectImports().union(imports)
     }
 
     @discardableResult
-    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
+    open override func emit(to writer: CodeWriter) -> CodeWriter {
         let cbBuilder = CodeBlock.builder()
-        if (construct == .MutableParam) {
-            cbBuilder.addEmitObject(type: .Literal, any: construct)
+        if (construct == .mutableParam) {
+            cbBuilder.add(literal: construct)
         }
-        cbBuilder.addEmitObject(type: .Literal, any: name)
-        cbBuilder.addEmitObject(type: .Literal, any: ":")
-        cbBuilder.addEmitObject(type: .Literal, any: type)
-        codeWriter.emit(codeBlock: cbBuilder.build())
-        return codeWriter
+        cbBuilder.add(literal: name)
+        cbBuilder.add(literal: ":")
+        cbBuilder.add(literal: type)
+        writer.emit(codeBlock: cbBuilder.build())
+        return writer
     }
 }
 
-public class ParameterSpecBuilder: PoetSpecBuilder, Builder, ParameterSpecProtocol {
+open class ParameterSpecBuilder: PoetSpecBuilder, Builder, ParameterSpecProtocol {
     public typealias Result = ParameterSpec
-    public static let defaultConstruct: Construct = .Param
+    open static let defaultConstruct: Construct = .param
 
-    public let type: TypeName
+    open let type: TypeName
 
-    private init(name: String, type: TypeName, construct: Construct? = nil) {
+    fileprivate init(name: String, type: TypeName, construct: Construct? = nil) {
         self.type = type
-        let requiredConstruct = construct == nil || construct! != .MutableParam ? ParameterSpecBuilder.defaultConstruct : construct!
-        super.init(name: name.cleaned(case: .ParamName), construct: requiredConstruct)
+        let requiredConstruct = construct == nil || construct! != .mutableParam ? ParameterSpecBuilder.defaultConstruct : construct!
+        super.init(name: name.cleaned(case: .paramName), construct: requiredConstruct)
     }
 
-    public func build() -> Result {
+    open func build() -> Result {
         return ParameterSpec(builder: self)
     }
 
@@ -66,38 +66,38 @@ public class ParameterSpecBuilder: PoetSpecBuilder, Builder, ParameterSpecProtoc
 extension ParameterSpecBuilder {
 
     @discardableResult
-    public func add(modifier: Modifier) -> Self {
-        mutatingAdd(modifier: modifier)
+    public func add(modifier toAdd: Modifier) -> Self {
+        mutatingAdd(modifier: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(modifiers: [Modifier]) -> Self {
-        mutatingAdd(modifiers: modifiers)
+    public func add(modifiers toAdd: [Modifier]) -> Self {
+        mutatingAdd(modifiers: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(description: String?) -> Self {
-        mutatingAdd(description: description)
+    public func add(description toAdd: String?) -> Self {
+        mutatingAdd(description: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(framework: String?) -> Self {
-        mutatingAdd(framework: framework)
+    public func add(framework toAdd: String?) -> Self {
+        mutatingAdd(framework: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(import _import: String) -> Self {
-        mutatingAdd(import: _import)
+    public func add(import toAdd: String) -> Self {
+        mutatingAdd(import: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(imports: [String]) -> Self {
-        mutatingAdd(imports: imports)
+    public func add(imports toAdd: [String]) -> Self {
+        mutatingAdd(imports: toAdd)
         return self
     }
 }

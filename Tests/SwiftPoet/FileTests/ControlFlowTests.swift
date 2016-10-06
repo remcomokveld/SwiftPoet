@@ -12,12 +12,12 @@ import SwiftPoet
 class ControlFlowTests: XCTestCase {
 
     func testIfLetStatement() {
-        let left = CodeBlock.builder().addLiteral(any: "let name").build()
-        let right = CodeBlock.builder().addLiteral(any: "NSDate() as? String").build()
+        let left = CodeBlock.builder().add(literal: "let name").build()
+        let right = CodeBlock.builder().add(literal: "NSDate() as? String").build()
         let comparison = ComparisonList(lhs: left, comparator: .OptionalCheck, rhs: right)
 
         let controlFlow = ControlFlow.ifControlFlow(comparison) {
-            return CodeBlock.builder().addLiteral(any: "print(\"Crazy conversion!!!\")").build()
+            return CodeBlock.builder().add(literal: "print(\"Crazy conversion!!!\")").build()
         }
 
         let result =
@@ -32,12 +32,12 @@ class ControlFlowTests: XCTestCase {
     }
 
     func testIfStatement() {
-        let left = CodeBlock.builder().addLiteral(any: "[1, 2, 3].count").build()
-        let right = CodeBlock.builder().addLiteral(any: "0").build()
+        let left = CodeBlock.builder().add(literal: "[1, 2, 3].count").build()
+        let right = CodeBlock.builder().add(literal: "0").build()
         let comparison = ComparisonList(lhs: left, comparator: .GreaterThan, rhs: right)
 
         let controlFlow = ControlFlow.ifControlFlow(comparison) {
-            return CodeBlock.builder().addLiteral(any: "print(\"Crazy conversion!!!\")").build()
+            return CodeBlock.builder().add(literal: "print(\"Crazy conversion!!!\")").build()
         }
 
         let result =
@@ -52,12 +52,12 @@ class ControlFlowTests: XCTestCase {
     }
 
     func testGuardStatement() {
-        let left = CodeBlock.builder().addLiteral(any: "[1, 2, 3].count").build()
-        let right = CodeBlock.builder().addLiteral(any: "1").build()
+        let left = CodeBlock.builder().add(literal: "[1, 2, 3].count").build()
+        let right = CodeBlock.builder().add(literal: "1").build()
         let comparison = ComparisonList(lhs: left, comparator: .LessThanOrEqualTo, rhs: right)
 
         let controlFlow = ControlFlow.guardControlFlow(comparison) {
-            return CodeBlock.builder().addLiteral(any: "print(\"Crazy conversion!!!\")").build()
+            return CodeBlock.builder().add(literal: "print(\"Crazy conversion!!!\")").build()
         }
 
         let result =
@@ -72,23 +72,23 @@ class ControlFlowTests: XCTestCase {
     }
 
     func testIfElseIfElseStatement() {
-        let leftOne = CodeBlock.builder().addLiteral(any: "let val").build()
-        let rightOne = CodeBlock.builder().addLiteral( any: "optionalValueOne").build()
+        let leftOne = CodeBlock.builder().add(literal: "let val").build()
+        let rightOne = CodeBlock.builder().add(literal: "optionalValueOne").build()
         let comparisonOne = ComparisonList(lhs: leftOne, comparator: .OptionalCheck, rhs: rightOne)
 
-        let leftTwo = CodeBlock.builder().addLiteral(any: "let val").build()
-        let rightTwo = CodeBlock.builder().addLiteral(any: "optionalValueTwo").build()
+        let leftTwo = CodeBlock.builder().add(literal: "let val").build()
+        let rightTwo = CodeBlock.builder().add(literal: "optionalValueTwo").build()
         let comparisonTwo = ComparisonList(lhs: leftTwo, comparator: .OptionalCheck, rhs: rightTwo)
 
         let cb = CodeBlock.builder()
-            .addCodeBlock(codeBlock: ControlFlow.ifControlFlow(comparisonOne) {
-                return CodeBlock.builder().addLiteral(any: "print(\"Inside if statement\")").build()
+            .add(codeBlock: ControlFlow.ifControlFlow(comparisonOne) {
+                return CodeBlock.builder().add(literal: "print(\"Inside if statement\")").build()
             })
-            .addCodeBlock(codeBlock: ControlFlow.elseIfControlFlow(comparisonTwo) {
-                return CodeBlock.builder().addLiteral(any: "print(\"Inside if else statement\")").build()
+            .add(codeBlock: ControlFlow.elseIfControlFlow(comparisonTwo) {
+                return CodeBlock.builder().add(literal: "print(\"Inside if else statement\")").build()
             })
-            .addCodeBlock(codeBlock: ControlFlow.elseControlFlow(nil) {
-                return CodeBlock.builder().addLiteral(any: "print(\"Inside else statement\")").build()
+            .add(codeBlock: ControlFlow.elseControlFlow(nil) {
+                return CodeBlock.builder().add(literal: "print(\"Inside else statement\")").build()
             })
             .build()
 
@@ -111,18 +111,18 @@ class ControlFlowTests: XCTestCase {
     }
 
     func testTwoOptionals() {
-        let leftOne = CodeBlock.builder().addLiteral(any: "let name").build()
-        let rightOne = CodeBlock.builder().addLiteral(any: "NSDate() as? String").build()
+        let leftOne = CodeBlock.builder().add(literal: "let name").build()
+        let rightOne = CodeBlock.builder().add(literal: "NSDate() as? String").build()
         let comparisonOne = ComparisonListItem(comparison: Comparison(lhs: leftOne, comparator: .OptionalCheck, rhs: rightOne))
 
-        let leftTwo = CodeBlock.builder().addLiteral(any: "let age").build()
-        let rightTwo = CodeBlock.builder().addLiteral(any: "100 as? String").build()
+        let leftTwo = CodeBlock.builder().add(literal: "let age").build()
+        let rightTwo = CodeBlock.builder().add(literal: "100 as? String").build()
         let comparisonTwo = ComparisonListItem(comparison: Comparison(lhs: leftTwo, comparator: .OptionalCheck, rhs: rightTwo), requirement: Requirement.OptionalList)
 
         let comparisons = ComparisonList(list: [comparisonOne, comparisonTwo])
 
         let controlFlow = ControlFlow.ifControlFlow(comparisons) {
-            return CodeBlock.builder().addLiteral(any: "print(\"Crazy conversion!!!\")").build()
+            return CodeBlock.builder().add(literal: "print(\"Crazy conversion!!!\")").build()
         }
 
         let result =
@@ -137,15 +137,15 @@ class ControlFlowTests: XCTestCase {
     }
 
     func testColsure() {
-        let closure = ControlFlow.closureControlFlow(parameterBlock: "key, value", canThrow: true, returnType: "[String]") {
-            let left = CodeBlock.builder().addLiteral(any: "key").build()
-            let right = CodeBlock.builder().addLiteral(any: "key").build()
+        let closure = ControlFlow.closure(parameterList: "key, value", canThrow: true, returnType: "[String]") {
+            let left = CodeBlock.builder().add(literal: "key").build()
+            let right = CodeBlock.builder().add(literal: "key").build()
             return CodeBlock.builder()
-                .addCodeLine(any: "let result = [String]()")
-                .addCodeBlock(codeBlock: ControlFlow.ifControlFlow(ComparisonList(lhs: left, comparator: .OptionalCheck, rhs:right)) {
-                    return CodeBlock.builder().addLiteral(any: "result.append(key + value)").build()
+                .add(codeLine: "let result = [String]()")
+                .add(codeBlock: ControlFlow.ifControlFlow(ComparisonList(lhs: left, comparator: .OptionalCheck, rhs:right)) {
+                    return CodeBlock.builder().add(literal: "result.append(key + value)").build()
                 })
-                .addCodeLine(any: "return result")
+                .add(codeLine: "return result")
                 .build()
         }
 

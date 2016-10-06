@@ -10,30 +10,30 @@
     import Foundation
 #endif
 
-public class StructSpec: TypeSpec {
-    public static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
-    public static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Mutating, .Throws]
-    public static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
+open class StructSpec: TypeSpec {
+    open static let fieldModifiers: [Modifier] = [.Public, .Private, .Internal, .Static]
+    open static let methodModifiers: [Modifier] = [.Public, .Private, .Internal, .Static, .Mutating, .Throws]
+    open static let asMemberModifiers: [Modifier] = [.Public, .Private, .Internal]
 
-    private init(builder: StructSpecBuilder) {
+    fileprivate init(builder: StructSpecBuilder) {
         super.init(builder: builder as TypeSpecBuilder)
     }
 
-    public static func builder(name: String) -> StructSpecBuilder {
+    open static func builder(name: String) -> StructSpecBuilder {
         return StructSpecBuilder(name: name)
     }
 }
 
-public class StructSpecBuilder: TypeSpecBuilder, Builder {
+open class StructSpecBuilder: TypeSpecBuilder, Builder {
     public typealias Result = StructSpec
-    public static let defaultConstruct: Construct = .Struct
-    private var includeInit: Bool = false
+    open static let defaultConstruct: Construct = .struct
+    fileprivate var includeInit: Bool = false
 
     public init(name: String) {
         super.init(name: name, construct: StructSpecBuilder.defaultConstruct)
     }
 
-    public func build() -> Result {
+    open func build() -> Result {
         if !(methods.contains { $0.name == "init" }) || includeInit {
             addInitMethod()
         }
@@ -41,7 +41,7 @@ public class StructSpecBuilder: TypeSpecBuilder, Builder {
     }
 
     @discardableResult
-    private func addInitMethod() -> Self {
+    fileprivate func addInitMethod() -> Self {
         var mb = MethodSpec.builder(name: "init")
         let cb = CodeBlock.builder()
 
@@ -56,19 +56,19 @@ public class StructSpecBuilder: TypeSpecBuilder, Builder {
                     .build()
                 )
 
-                cb.addCodeBlock(codeBlock: "self.\(spec.name) = \(spec.name)".toCodeBlock())
+                cb.add(codeBlock: "self.\(spec.name) = \(spec.name)".toCodeBlock())
             }
         }
 
         mb.add(codeBlock: cb.build())
 
-        mb = mb.add(modifier: Modifier.accessLevel(modifiers: self.modifiers))
+        mb = mb.add(modifier: Modifier.accessLevel(modifiers))
 
         return add(method: mb.build())
     }
 
     @discardableResult
-    public func includeDefaultInit() -> StructSpecBuilder {
+    open func includeDefaultInit() -> StructSpecBuilder {
         includeInit = true
         return self;
     }
@@ -78,71 +78,71 @@ public class StructSpecBuilder: TypeSpecBuilder, Builder {
 extension StructSpecBuilder {
 
     @discardableResult
-    public func add(method: MethodSpec) -> Self {
-        mutatingAdd(method: method)
+    public func add(method toAdd: MethodSpec) -> Self {
+        mutatingAdd(method: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(methods: [MethodSpec]) -> Self {
-        methods.forEach { mutatingAdd(method: $0) }
+    public func add(methods toAdd: [MethodSpec]) -> Self {
+        toAdd.forEach { mutatingAdd(method: $0) }
         return self
     }
 
     @discardableResult
-    public func add(field: FieldSpec) -> Self {
-        mutatingAdd(field: field)
+    public func add(field toAdd: FieldSpec) -> Self {
+        mutatingAdd(field: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(fields: [FieldSpec]) -> Self {
-        fields.forEach { mutatingAdd(field: $0) }
+    public func add(fields toAdd: [FieldSpec]) -> Self {
+        toAdd.forEach { mutatingAdd(field: $0) }
         return self
     }
 
     @discardableResult
-    public func add(protocol _protocol: TypeName) -> Self {
-        mutatingAdd(protocol: _protocol)
+    public func add(protocol toAdd: TypeName) -> Self {
+        mutatingAdd(protocol: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(protocols: [TypeName]) -> Self {
-        mutatingAdd(protocols: protocols)
+    public func add(protocols toAdd: [TypeName]) -> Self {
+        mutatingAdd(protocols: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(superType: TypeName) -> Self {
-        mutatingAdd(superType: superType)
+    public func add(superType toAdd: TypeName) -> Self {
+        mutatingAdd(superType: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(modifier: Modifier) -> Self {
-        guard StructSpec.asMemberModifiers.contains(modifier) else {
+    public func add(modifier toAdd: Modifier) -> Self {
+        guard StructSpec.asMemberModifiers.contains(toAdd) else {
             return self
         }
-        mutatingAdd(modifier: modifier)
+        mutatingAdd(modifier: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(modifiers: [Modifier]) -> Self {
-        modifiers.forEach { let _ = add(modifier: $0) }
+    public func add(modifiers toAdd: [Modifier]) -> Self {
+        modifiers.forEach { _ = add(modifier: $0) }
         return self
     }
 
     @discardableResult
-    public func add(description: String?) -> Self {
-        mutatingAdd(description: description)
+    public func add(description toAdd: String?) -> Self {
+        mutatingAdd(description: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(framework: String?) -> Self {
-        mutatingAdd(framework: framework)
+    public func add(framework toAdd: String?) -> Self {
+        mutatingAdd(framework: toAdd)
         return self
     }
 
@@ -153,7 +153,7 @@ extension StructSpecBuilder {
     }
 
     @discardableResult
-    public func add(imports: [String]) -> Self {
+    public func add(_ imports: [String]) -> Self {
         mutatingAdd(imports: imports)
         return self
     }

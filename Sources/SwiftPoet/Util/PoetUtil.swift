@@ -9,24 +9,24 @@
 import Foundation
 
 public struct PoetUtil {
-    private static let template = "^^^^"
-    private static let regexPattern = "\\s|_|\\.|-|\\[|\\]"
+    fileprivate static let template = "^^^^"
+    fileprivate static let regexPattern = "\\s|_|\\.|-|\\[|\\]"
     
-    private static var spaceAndPunctuationRegex: RegularExpression? {
+    fileprivate static var spaceAndPunctuationRegex: NSRegularExpression? {
         do {
-            return try RegularExpression(pattern: PoetUtil.regexPattern, options: .anchorsMatchLines)
+            return try NSRegularExpression(pattern: PoetUtil.regexPattern, options: .anchorsMatchLines)
         } catch {
             return nil
         }
     }
 
-    internal static func addUnique<T: Equatable>(data: T, toList list: inout [T]) {
+    internal static func addUnique<T: Equatable>(_ data: T, to list: inout [T]) {
         if !list.contains(data) {
             list.append(data)
         }
     }
 
-    internal static func stripSpaceAndPunctuation(name: String) -> [String] {
+    internal static func stripSpaceAndPunctuation(_ name: String) -> [String] {
         guard let regex = spaceAndPunctuationRegex else {
             return [name]
         }
@@ -35,24 +35,24 @@ public struct PoetUtil {
             in: name, options: [],
             range: NSMakeRange(0, name.characters.count), withTemplate: template)
                 .components(separatedBy: template)
-                .map { capitalizeFirstChar(str: $0) }
+                .map { capitalizeFirstChar($0) }
     }
 
     // capitalize first letter without removing cammel case on other characters
-    internal static func capitalizeFirstChar(str: String) -> String {
-        return caseFirstChar(str: str) {
+    internal static func capitalizeFirstChar(_ str: String) -> String {
+        return caseFirstChar(str) {
             return $0.uppercased().characters
         }
     }
 
     // lowercase first letter without removing cammel case on other characters
-    internal static func lowercaseFirstChar(str: String) -> String {
-        return caseFirstChar(str: str) {
+    internal static func lowercaseFirstChar(_ str: String) -> String {
+        return caseFirstChar(str) {
             return $0.lowercased().characters
         }
     }
 
-    private static func caseFirstChar(str: String, caseFn: (str: String) -> String.CharacterView) -> String {
+    fileprivate static func caseFirstChar(_ str: String, caseFn: (_ str: String) -> String.CharacterView) -> String {
         guard str.characters.count > 0 else {
             return str // This does happen!
         }
@@ -60,18 +60,18 @@ public struct PoetUtil {
         var chars = str.characters
         let first = str.substring(to: chars.index(after: chars.startIndex))
         let range = chars.startIndex..<chars.index(after: chars.startIndex)
-        chars.replaceSubrange(range, with: caseFn(str: first))
+        chars.replaceSubrange(range, with: caseFn(first))
         return String(chars)
     }
 
-    public static func fmap<A, B>(data: A?, function: (A) -> B?) -> B? {
+    public static func fmap<A, B>(_ data: A?, function: (A) -> B?) -> B? {
         switch data {
         case .some(let x): return function(x)
         case .none: return .none
         }
     }
 
-    public static func fmap<A, B>(data: A?, function: (A) -> B) -> B? {
+    public static func fmap<A, B>(_ data: A?, function: (A) -> B) -> B? {
         switch data {
         case .some(let x): return function(x)
         case .none: return .none
