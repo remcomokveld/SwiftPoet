@@ -40,7 +40,7 @@ extension EnumSpecBuilder {
 
     @discardableResult
     public func add(method toAdd: MethodSpec) -> Self {
-        super.mutatingAdd(method: toAdd)
+        mutatingAdd(method: toAdd)
         return self
     }
 
@@ -52,7 +52,7 @@ extension EnumSpecBuilder {
 
     @discardableResult
     public func add(field toAdd: FieldSpec) -> Self {
-        super.mutatingAdd(field: toAdd)
+        mutatingAdd(field: toAdd)
         return self
     }
 
@@ -64,19 +64,19 @@ extension EnumSpecBuilder {
 
     @discardableResult
     public func add(protocol toAdd: TypeName) -> Self {
-        super.mutatingAdd(protocol: toAdd)
+        mutatingAdd(protocol: toAdd)
         return self
     }
 
     @discardableResult
     public func add(protocols toAdd: [TypeName]) -> Self {
-        super.mutatingAdd(protocols: toAdd)
+        mutatingAdd(protocols: toAdd)
         return self
     }
 
     @discardableResult
     public func add(superType toAdd: TypeName) -> Self {
-        super.mutatingAdd(superType: toAdd)
+        mutatingAdd(superType: toAdd)
         return self
     }
 
@@ -97,25 +97,25 @@ extension EnumSpecBuilder {
 
     @discardableResult
     public func add(description toAdd: String?) -> Self {
-        super.mutatingAdd(description: toAdd)
+        mutatingAdd(description: toAdd)
         return self
     }
 
     @discardableResult
     public func add(framework toAdd: String?) -> Self {
-        super.mutatingAdd(framework: toAdd)
+        mutatingAdd(framework: toAdd)
         return self
     }
 
     @discardableResult
     public func add(import toAdd: String) -> Self {
-        super.mutatingAdd(import: toAdd)
+        mutatingAdd(import: toAdd)
         return self
     }
 
     @discardableResult
     public func add(imports toAdd: [String]) -> Self {
-        super.mutatingAdd(imports: toAdd)
+        mutatingAdd(imports: toAdd)
         return self
     }
 }
