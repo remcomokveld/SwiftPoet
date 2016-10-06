@@ -137,7 +137,7 @@ class ControlFlowTests: XCTestCase {
     }
 
     func testColsure() {
-        let closure = ControlFlow.closure(parameterList: parameterList: "key, value", canThrow: true, returnType: "[String]") {
+        let closure = ControlFlow.closure(parameterList: "key, value", canThrow: true, returnType: "[String]") {
             let left = CodeBlock.builder().add(literal: "key").build()
             let right = CodeBlock.builder().add(literal: "key").build()
             return CodeBlock.builder()
