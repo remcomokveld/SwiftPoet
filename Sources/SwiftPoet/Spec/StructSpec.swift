@@ -145,14 +145,14 @@ extension StructSpecBuilder {
     }
 
     @discardableResult
-    public func add(import _import: String) -> Self {
-        mutatingAdd(import: _import)
+    public func add(import toAdd: String) -> Self {
+        mutatingAdd(import: toAdd)
         return self
     }
 
     @discardableResult
-    public func add(_ imports: [String]) -> Self {
-        mutatingAdd(imports: imports)
+    public func add(imports toAdd: [String]) -> Self {
+        mutatingAdd(imports: toAdd)
         return self
     }
 }

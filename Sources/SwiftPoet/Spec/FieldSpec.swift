@@ -68,7 +68,7 @@ open class FieldSpec: PoetSpec, FieldSpecType {
     }
 
     fileprivate func emit(enumType codeWriter: CodeWriter) {
-        let cleanName = name.cleaned(case: .typeName)
+        let cleanName = name.cleaned(.typeName)
         let cbBuilder = CodeBlock.builder()
                     .add(literal: "case")
                     .add(literal: cleanName)
@@ -90,7 +90,7 @@ open class FieldSpec: PoetSpec, FieldSpecType {
     }
 
     fileprivate func emit(classType codeWriter: CodeWriter) {
-        let cleanName = construct == .typeAlias ? name.cleaned(case: .typeName) : name.cleaned(case: .paramName)
+        let cleanName = construct == .typeAlias ? name.cleaned(.typeName) : name.cleaned(.paramName)
         codeWriter.emit(modifiers: modifiers)
         let cbBuilder = CodeBlock.builder()
             .add(literal: construct)
@@ -124,7 +124,7 @@ open class FieldSpec: PoetSpec, FieldSpecType {
     }
 
     fileprivate func emit(protocolType codeWriter: CodeWriter) {
-        let cleanName = parentType == .enum || construct == .typeAlias ? name.cleaned(case: .typeName) : name.cleaned(case: .paramName)
+        let cleanName = parentType == .enum || construct == .typeAlias ? name.cleaned(.typeName) : name.cleaned(.paramName)
         codeWriter.emit(modifiers: modifiers)
         let cbBuilder = CodeBlock.builder()
             .add(literal: construct)
@@ -155,7 +155,7 @@ open class FieldSpecBuilder: PoetSpecBuilder, Builder, FieldSpecType {
     fileprivate init(name: String, type: TypeName? = nil, construct: Construct? = nil) {
         self.type = type
         let requiredConstruct = construct == nil ? FieldSpecBuilder.defaultConstruct : construct!
-        super.init(name: name.cleaned(case: .paramName), construct: requiredConstruct)
+        super.init(name: name.cleaned(.paramName), construct: requiredConstruct)
     }
 
     open func build() -> Result {

@@ -90,7 +90,7 @@ open class PoetSpecBuilder: PoetSpecType {
     }
 
     internal func mutatingAdd(framework toAdd: String?) {
-        self.framework = toAdd?.cleaned(case: .typeName)
+        self.framework = toAdd?.cleaned(.typeName)
     }
 
     internal func mutatingAdd(import toAdd: String) {
