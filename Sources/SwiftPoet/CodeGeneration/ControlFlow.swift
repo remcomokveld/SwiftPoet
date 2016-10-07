@@ -126,7 +126,7 @@ public enum ControlFlow: String {
     {
         let cbCase = CodeBlock.builder()
 
-        cbCase.add(literal: "case ")
+        cbCase.add(literal: "case")
         if let caseLine = caseLine {
             cbCase.add(literal: caseLine)
         } else {
