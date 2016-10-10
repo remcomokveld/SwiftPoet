@@ -51,7 +51,7 @@
 			containerPortal = 3BCBACE21BA369AD007F1C90 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3B00E57B1BA379830011486D;
-			remoteInfo = "SwiftPoet-OSX";
+			remoteInfo = "SwiftPoet-macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -59,15 +59,15 @@
 		3B00E4D01BA36B840011486D /* Info-Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Framework.plist"; sourceTree = "<group>"; };
 		3B00E4D11BA36B840011486D /* Info-Tests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Tests.plist"; sourceTree = "<group>"; };
 		3B00E57C1BA379830011486D /* SwiftPoet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftPoet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B00E5851BA379830011486D /* SwiftPoetUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftPoetUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B38DBD11BA76428000986DF /* Debug-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-OSX.xcconfig"; sourceTree = "<group>"; };
+		3B00E5851BA379830011486D /* .xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = .xctest; path = SwiftPoetUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B38DBD11BA76428000986DF /* Debug-macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-macOS.xcconfig"; sourceTree = "<group>"; };
 		3B38DBD41BA76428000986DF /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		3B38DBD51BA76428000986DF /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
-		3B38DBD71BA76428000986DF /* OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = OSX.xcconfig; sourceTree = "<group>"; };
+		3B38DBD71BA76428000986DF /* macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = macOS.xcconfig; sourceTree = "<group>"; };
 		3B38DBD81BA76428000986DF /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		3B38DBDA1BA76428000986DF /* Release-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-OSX.xcconfig"; sourceTree = "<group>"; };
+		3B38DBDA1BA76428000986DF /* Release-macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-macOS.xcconfig"; sourceTree = "<group>"; };
 		3B38DBDD1BA76428000986DF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		3B38DBDF1BA76428000986DF /* Tests-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-OSX.xcconfig"; sourceTree = "<group>"; };
+		3B38DBDF1BA76428000986DF /* Tests-macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-macOS.xcconfig"; sourceTree = "<group>"; };
 		3B38DBE11BA76428000986DF /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		594694521D3874C900BB63BE /* CodeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
 		594694531D3874C900BB63BE /* CodeWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeWriter.swift; sourceTree = "<group>"; };
@@ -139,14 +139,14 @@
 		3B00E4BE1BA36B840011486D /* config */ = {
 			isa = PBXGroup;
 			children = (
-				3B38DBD11BA76428000986DF /* Debug-OSX.xcconfig */,
+				3B38DBD11BA76428000986DF /* Debug-macOS.xcconfig */,
 				3B38DBD41BA76428000986DF /* Debug.xcconfig */,
 				3B38DBD51BA76428000986DF /* Framework.xcconfig */,
-				3B38DBD71BA76428000986DF /* OSX.xcconfig */,
+				3B38DBD71BA76428000986DF /* macOS.xcconfig */,
 				3B38DBD81BA76428000986DF /* Project.xcconfig */,
-				3B38DBDA1BA76428000986DF /* Release-OSX.xcconfig */,
+				3B38DBDA1BA76428000986DF /* Release-macOS.xcconfig */,
 				3B38DBDD1BA76428000986DF /* Release.xcconfig */,
-				3B38DBDF1BA76428000986DF /* Tests-OSX.xcconfig */,
+				3B38DBDF1BA76428000986DF /* Tests-macOS.xcconfig */,
 				3B38DBE11BA76428000986DF /* Tests.xcconfig */,
 			);
 			path = config;
@@ -172,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				3B00E57C1BA379830011486D /* SwiftPoet.framework */,
-				3B00E5851BA379830011486D /* SwiftPoetUnitTests.xctest */,
+				3B00E5851BA379830011486D /* .xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,7 +320,7 @@
 			dependencies = (
 			);
 			name = SwiftPoet;
-			productName = "SwiftPoet-OSX";
+			productName = "SwiftPoet-macOS";
 			productReference = 3B00E57C1BA379830011486D /* SwiftPoet.framework */;
 			productType = "com.apple.product-type.framework";
 		};
@@ -338,8 +338,8 @@
 				3B00E5881BA379830011486D /* PBXTargetDependency */,
 			);
 			name = SwiftPoetUnitTests;
-			productName = "SwiftPoet-OSXTests";
-			productReference = 3B00E5851BA379830011486D /* SwiftPoetUnitTests.xctest */;
+			productName = "SwiftPoet-macOSTests";
+			productReference = 3B00E5851BA379830011486D /* .xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -461,7 +461,7 @@
 /* Begin XCBuildConfiguration section */
 		3B00E58E1BA379830011486D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B38DBD11BA76428000986DF /* Debug-OSX.xcconfig */;
+			baseConfigurationReference = 3B38DBD11BA76428000986DF /* Debug-macOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -513,7 +513,7 @@
 		};
 		3B00E58F1BA379830011486D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B38DBDA1BA76428000986DF /* Release-OSX.xcconfig */;
+			baseConfigurationReference = 3B38DBDA1BA76428000986DF /* Release-macOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -560,7 +560,7 @@
 		};
 		3B00E5911BA379830011486D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B38DBDF1BA76428000986DF /* Tests-OSX.xcconfig */;
+			baseConfigurationReference = 3B38DBDF1BA76428000986DF /* Tests-macOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -605,7 +605,7 @@
 		};
 		3B00E5921BA379830011486D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B38DBDF1BA76428000986DF /* Tests-OSX.xcconfig */;
+			baseConfigurationReference = 3B38DBDF1BA76428000986DF /* Tests-macOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

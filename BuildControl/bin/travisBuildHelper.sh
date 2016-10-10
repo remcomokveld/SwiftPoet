@@ -21,7 +21,7 @@ destinationForPlatform()
 	iOS)
 		echo "platform=iOS Simulator,OS=10.0,name=iPhone 7";;
 
-	macOS|OSX)
+	macOS)
 		echo "platform=macOS";;
 
 	tvOS)
@@ -62,7 +62,7 @@ while [[ $THIS_TRY < $MAXIMUM_TRIES ]]; do
 		echo "Attempt $THIS_TRY of $MAXIMUM_TRIES..."
 	fi
 	
-	( set -o pipefail && xcodebuild -project SwiftPoet.xcodeproj -configuration Release ONLY_ACTIVE_ARCH=YES -scheme SwiftPoet -destination "$DESTINATION" -destination-timeout 300 $XCODE_ACTION 2>&1 | tee "SwiftPoet-$PLATFORM-$OPERATION.log" | xcpretty )
+	( set -o pipefail && xcodebuild -project SwiftPoet.xcodeproj -configuration Debug -scheme SwiftPoet -destination "$DESTINATION" -destination-timeout 300 $XCODE_ACTION 2>&1 | tee "SwiftPoet-$PLATFORM-$OPERATION.log" | xcpretty )
 	XCODE_RESULT="${PIPESTATUS[0]}"
 	if [[ "$XCODE_RESULT" == "0" ]]; then
 		rm "SwiftPoet-$PLATFORM-$OPERATION.log"
