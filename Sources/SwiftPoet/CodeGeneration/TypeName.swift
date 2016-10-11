@@ -171,7 +171,7 @@ extension TypeName {
     public static let DoubleType = TypeName(keyword: "Double")
     public static let AnyObjectType = TypeName(keyword: "AnyObject")
     public static let StringType = TypeName(keyword: "String")
-    public static let NSDictionary = TypeName(keyword: "NSDictionary")
+    public static let JSONDictionary = TypeName(keyword: "[String: Any]")
 
     // Optional
     public static let BooleanOptional = TypeName(keyword: "Bool", optional: true)
@@ -179,5 +179,4 @@ extension TypeName {
     public static let DoubleOptional = TypeName(keyword: "Double", optional: true)
     public static let AnyObjectOptional = TypeName(keyword: "AnyObject", optional: true)
     public static let StringOptional = TypeName(keyword: "String", optional: true)
-    public static let NSDictionaryOptional = TypeName(keyword: "NSDictionary", optional: true)
 }
