@@ -65,7 +65,7 @@ class GenerateModelFromJSON: XCTestCase {
 
     fileprivate func specialType(_ type: String) -> String {
         if type == "uuid" {
-            return "NSUUID"
+            return "UUID"
         }
         return type
     }
