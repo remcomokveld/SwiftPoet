@@ -10,13 +10,16 @@ import Foundation
 
 open class TypeName: Importable {
     open let keyword: String
+    open let attributes: [String]
     open let leftInnerType: TypeName? // for arrays or dictionaries
     open let rightInnerType: TypeName? // for dictionaries
     open let optional: Bool
     open var imports: Set<String>
 
-    public init(keyword: String, optional: Bool = false, imports: [String]? = nil) {
+    public init(keyword: String, attributes: [String] = [], optional: Bool = false, imports: [String]? = nil) {
         let trimKeyWord = keyword.trimmingCharacters(in: .whitespaces)
+
+        self.attributes = attributes
 
         if TypeName.isObject(trimKeyWord) {
             self.keyword = "Dictionary"
@@ -121,7 +124,7 @@ open class TypeName: Importable {
 extension TypeName: Equatable {}
 
 public func ==(lhs: TypeName, rhs: TypeName) -> Bool {
-    return lhs.optional == rhs.optional && lhs.keyword == rhs.keyword
+    return lhs.optional == rhs.optional && lhs.keyword == rhs.keyword && lhs.attributes == rhs.attributes
 }
 
 extension TypeName: Hashable {
@@ -143,16 +146,20 @@ extension TypeName: Emitter {
 
 extension TypeName: Literal {
     public func literalValue() -> String {
-        if keyword == "_nil" {
-            return "nil"
+        guard keyword != "_nil" else { return "nil" }
+
+        var attrStr = ""
+        if !attributes.isEmpty {
+            attrStr = attributes.map{ "@\($0)" }.joined(separator: " ") + " "
         }
+
         let optionalChar = optional ? "?" : ""
         if keyword == "Array" {
-            return "[" + leftInnerType!.literalValue() + "]" + optionalChar
+            return attrStr + "[" + leftInnerType!.literalValue() + "]" + optionalChar
         } else if keyword == "Dictionary" {
-            return "[" + leftInnerType!.literalValue() + ":" + rightInnerType!.literalValue() + "]" + optionalChar
+            return attrStr + "[" + leftInnerType!.literalValue() + ":" + rightInnerType!.literalValue() + "]" + optionalChar
         } else {
-            return keyword + optionalChar
+            return attrStr + keyword + optionalChar
         }
     }
 }
