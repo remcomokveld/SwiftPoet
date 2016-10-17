@@ -13,11 +13,22 @@ install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
 script:
+  - ./BuildControl/bin/travisBuildHelper.sh build iOS
+  - ./BuildControl/bin/travisBuildHelper.sh test iOS
   - ./BuildControl/bin/travisBuildHelper.sh build macOS
   - ./BuildControl/bin/travisBuildHelper.sh test macOS
+  - ./BuildControl/bin/travisBuildHelper.sh build tvOS
+  - ./BuildControl/bin/travisBuildHelper.sh test tvOS
+  - ./BuildControl/bin/travisBuildHelper.sh build watchOS
 
 after_failure:
+  - test -f "SwiftPoet-iOS-build.log" && tail -n 2500 "SwiftPoet-iOS-build.log"
+  - test -f "SwiftPoet-iOS-test.log" && tail -n 2500 "SwiftPoet-iOS-test.log"
+  - test -f "SwiftPoet-iOS-test.log" && LINE_BEFORE=`cat "SwiftPoet-iOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "SwiftPoet-iOS-test.log" | tail -n 1` && cat "$LOG_FILE"
   - test -f "SwiftPoet-macOS-build.log" && tail -n 2500 "SwiftPoet-macOS-build.log"
   - test -f "SwiftPoet-macOS-test.log" && tail -n 2500 "SwiftPoet-macOS-test.log"
   - test -f "SwiftPoet-macOS-test.log" && LINE_BEFORE=`cat "SwiftPoet-macOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "SwiftPoet-macOS-test.log" | tail -n 1` && cat "$LOG_FILE"
-
+  - test -f "SwiftPoet-tvOS-build.log" && tail -n 2500 "SwiftPoet-tvOS-build.log"
+  - test -f "SwiftPoet-tvOS-test.log" && tail -n 2500 "SwiftPoet-tvOS-test.log"
+  - test -f "SwiftPoet-tvOS-test.log" && LINE_BEFORE=`cat "SwiftPoet-tvOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "SwiftPoet-tvOS-test.log" | tail -n 1` && cat "$LOG_FILE"
+  - test -f "SwiftPoet-watchOS-build.log" && tail -n 2500 "SwiftPoet-watchOS-build.log"
