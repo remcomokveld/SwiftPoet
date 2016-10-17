@@ -29,26 +29,31 @@ public struct CodeBlock
         return codeWriter.emit(codeBlock: self).out
     }
     
+    @discardableResult
     public func add(codeBlock toAdd: CodeBlock) -> CodeBlock {
         codeBlockBuilder.add(codeBlock: toAdd)
         return self
     }
 
+    @discardableResult
     public func add(type: EmitType, data: Any? = nil) -> CodeBlock {
         codeBlockBuilder.add(object: EmitObject(type: type, data: data))
         return self
     }
 
+    @discardableResult
     public func add(literal toAdd: Literal) -> CodeBlock {
         codeBlockBuilder.add(literal: toAdd)
         return self
     }
     
+    @discardableResult
     public func add(codeLine toAdd: Literal) -> CodeBlock {
         codeBlockBuilder.add(type: .codeLine, data: toAdd)
         return self
     }
     
+    @discardableResult
     public func add(objects toAdd: [Either<EmitObject, CodeBlock>]) -> CodeBlock {
         codeBlockBuilder.emittableObjects.append(contentsOf: toAdd)
         return self
