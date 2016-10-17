@@ -1,0 +1,3113 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": null,
+      "symbol": "CodeBlock",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 11,
+      "symbol": "CodeBlock",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 14,
+      "symbol": "CodeBlock.emittableObjects",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 18,
+      "symbol": "CodeBlock.isEmpty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 26,
+      "symbol": "CodeBlock.toString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 31,
+      "symbol": "CodeBlock.addCodeBlock(codeBlock:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 36,
+      "symbol": "CodeBlock.addEmitObject(type:any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 41,
+      "symbol": "CodeBlock.addLiteral(any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 46,
+      "symbol": "CodeBlock.addCodeLine(any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 51,
+      "symbol": "CodeBlock.addEmitObjects(emitObjects:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 56,
+      "symbol": "CodeBlock.builder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 63,
+      "symbol": "==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 74,
+      "symbol": "CodeBlockBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 77,
+      "symbol": "CodeBlockBuilder.emittableObjects",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 81,
+      "symbol": "CodeBlockBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 90,
+      "symbol": "CodeBlockBuilder.addEmitObject(type:any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 94,
+      "symbol": "CodeBlockBuilder.addLiteral(any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 98,
+      "symbol": "CodeBlockBuilder.addCodeLine(any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 102,
+      "symbol": "CodeBlockBuilder.addEmitObjects(emitObjects:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeBlock.swift",
+      "line": 107,
+      "symbol": "CodeBlockBuilder.addCodeBlock(codeBlock:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": null,
+      "symbol": "CodeWriter",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": null,
+      "symbol": "CodeWriter",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 13,
+      "symbol": "CodeWriter",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 15,
+      "symbol": "CodeWriter.out",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 21,
+      "symbol": "CodeWriter.init(out:indentLevel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 29,
+      "symbol": "CodeWriter.indent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 33,
+      "symbol": "CodeWriter.indent(levels:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 37,
+      "symbol": "CodeWriter.unindent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 41,
+      "symbol": "CodeWriter.unindent(levels:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 63,
+      "symbol": "CodeWriter.emitFileHeader(fileName:framework:specs:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 110,
+      "symbol": "CodeWriter.emitImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 119,
+      "symbol": "CodeWriter.emitDocumentation(o:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 171,
+      "symbol": "CodeWriter.emitModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 184,
+      "symbol": "CodeWriter.emit(codeBlock:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 217,
+      "symbol": "CodeWriter.emit(type:any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 242,
+      "symbol": "CodeWriter.emitInheritance(superType:superProtocols:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 273,
+      "symbol": "CodeWriter.emitNewLine()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 281,
+      "symbol": "CodeWriter.emitWithIndentation(cb:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 286,
+      "symbol": "CodeWriter.emitWithIndentation(any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/CodeWriter.swift",
+      "line": 291,
+      "symbol": "CodeWriter.emitSpecs(specs:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 11,
+      "symbol": "ControlFlow",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 12,
+      "symbol": "ControlFlow.Guard",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 14,
+      "symbol": "ControlFlow.If",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 15,
+      "symbol": "ControlFlow.ElseIf",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 16,
+      "symbol": "ControlFlow.Else",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 17,
+      "symbol": "ControlFlow.While",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 18,
+      "symbol": "ControlFlow.RepeatWhile",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 19,
+      "symbol": "ControlFlow.ForIn",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 20,
+      "symbol": "ControlFlow.For",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 21,
+      "symbol": "ControlFlow.Switch",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 23,
+      "symbol": "ControlFlow.guardControlFlow",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 25,
+      "symbol": "ControlFlow.ifControlFlow",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 27,
+      "symbol": "ControlFlow.elseIfControlFlow",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 29,
+      "symbol": "ControlFlow.elseControlFlow",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 31,
+      "symbol": "ControlFlow.whileControlFlow",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 33,
+      "symbol": "ControlFlow.repeatWhileControlFlow(comparisonList:bodyFn:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 44,
+      "symbol": "ControlFlow.forInControlFlow(iterator:iterable:bodyFn:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 56,
+      "symbol": "ControlFlow.closureControlFlow(parameterBlock:canThrow:returnType:bodyFn:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 86,
+      "symbol": "ControlFlow.forControlFlow(iterator:iterable:execution:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 90,
+      "symbol": "ControlFlow.doCatchControlFlow(doFn:catchFn:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 106,
+      "symbol": "ControlFlow.switchControlFlow(switchValue:cases:defaultCase:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 163,
+      "symbol": "ComparisonList",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 167,
+      "symbol": "ComparisonList.init(lhs:comparator:rhs:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 174,
+      "symbol": "ComparisonList.init(list:requirement:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 181,
+      "symbol": "ComparisonList.init(list:requirement:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 186,
+      "symbol": "ComparisonList.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 206,
+      "symbol": "ComparisonListItem",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 210,
+      "symbol": "ComparisonListItem.init(comparison:requirement:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 215,
+      "symbol": "ComparisonListItem.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 223,
+      "symbol": "Comparison",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 228,
+      "symbol": "Comparison.init(lhs:comparator:rhs:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 234,
+      "symbol": "Comparison.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 245,
+      "symbol": "Comparator",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 246,
+      "symbol": "Comparator.Equals",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 247,
+      "symbol": "Comparator.NotEquals",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 248,
+      "symbol": "Comparator.LessThan",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 249,
+      "symbol": "Comparator.GreaterThan",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 250,
+      "symbol": "Comparator.LessThanOrEqualTo",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 251,
+      "symbol": "Comparator.GreaterThanOrEqualTo",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 252,
+      "symbol": "Comparator.OptionalCheck",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 255,
+      "symbol": "Requirement",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 256,
+      "symbol": "Requirement.And",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 257,
+      "symbol": "Requirement.Or",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/ControlFlow.swift",
+      "line": 258,
+      "symbol": "Requirement.OptionalList",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/EmitObject.swift",
+      "line": 11,
+      "symbol": "EmitObject",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/EmitObject.swift",
+      "line": 12,
+      "symbol": "EmitObject.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/EmitObject.swift",
+      "line": 13,
+      "symbol": "EmitObject.any",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/EmitObject.swift",
+      "line": 15,
+      "symbol": "EmitObject.init(type:any:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": null,
+      "symbol": "TypeName",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": null,
+      "symbol": "TypeName",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": null,
+      "symbol": "TypeName",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": null,
+      "symbol": "TypeName",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 11,
+      "symbol": "TypeName",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 12,
+      "symbol": "TypeName.keyword",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 13,
+      "symbol": "TypeName.leftInnerType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 14,
+      "symbol": "TypeName.rightInnerType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 15,
+      "symbol": "TypeName.optional",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 16,
+      "symbol": "TypeName.imports",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 18,
+      "symbol": "TypeName.init(keyword:optional:imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 62,
+      "symbol": "TypeName.collectImports()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 69,
+      "symbol": "TypeName.isPrimitive",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 119,
+      "symbol": "==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 130,
+      "symbol": "TypeName.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 134,
+      "symbol": "TypeName.toString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 141,
+      "symbol": "TypeName.literalValue()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 157,
+      "symbol": "TypeName.NilType",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 158,
+      "symbol": "TypeName.BooleanType",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 159,
+      "symbol": "TypeName.IntegerType",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 160,
+      "symbol": "TypeName.DoubleType",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 161,
+      "symbol": "TypeName.AnyObjectType",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 162,
+      "symbol": "TypeName.StringType",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 163,
+      "symbol": "TypeName.NSDictionary",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 166,
+      "symbol": "TypeName.BooleanOptional",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 167,
+      "symbol": "TypeName.IntegerOptional",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 168,
+      "symbol": "TypeName.DoubleOptional",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 169,
+      "symbol": "TypeName.AnyObjectOptional",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 170,
+      "symbol": "TypeName.StringOptional",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/CodeGeneration/TypeName.swift",
+      "line": 171,
+      "symbol": "TypeName.NSDictionaryOptional",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": null,
+      "symbol": "Construct",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 11,
+      "symbol": "Construct",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 12,
+      "symbol": "Construct.Param",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 13,
+      "symbol": "Construct.MutableParam",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 14,
+      "symbol": "Construct.Field",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 15,
+      "symbol": "Construct.MutableField",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 16,
+      "symbol": "Construct.Method",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 17,
+      "symbol": "Construct.Enum",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 18,
+      "symbol": "Construct.Struct",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 19,
+      "symbol": "Construct.Class",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 20,
+      "symbol": "Construct.Protocol",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 21,
+      "symbol": "Construct.TypeAlias",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 22,
+      "symbol": "Construct.Extension",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 24,
+      "symbol": "Construct.stringValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Construct.swift",
+      "line": 42,
+      "symbol": "Construct.literalValue()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 11,
+      "symbol": "EmitType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 12,
+      "symbol": "EmitType.Literal",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 13,
+      "symbol": "EmitType.IncreaseIndentation",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 14,
+      "symbol": "EmitType.DecreaseIndentation",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 15,
+      "symbol": "EmitType.BeginStatement",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 16,
+      "symbol": "EmitType.EndStatement",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 17,
+      "symbol": "EmitType.NewLine",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 18,
+      "symbol": "EmitType.CodeLine",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/EmitType.swift",
+      "line": 19,
+      "symbol": "EmitType.Emitter",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 11,
+      "symbol": "Modifier",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 12,
+      "symbol": "Modifier.Public",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 13,
+      "symbol": "Modifier.Private",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 14,
+      "symbol": "Modifier.Internal",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 16,
+      "symbol": "Modifier.Static",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 17,
+      "symbol": "Modifier.Final",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 18,
+      "symbol": "Modifier.Klass",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 20,
+      "symbol": "Modifier.Mutating",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 21,
+      "symbol": "Modifier.Throws",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 22,
+      "symbol": "Modifier.Convenience",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 23,
+      "symbol": "Modifier.Override",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 24,
+      "symbol": "Modifier.Required",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 32,
+      "symbol": "Modifier.equivalentAccessLevel(parentModifiers:childModifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Enums/Modifier.swift",
+      "line": 46,
+      "symbol": "Modifier.accessLevel(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Builder.swift",
+      "line": 11,
+      "symbol": "Builder",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Builder.swift",
+      "line": 14,
+      "symbol": "Builder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Emitter.swift",
+      "line": null,
+      "symbol": "Emitter",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Emitter.swift",
+      "line": 11,
+      "symbol": "Emitter",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Emitter.swift",
+      "line": 12,
+      "symbol": "Emitter.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Emitter.swift",
+      "line": 14,
+      "symbol": "Emitter.toString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Emitter.swift",
+      "line": 18,
+      "symbol": "Emitter.toString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Literal.swift",
+      "line": 11,
+      "symbol": "Literal",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Literal.swift",
+      "line": 12,
+      "symbol": "Literal.literalValue()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Protocols/Literal.swift",
+      "line": 17,
+      "symbol": "String.literalValue()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": null,
+      "symbol": "ClassSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 11,
+      "symbol": "ClassSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 12,
+      "symbol": "ClassSpec.fieldModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 13,
+      "symbol": "ClassSpec.methodModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 14,
+      "symbol": "ClassSpec.asMemberModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 20,
+      "symbol": "ClassSpec.builder(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 25,
+      "symbol": "ClassSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 27,
+      "symbol": "ClassSpecBuilder.defaultConstruct",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 29,
+      "symbol": "ClassSpecBuilder.init(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 33,
+      "symbol": "ClassSpecBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 41,
+      "symbol": "ClassSpecBuilder.addMethodSpecs(methodSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 46,
+      "symbol": "ClassSpecBuilder.addMethodSpec(methodSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 51,
+      "symbol": "ClassSpecBuilder.addFieldSpec(fieldSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 56,
+      "symbol": "ClassSpecBuilder.addFieldSpecs(fieldSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 61,
+      "symbol": "ClassSpecBuilder.addProtocol(protocolSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 66,
+      "symbol": "ClassSpecBuilder.addProtocols(protocolList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 71,
+      "symbol": "ClassSpecBuilder.addSuperType(superClass:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 76,
+      "symbol": "ClassSpecBuilder.addModifier(modifier:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 85,
+      "symbol": "ClassSpecBuilder.addModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 90,
+      "symbol": "ClassSpecBuilder.addDescription(description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 95,
+      "symbol": "ClassSpecBuilder.addFramework(framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 100,
+      "symbol": "ClassSpecBuilder.addImport(imprt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ClassSpec.swift",
+      "line": 105,
+      "symbol": "ClassSpecBuilder.addImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": null,
+      "symbol": "EnumSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 11,
+      "symbol": "EnumSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 12,
+      "symbol": "EnumSpec.fieldModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 13,
+      "symbol": "EnumSpec.methodModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 14,
+      "symbol": "EnumSpec.asMemberModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 20,
+      "symbol": "EnumSpec.builder(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 25,
+      "symbol": "EnumSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 27,
+      "symbol": "EnumSpecBuilder.defaultConstruct",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 33,
+      "symbol": "EnumSpecBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 41,
+      "symbol": "EnumSpecBuilder.addMethodSpecs(methodSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 46,
+      "symbol": "EnumSpecBuilder.addMethodSpec(methodSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 51,
+      "symbol": "EnumSpecBuilder.addFieldSpec(fieldSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 56,
+      "symbol": "EnumSpecBuilder.addFieldSpecs(fieldSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 61,
+      "symbol": "EnumSpecBuilder.addProtocol(protocolSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 66,
+      "symbol": "EnumSpecBuilder.addProtocols(protocolList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 71,
+      "symbol": "EnumSpecBuilder.addSuperType(superClass:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 76,
+      "symbol": "EnumSpecBuilder.addModifier(modifier:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 84,
+      "symbol": "EnumSpecBuilder.addModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 89,
+      "symbol": "EnumSpecBuilder.addDescription(description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 94,
+      "symbol": "EnumSpecBuilder.addFramework(framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 99,
+      "symbol": "EnumSpecBuilder.addImport(imprt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/EnumSpec.swift",
+      "line": 104,
+      "symbol": "EnumSpecBuilder.addImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": null,
+      "symbol": "ExtensionSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 11,
+      "symbol": "ExtensionSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 12,
+      "symbol": "ExtensionSpec.fieldModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 13,
+      "symbol": "ExtensionSpec.methodModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 14,
+      "symbol": "ExtensionSpec.asMemberModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 20,
+      "symbol": "ExtensionSpec.builder(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 25,
+      "symbol": "ExtensionSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 27,
+      "symbol": "ExtensionSpecBuilder.defaultConstruct",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 29,
+      "symbol": "ExtensionSpecBuilder.init(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 33,
+      "symbol": "ExtensionSpecBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 42,
+      "symbol": "ExtensionSpecBuilder.addMethodSpecs(methodSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 47,
+      "symbol": "ExtensionSpecBuilder.addMethodSpec(methodSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 53,
+      "symbol": "ExtensionSpecBuilder.addFieldSpec(fieldSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 58,
+      "symbol": "ExtensionSpecBuilder.addFieldSpecs(fieldSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 63,
+      "symbol": "ExtensionSpecBuilder.addProtocol(protocolSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 68,
+      "symbol": "ExtensionSpecBuilder.addProtocols(protocolList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 73,
+      "symbol": "ExtensionSpecBuilder.addSuperType(superClass:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 78,
+      "symbol": "ExtensionSpecBuilder.addModifier(m:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 86,
+      "symbol": "ExtensionSpecBuilder.addModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 91,
+      "symbol": "ExtensionSpecBuilder.addDescription(description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 96,
+      "symbol": "ExtensionSpecBuilder.addFramework(framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 101,
+      "symbol": "ExtensionSpecBuilder.addImport(imprt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ExtensionSpec.swift",
+      "line": 106,
+      "symbol": "ExtensionSpecBuilder.addImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": null,
+      "symbol": "FieldSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": null,
+      "symbol": "FieldSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": null,
+      "symbol": "FieldSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 11,
+      "symbol": "FieldSpecProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 12,
+      "symbol": "FieldSpecProtocol.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 13,
+      "symbol": "FieldSpecProtocol.initializer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 14,
+      "symbol": "FieldSpecProtocol.parentType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 15,
+      "symbol": "FieldSpecProtocol.associatedValues",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 18,
+      "symbol": "FieldSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 19,
+      "symbol": "FieldSpec.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 20,
+      "symbol": "FieldSpec.initializer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 21,
+      "symbol": "FieldSpec.parentType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 22,
+      "symbol": "FieldSpec.associatedValues",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 32,
+      "symbol": "FieldSpec.builder(name:type:construct:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 36,
+      "symbol": "FieldSpec.collectImports()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 43,
+      "symbol": "FieldSpec.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 142,
+      "symbol": "FieldSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 146,
+      "symbol": "FieldSpecBuilder.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 147,
+      "symbol": "FieldSpecBuilder.initializer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 148,
+      "symbol": "FieldSpecBuilder.parentType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 149,
+      "symbol": "FieldSpecBuilder.associatedValues",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 157,
+      "symbol": "FieldSpecBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 165,
+      "symbol": "FieldSpecBuilder.addInitializer(i:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 170,
+      "symbol": "FieldSpecBuilder.addParentType(pt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 179,
+      "symbol": "FieldSpecBuilder.addModifier(m:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 184,
+      "symbol": "FieldSpecBuilder.addModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 189,
+      "symbol": "FieldSpecBuilder.addDescription(description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 194,
+      "symbol": "FieldSpecBuilder.addFramework(framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 199,
+      "symbol": "FieldSpecBuilder.addImport(imprt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 204,
+      "symbol": "FieldSpecBuilder.addImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/FieldSpec.swift",
+      "line": 212,
+      "symbol": "FieldSpecBuilder.addAssociatedValues(associatedValues:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": null,
+      "symbol": "MethodSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": null,
+      "symbol": "MethodSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 11,
+      "symbol": "MethodSpecProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 12,
+      "symbol": "MethodSpecProtocol.typeVariables",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 13,
+      "symbol": "MethodSpecProtocol.throwsError",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 14,
+      "symbol": "MethodSpecProtocol.returnType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 15,
+      "symbol": "MethodSpecProtocol.parameters",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 16,
+      "symbol": "MethodSpecProtocol.code",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 17,
+      "symbol": "MethodSpecProtocol.parentType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 20,
+      "symbol": "MethodSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 21,
+      "symbol": "MethodSpec.typeVariables",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 22,
+      "symbol": "MethodSpec.throwsError",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 23,
+      "symbol": "MethodSpec.returnType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 24,
+      "symbol": "MethodSpec.parameters",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 25,
+      "symbol": "MethodSpec.code",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 26,
+      "symbol": "MethodSpec.parentType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 39,
+      "symbol": "MethodSpec.builder(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 43,
+      "symbol": "MethodSpec.collectImports()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 61,
+      "symbol": "MethodSpec.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 122,
+      "symbol": "MethodSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 124,
+      "symbol": "MethodSpecBuilder.defaultConstruct",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 126,
+      "symbol": "MethodSpecBuilder.typeVariables",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 127,
+      "symbol": "MethodSpecBuilder.throwsError",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 128,
+      "symbol": "MethodSpecBuilder.returnType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 129,
+      "symbol": "MethodSpecBuilder.parameters",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 130,
+      "symbol": "MethodSpecBuilder.code",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 131,
+      "symbol": "MethodSpecBuilder.parentType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 138,
+      "symbol": "MethodSpecBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 146,
+      "symbol": "MethodSpecBuilder.addTypeVariable(type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 151,
+      "symbol": "MethodSpecBuilder.addTypeVariables(types:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 156,
+      "symbol": "MethodSpecBuilder.addReturnType(type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 161,
+      "symbol": "MethodSpecBuilder.addParameter(parameter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 166,
+      "symbol": "MethodSpecBuilder.addParameters(parameters:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 171,
+      "symbol": "MethodSpecBuilder.addCode(code:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 176,
+      "symbol": "MethodSpecBuilder.addParentType(type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 181,
+      "symbol": "MethodSpecBuilder.canThrowError()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 190,
+      "symbol": "MethodSpecBuilder.addModifier(m:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 195,
+      "symbol": "MethodSpecBuilder.addModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 200,
+      "symbol": "MethodSpecBuilder.addDescription(description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 205,
+      "symbol": "MethodSpecBuilder.addFramework(framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 210,
+      "symbol": "MethodSpecBuilder.addImport(imprt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/MethodSpec.swift",
+      "line": 215,
+      "symbol": "MethodSpecBuilder.addImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": null,
+      "symbol": "ParameterSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 11,
+      "symbol": "ParameterSpecProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 12,
+      "symbol": "ParameterSpecProtocol.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 15,
+      "symbol": "ParameterSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 16,
+      "symbol": "ParameterSpec.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 23,
+      "symbol": "ParameterSpec.builder(name:type:construct:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 27,
+      "symbol": "ParameterSpec.collectImports()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 31,
+      "symbol": "ParameterSpec.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 44,
+      "symbol": "ParameterSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 46,
+      "symbol": "ParameterSpecBuilder.defaultConstruct",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 48,
+      "symbol": "ParameterSpecBuilder.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 56,
+      "symbol": "ParameterSpecBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 65,
+      "symbol": "ParameterSpecBuilder.addModifier(m:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 70,
+      "symbol": "ParameterSpecBuilder.addModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 75,
+      "symbol": "ParameterSpecBuilder.addDescription(description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 80,
+      "symbol": "ParameterSpecBuilder.addFramework(framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 85,
+      "symbol": "ParameterSpecBuilder.addImport(imprt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ParameterSpec.swift",
+      "line": 90,
+      "symbol": "ParameterSpecBuilder.addImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": null,
+      "symbol": "PoetSpec",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 11,
+      "symbol": "PoetSpecProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 12,
+      "symbol": "PoetSpecProtocol.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 13,
+      "symbol": "PoetSpecProtocol.construct",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 14,
+      "symbol": "PoetSpecProtocol.modifiers",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 15,
+      "symbol": "PoetSpecProtocol.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 16,
+      "symbol": "PoetSpecProtocol.framework",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 17,
+      "symbol": "PoetSpecProtocol.imports",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 20,
+      "symbol": "PoetSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 21,
+      "symbol": "PoetSpec.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 22,
+      "symbol": "PoetSpec.construct",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 23,
+      "symbol": "PoetSpec.modifiers",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 24,
+      "symbol": "PoetSpec.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 25,
+      "symbol": "PoetSpec.framework",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 26,
+      "symbol": "PoetSpec.imports",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 28,
+      "symbol": "PoetSpec.init(name:construct:modifiers:description:framework:imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 37,
+      "symbol": "PoetSpec.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 41,
+      "symbol": "PoetSpec.collectImports()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 45,
+      "symbol": "PoetSpec.toFile()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 52,
+      "symbol": "==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 62,
+      "symbol": "SpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 63,
+      "symbol": "SpecBuilder.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 64,
+      "symbol": "SpecBuilder.construct",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 65,
+      "symbol": "SpecBuilder.modifiers",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 66,
+      "symbol": "SpecBuilder.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 67,
+      "symbol": "SpecBuilder.framework",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 68,
+      "symbol": "SpecBuilder.imports",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/PoetSpec.swift",
+      "line": 70,
+      "symbol": "SpecBuilder.init(name:construct:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": null,
+      "symbol": "ProtocolSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 11,
+      "symbol": "ProtocolSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 12,
+      "symbol": "ProtocolSpec.fieldModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 13,
+      "symbol": "ProtocolSpec.methodModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 14,
+      "symbol": "ProtocolSpec.asMemberModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 20,
+      "symbol": "ProtocolSpec.builder(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 25,
+      "symbol": "ProtocolSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 27,
+      "symbol": "ProtocolSpecBuilder.defaultConstruct",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 29,
+      "symbol": "ProtocolSpecBuilder.init(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 33,
+      "symbol": "ProtocolSpecBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 41,
+      "symbol": "ProtocolSpecBuilder.addMethodSpecs(methodSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 46,
+      "symbol": "ProtocolSpecBuilder.addMethodSpec(methodSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 51,
+      "symbol": "ProtocolSpecBuilder.addFieldSpec(fieldSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 56,
+      "symbol": "ProtocolSpecBuilder.addFieldSpecs(fieldSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 61,
+      "symbol": "ProtocolSpecBuilder.addProtocol(protocolSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 66,
+      "symbol": "ProtocolSpecBuilder.addProtocols(protocolList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 71,
+      "symbol": "ProtocolSpecBuilder.addSuperType(superClass:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 76,
+      "symbol": "ProtocolSpecBuilder.addModifier(m:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 84,
+      "symbol": "ProtocolSpecBuilder.addModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 89,
+      "symbol": "ProtocolSpecBuilder.addDescription(description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 94,
+      "symbol": "ProtocolSpecBuilder.addFramework(framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 99,
+      "symbol": "ProtocolSpecBuilder.addImport(imprt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/ProtocolSpec.swift",
+      "line": 104,
+      "symbol": "ProtocolSpecBuilder.addImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": null,
+      "symbol": "StructSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 11,
+      "symbol": "StructSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 12,
+      "symbol": "StructSpec.fieldModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 13,
+      "symbol": "StructSpec.methodModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 14,
+      "symbol": "StructSpec.asMemberModifiers",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 20,
+      "symbol": "StructSpec.builder(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 25,
+      "symbol": "StructSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 27,
+      "symbol": "StructSpecBuilder.defaultConstruct",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 30,
+      "symbol": "StructSpecBuilder.init(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 34,
+      "symbol": "StructSpecBuilder.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 66,
+      "symbol": "StructSpecBuilder.includeDefaultInit()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 75,
+      "symbol": "StructSpecBuilder.addMethodSpecs(methodSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 80,
+      "symbol": "StructSpecBuilder.addMethodSpec(methodSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 85,
+      "symbol": "StructSpecBuilder.addFieldSpec(fieldSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 90,
+      "symbol": "StructSpecBuilder.addFieldSpecs(fieldSpecList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 95,
+      "symbol": "StructSpecBuilder.addProtocol(protocolSpec:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 100,
+      "symbol": "StructSpecBuilder.addProtocols(protocolList:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 105,
+      "symbol": "StructSpecBuilder.addSuperType(superClass:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 110,
+      "symbol": "StructSpecBuilder.addModifier(m:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 118,
+      "symbol": "StructSpecBuilder.addModifiers(modifiers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 123,
+      "symbol": "StructSpecBuilder.addDescription(description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 128,
+      "symbol": "StructSpecBuilder.addFramework(framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 133,
+      "symbol": "StructSpecBuilder.addImport(imprt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/StructSpec.swift",
+      "line": 138,
+      "symbol": "StructSpecBuilder.addImports(imports:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 11,
+      "symbol": "TypeSpecProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 18,
+      "symbol": "TypeSpecProtocol.methodSpecs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 19,
+      "symbol": "TypeSpecProtocol.fieldSpecs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 20,
+      "symbol": "TypeSpecProtocol.superType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 21,
+      "symbol": "TypeSpecProtocol.superProtocols",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 24,
+      "symbol": "TypeSpec",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 25,
+      "symbol": "TypeSpec.methodSpecs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 26,
+      "symbol": "TypeSpec.fieldSpecs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 27,
+      "symbol": "TypeSpec.superType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 28,
+      "symbol": "TypeSpec.superProtocols",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 30,
+      "symbol": "TypeSpec.init(builder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 39,
+      "symbol": "TypeSpec.collectImports()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 60,
+      "symbol": "TypeSpec.emit(codeWriter:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 95,
+      "symbol": "TypeSpecBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 96,
+      "symbol": "TypeSpecBuilder.methodSpecs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 97,
+      "symbol": "TypeSpecBuilder.fieldSpecs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 98,
+      "symbol": "TypeSpecBuilder.superProtocols",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 99,
+      "symbol": "TypeSpecBuilder.superType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Spec/TypeSpec.swift",
+      "line": 101,
+      "symbol": "TypeSpecBuilder.init(name:construct:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/SwiftPoet.swift",
+      "line": 11,
+      "symbol": "SwiftPoet",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/Either.swift",
+      "line": 11,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/Either.swift",
+      "line": 12,
+      "symbol": "Either.Left",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/Either.swift",
+      "line": 13,
+      "symbol": "Either.Right",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 12,
+      "symbol": "PoetFileProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 13,
+      "symbol": "PoetFileProtocol.fileName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 14,
+      "symbol": "PoetFileProtocol.specList",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 15,
+      "symbol": "PoetFileProtocol.fileContents",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 17,
+      "symbol": "PoetFileProtocol.append(item:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 21,
+      "symbol": "PoetFile",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 22,
+      "symbol": "PoetFile.fileName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 23,
+      "symbol": "PoetFile.specList",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 24,
+      "symbol": "PoetFile.fileContents",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 28,
+      "symbol": "PoetFile.imports",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 34,
+      "symbol": "PoetFile.init(list:framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 40,
+      "symbol": "PoetFile.init(spec:framework:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 44,
+      "symbol": "PoetFile.append(item:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetFile.swift",
+      "line": 51,
+      "symbol": "PoetFile.collectImports()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetUtil.swift",
+      "line": 11,
+      "symbol": "PoetUtil",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetUtil.swift",
+      "line": 34,
+      "symbol": "PoetUtil.cleanTypeName(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/PoetUtil.swift",
+      "line": 39,
+      "symbol": "PoetUtil.cleanCammelCaseString(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/ReservedWords.swift",
+      "line": 12,
+      "symbol": "ReservedWords",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/ReservedWords.swift",
+      "line": 28,
+      "symbol": "ReservedWords.contains(s:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/ReservedWords.swift",
+      "line": 32,
+      "symbol": "ReservedWords.safeWord(s:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet/Sources/Util/StringExtension.swift",
+      "line": 12,
+      "symbol": "String.toCodeBlock()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/emaloney/Documents/Code/CleanroomProject/SwiftPoet"
+}

@@ -532,7 +532,7 @@ else
 	BUILD_ACTION="test"
 fi
 for PLATFORM in $COMPILE_PLATFORMS; do
-	SCHEME="${SCHEME_ROOT}${PLATFORM}"
+	SCHEME="${REPO_NAME}"
 	updateStatus "Building: $SCHEME..."
 	DESTINATION=$(destinationForPlatform $PLATFORM)
 	ACTIONS=$(buildActionsForPlatform $PLATFORM $BUILD_ACTION)
