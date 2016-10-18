@@ -1,4 +1,4 @@
-![Gilt Tech logo](https://raw.githubusercontent.com/gilt/Cleanroom/swift3/Assets/gilt-tech-logo.png)
+![Gilt Tech logo](https://raw.githubusercontent.com/gilt/Cleanroom/master/Assets/gilt-tech-logo.png)
 
 # SwiftPoet Integration Notes
 
@@ -13,7 +13,7 @@ Macintosh|macOS 10.12|macOS 10.10
 Apple TV|tvOS 10.0|tvOS 9.0
 Apple Watch|watchOS 3.0|watchOS 2.0
 
-**This is the `swift3` branch of SwiftPoet.** It uses **Swift 3.0** and **requires Xcode 8** to compile.
+SwiftPoet uses **Swift 3.0** and **requires Xcode 8** to compile.
 
 ### Options for integration
 
@@ -36,12 +36,12 @@ Within to your project’s root directory, Carthage-based projects will store a 
 To integrate SwiftPoet in your workspace, you would start by adding the following line to the `Cartfile`:
 
 ```
-github "gilt/SwiftPoet" ~> 0.0.0
+github "gilt/SwiftPoet" ~> 0.2.0
 ```
 
-This specifies that Carthage use the latest version of SwiftPoet that is API-compatible with 0.0, i.e. any 0.0.*x* version.
+This specifies that Carthage use the latest version of SwiftPoet that is API-compatible with 0.2, i.e. any 0.2.*x* version.
 
-**Note:** Be sure to check the [latest releases](https://github.com/gilt/SwiftPoet/releases); there may be a newer version than 0.0 that is no longer API-compatible.
+**Note:** Be sure to check the [latest releases](https://github.com/gilt/SwiftPoet/releases); there may be a newer version than 0.2 that is no longer API-compatible.
 
 ### 2. Download SwiftPoet using Carthage
 
@@ -106,7 +106,7 @@ Select the appropriate Build Scheme for your Target, and press `⌘-B` to try to
 
 ### You're done!
 
-Once properly integrated, you can make use of [the API](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html) provided by SwiftPoet using the statement:
+Once properly integrated, you can make use of [the API](https://rawgit.com/gilt/SwiftPoet/master/Documentation/API/index.html) provided by SwiftPoet using the statement:
 
 ```swift
 import SwiftPoet
@@ -161,7 +161,7 @@ Select the appropriate Build Scheme for your Target, and press `⌘-B` to try to
 
 ### You're done!
 
-Once properly integrated, you can make use of [the API](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html) provided by SwiftPoet using the statement:
+Once properly integrated, you can make use of [the API](https://rawgit.com/gilt/SwiftPoet/master/Documentation/API/index.html) provided by SwiftPoet using the statement:
 
 ```swift
 import SwiftPoet
@@ -169,6 +169,6 @@ import SwiftPoet
 
 ## Further Reading
 
-Want to learn more about SwiftPoet? Check out [the README](https://github.com/gilt/SwiftPoet/blob/swift3/README.md) or [the API documentation](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html).
+Want to learn more about SwiftPoet? Check out [the README](https://github.com/gilt/SwiftPoet/blob/master/README.md) or [the API documentation](https://rawgit.com/gilt/SwiftPoet/master/Documentation/API/index.html).
 
 **_Happy coding!_**

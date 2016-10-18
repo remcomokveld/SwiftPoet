@@ -1,4 +1,4 @@
-![Gilt Tech logo](https://raw.githubusercontent.com/gilt/Cleanroom/swift3/Assets/gilt-tech-logo.png)
+![Gilt Tech logo](https://raw.githubusercontent.com/gilt/Cleanroom/master/Assets/gilt-tech-logo.png)
 
 # SwiftPoet
 
@@ -9,23 +9,19 @@ SwiftPoet is part of [the Cleanroom Project](https://github.com/gilt/Cleanroom) 
 
 ### Swift compatibility
 
-**Important:** This is the `swift3` branch. It uses **Swift 3.0** and **requires Xcode 8** to compile.
+This is the `master` branch. It uses **Swift 3.0** and **requires Xcode 8** to compile.
 
-This branch is still under active development. Expect breaking changes to the API, the build system and/or the project structure at any time. **Be sure to lock against a specific commit if you simultaneously require Swift 3 and stability.**
-
-If you need Swift 2.3 compatibility, use the [`master`](https://github.com/gilt/SwiftPoet) branch, which requires Xcode 8.
 
 #### Current status
 
 Branch|Build status
 --------|------------------------
 [`master`](https://github.com/gilt/SwiftPoet)|[![Build status: master branch](https://travis-ci.org/gilt/SwiftPoet.svg?branch=master)](https://travis-ci.org/gilt/SwiftPoet)
-[`swift3`](https://github.com/gilt/SwiftPoet/tree/swift3)|[![Build status: swift3 branch](https://travis-ci.org/gilt/SwiftPoet.svg?branch=swift3)](https://travis-ci.org/gilt/SwiftPoet)
 
 
 ### License
 
-SwiftPoet is distributed under [the MIT license](https://github.com/gilt/SwiftPoet/blob/swift3/LICENSE).
+SwiftPoet is distributed under [the MIT license](https://github.com/gilt/SwiftPoet/blob/master/LICENSE).
 
 SwiftPoet is provided for your use—free-of-charge—on an as-is basis. We make no guarantees, promises or apologies. *Caveat developer.*
 
@@ -39,12 +35,12 @@ The simplest way to integrate SwiftPoet is with the [Carthage](https://github.co
 First, add this line to your [`Cartfile`](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
 
 ```
-github "gilt/SwiftPoet" ~> 0.0.0
+github "gilt/SwiftPoet" ~> 0.2.0
 ```
 
 Then, use the `carthage` command to [update your dependencies](https://github.com/Carthage/Carthage#upgrading-frameworks).
 
-Finally, you’ll need to [integrate SwiftPoet into your project](https://github.com/gilt/SwiftPoet/blob/swift3/INTEGRATION.md) in order to use [the API](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html) it provides.
+Finally, you’ll need to [integrate SwiftPoet into your project](https://github.com/gilt/SwiftPoet/blob/master/INTEGRATION.md) in order to use [the API](https://rawgit.com/gilt/SwiftPoet/master/Documentation/API/index.html) it provides.
 
 Once successfully integrated, just add the following `import` statement to any Swift file where you want to use SwiftPoet:
 
@@ -52,12 +48,12 @@ Once successfully integrated, just add the following `import` statement to any S
 import SwiftPoet
 ```
 
-See [the Integration document](https://github.com/gilt/SwiftPoet/blob/swift3/INTEGRATION.md) for additional details on integrating SwiftPoet into your project.
+See [the Integration document](https://github.com/gilt/SwiftPoet/blob/master/INTEGRATION.md) for additional details on integrating SwiftPoet into your project.
 
 
 ### API documentation
 
-For detailed information on using SwiftPoet, [API documentation](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html) is available.
+For detailed information on using SwiftPoet, [API documentation](https://rawgit.com/gilt/SwiftPoet/master/Documentation/API/index.html) is available.
 
 
 ## About
@@ -80,5 +76,5 @@ If you’d like to contribute to this or any other Cleanroom Project repo, pleas
 
 ### Acknowledgements
 
-[API documentation for SwiftPoet](https://rawgit.com/gilt/SwiftPoet/swift3/Documentation/API/index.html) is generated using [Realm](http://realm.io)’s [jazzy](https://github.com/realm/jazzy/) project, maintained by [JP Simard](https://github.com/jpsim) and [Samuel E. Giddins](https://github.com/segiddins).
+[API documentation for SwiftPoet](https://rawgit.com/gilt/SwiftPoet/master/Documentation/API/index.html) is generated using [Realm](http://realm.io)’s [jazzy](https://github.com/realm/jazzy/) project, maintained by [JP Simard](https://github.com/jpsim) and [Samuel E. Giddins](https://github.com/segiddins).
 
