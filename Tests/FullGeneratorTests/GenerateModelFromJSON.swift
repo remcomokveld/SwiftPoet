@@ -12,7 +12,7 @@ import SwiftPoet
 class GenerateModelFromJSON: XCTestCase {
 
     var publicApiJSON: [String: Any]!
-    typealias JSON = [String : AnyObject]
+    typealias JSON = [String : Any]
 
     override func setUp() {
         super.setUp()

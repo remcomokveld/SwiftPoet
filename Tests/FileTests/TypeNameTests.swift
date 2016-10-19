@@ -22,7 +22,7 @@ class TypeNameTests: XCTestCase {
     }
 
     func testExample() {
-        let typeStr = "[String:AnyObject?]?"
+        let typeStr = "[String: Any?]?"
         let type = TypeName(keyword: typeStr)
 
         XCTAssertEqual(type.literalValue(), typeStr)
