@@ -10,7 +10,7 @@ import XCTest
 import SwiftPoet
 
 class GenrateEnumFromSetTest: XCTestCase {
-    var publicApiJSON: NSDictionary!
+    var publicApiJSON: [String: Any]!
     typealias JSON = [String : AnyObject]
 
     override func setUp() {
@@ -20,7 +20,7 @@ class GenrateEnumFromSetTest: XCTestCase {
             let jsonData = NSData(contentsOfFile: path) {
 
                 do {
-                    publicApiJSON = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+                    publicApiJSON = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String: Any]
                 } catch {
                     publicApiJSON = nil
                 }
