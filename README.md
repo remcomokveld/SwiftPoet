@@ -9,16 +9,14 @@ SwiftPoet is part of [the Cleanroom Project](https://github.com/gilt/Cleanroom) 
 
 ### Swift compatibility
 
-This is the `master` branch. It uses **Swift 2.3** and **requires Xcode 8** to compile.
+This is the `master` branch. It uses **Swift 3.0** and **requires Xcode 8** to compile.
 
-If you need Swift 3.0 compatibility, use the [`swift3`](https://github.com/gilt/SwiftPoet/tree/swift3) branch, which requires Xcode 8.
 
 #### Current status
 
 Branch|Build status
 --------|------------------------
 [`master`](https://github.com/gilt/SwiftPoet)|[![Build status: master branch](https://travis-ci.org/gilt/SwiftPoet.svg?branch=master)](https://travis-ci.org/gilt/SwiftPoet)
-[`swift3`](https://github.com/gilt/SwiftPoet/tree/swift3)|[![Build status: swift3 branch](https://travis-ci.org/gilt/SwiftPoet.svg?branch=swift3)](https://travis-ci.org/gilt/SwiftPoet)
 
 
 ### License
@@ -32,16 +30,25 @@ SwiftPoet is provided for your use—free-of-charge—on an as-is basis. We make
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-You’ll need to [integrate SwiftPoet into your project](https://github.com/gilt/SwiftPoet/blob/master/INTEGRATION.md) in order to use [the API](https://rawgit.com/gilt/SwiftPoet/master/Documentation/API/index.html) it provides. You can choose:
+The simplest way to integrate SwiftPoet is with the [Carthage](https://github.com/Carthage/Carthage) dependency manager.
 
-- [Manual integration](https://github.com/gilt/SwiftPoet/blob/master/INTEGRATION.md#manual-integration), wherein you embed SwiftPoet’s Xcode project within your own, **_or_**
-- [Using the Carthage dependency manager](https://github.com/gilt/SwiftPoet/blob/master/INTEGRATION.md#carthage-integration) to build a framework that you then embed in your application.
+First, add this line to your [`Cartfile`](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
 
-Once integrated, just add the following `import` statement to any Swift file where you want to use SwiftPoet:
+```
+github "gilt/SwiftPoet" ~> 0.2.0
+```
+
+Then, use the `carthage` command to [update your dependencies](https://github.com/Carthage/Carthage#upgrading-frameworks).
+
+Finally, you’ll need to [integrate SwiftPoet into your project](https://github.com/gilt/SwiftPoet/blob/master/INTEGRATION.md) in order to use [the API](https://rawgit.com/gilt/SwiftPoet/master/Documentation/API/index.html) it provides.
+
+Once successfully integrated, just add the following `import` statement to any Swift file where you want to use SwiftPoet:
 
 ```swift
 import SwiftPoet
 ```
+
+See [the Integration document](https://github.com/gilt/SwiftPoet/blob/master/INTEGRATION.md) for additional details on integrating SwiftPoet into your project.
 
 
 ### API documentation

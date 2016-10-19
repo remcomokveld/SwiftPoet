@@ -8,167 +8,172 @@
 
 import Foundation
 
-public protocol FieldSpecProtocol {
+public protocol FieldSpecType {
     var type: TypeName? { get }
     var initializer: CodeBlock? { get }
     var parentType: Construct? { get set }
     var associatedValues: [TypeName]? { get }
 }
 
-public class FieldSpec: PoetSpec, FieldSpecProtocol {
-    public let type: TypeName?
-    public let initializer: CodeBlock?
-    public var parentType: Construct?
-    public var associatedValues: [TypeName]?
+open class FieldSpec: PoetSpec, FieldSpecType {
+    open let type: TypeName?
+    open let initializer: CodeBlock?
+    open var parentType: Construct?
+    open var associatedValues: [TypeName]?
 
-    private init(b: FieldSpecBuilder) {
-        self.type = b.type
-        self.initializer = b.initializer
-        self.parentType = b.parentType
-        self.associatedValues = b.associatedValues
-        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, framework: b.framework, imports: b.imports)
+    fileprivate init(builder: FieldSpecBuilder) {
+        self.type = builder.type
+        self.initializer = builder.initializer
+        self.parentType = builder.parentType
+        self.associatedValues = builder.associatedValues
+        super.init(name: builder.name, construct: builder.construct,
+                   modifiers: builder.modifiers, description: builder.description,
+                   framework: builder.framework, imports: builder.imports)
     }
 
-    public static func builder(name: String, type: TypeName? = nil, construct: Construct? = nil) -> FieldSpecBuilder {
+    open static func builder(for name: String, type: TypeName? = nil, construct: Construct? = nil) -> FieldSpecBuilder {
         return FieldSpecBuilder(name: name, type: type, construct: construct)
     }
 
-    public override func collectImports() -> Set<String> {
+    open override func collectImports() -> Set<String> {
         guard let nestedImports = type?.collectImports() else {
             return imports
         }
         return imports.union(nestedImports)
     }
 
-    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
-        codeWriter.emitDocumentation(self)
+    @discardableResult
+    open override func emit(to writer: CodeWriter) -> CodeWriter {
+        writer.emit(documentationFor: self)
         
         guard let parentType = parentType else {
-            return codeWriter
+            return writer
         }
 
         switch parentType {
-        case .Enum where construct != .MutableParam:
-            emitEnumType(codeWriter)
-            break
-        case .Struct, .Class, .Extension:
-            emitClassType(codeWriter)
-            break
-        case .Protocol:
-            emitProtocolType(codeWriter)
-            break
+        case .enum where construct != .mutableParam:
+            emit(enumType: writer)
+
+        case .struct, .class, .extension:
+            emit(classType: writer)
+
+        case .protocol:
+            emit(protocolType: writer)
+
         default:
-            emitClassType(codeWriter)
+            emit(classType: writer)
         }
 
-        return codeWriter
+        return writer
     }
 
-    private func emitEnumType(codeWriter: CodeWriter) {
-        let cleanName = PoetUtil.cleanTypeName(name)
+    fileprivate func emit(enumType codeWriter: CodeWriter) {
+        let cleanName = name.cleaned(.typeName)
         let cbBuilder = CodeBlock.builder()
-                    .addEmitObject(.Literal, any: "case")
-                    .addEmitObject(.Literal, any: cleanName)
+                    .add(literal: "case")
+                    .add(literal: cleanName)
         
         if let associatedValues = associatedValues {
-            cbBuilder.addEmitObject(.Literal, any: "(")
-            cbBuilder.addLiteral(associatedValues.map {
+            cbBuilder.add(literal: "(")
+            cbBuilder.add(literal: associatedValues.map {
                 return $0.toString()
-            }.joinWithSeparator(","))
-           cbBuilder.addEmitObject(.Literal, any: ")")
+            }.joined(separator: ","))
+            cbBuilder.add(literal: ")")
         }
 
         if let initializer = initializer {
-            cbBuilder.addEmitObject(.Literal, any: "=")
-            cbBuilder.addEmitObjects(initializer.emittableObjects)
+            cbBuilder.add(literal: "=")
+            cbBuilder.add(objects: initializer.emittableObjects)
         }
 
-        codeWriter.emitWithIndentation(cbBuilder.build())
+        codeWriter.emit(codeBlock: cbBuilder.build(), withIndentation: true)
     }
 
-    private func emitClassType(codeWriter: CodeWriter) {
-        let cleanName = construct == .TypeAlias ? PoetUtil.cleanTypeName(name) : PoetUtil.cleanCammelCaseString(name)
-        codeWriter.emitModifiers(modifiers)
+    fileprivate func emit(classType codeWriter: CodeWriter) {
+        let cleanName = construct == .typeAlias ? name.cleaned(.typeName) : name.cleaned(.paramName)
+        codeWriter.emit(modifiers: modifiers)
         let cbBuilder = CodeBlock.builder()
-            .addEmitObject(.Literal, any: construct)
-            .addEmitObject(.Literal, any: cleanName)
+            .add(literal: construct)
+            .add(literal: cleanName)
 
         if let type = type {
-            cbBuilder.addEmitObject(.Literal, any: ":")
-            cbBuilder.addEmitObject(.Literal, any: type)
+            cbBuilder.add(literal: ":")
+            cbBuilder.add(literal: type)
         }
 
         if let initializer = initializer {
-            if construct == .MutableField {
-                cbBuilder.addEmitObject(.Literal, any: "=")
-                cbBuilder.addEmitObjects(initializer.emittableObjects)
-            } else if construct == .MutableParam {
-                cbBuilder.addEmitObject(.BeginStatement)
-                cbBuilder.addCodeBlock(initializer)
-                cbBuilder.addEmitObject(.EndStatement)
-            } else if construct == .TypeAlias && parentType != nil && parentType! == .Protocol {
-                cbBuilder.addEmitObject(.Literal, any: ":")
-                cbBuilder.addEmitObjects(initializer.emittableObjects)
-            } else if construct == .TypeAlias {
-                cbBuilder.addEmitObject(.Literal, any: "=")
-                cbBuilder.addEmitObjects(initializer.emittableObjects)
+            if construct == .mutableField {
+                cbBuilder.add(literal: "=")
+                cbBuilder.add(objects: initializer.emittableObjects)
+            } else if construct == .mutableParam {
+                cbBuilder.add(type: .beginStatement)
+                cbBuilder.add(codeBlock: initializer)
+                cbBuilder.add(type: .endStatement)
+            } else if construct == .typeAlias && parentType != nil && parentType! == .protocol {
+                cbBuilder.add(literal: ":")
+                cbBuilder.add(objects: initializer.emittableObjects)
+            } else if construct == .typeAlias {
+                cbBuilder.add(literal: "=")
+                cbBuilder.add(objects: initializer.emittableObjects)
             } else {
                 fatalError()
             }
         }
 
-        codeWriter.emit(cbBuilder.build())
+        codeWriter.emit(codeBlock: cbBuilder.build())
     }
 
-    private func emitProtocolType(codeWriter: CodeWriter) {
-        let cleanName = parentType == .Enum || construct == .TypeAlias ? PoetUtil.cleanTypeName(name) : PoetUtil.cleanCammelCaseString(name)
-        codeWriter.emitModifiers(modifiers)
+    fileprivate func emit(protocolType codeWriter: CodeWriter) {
+        let cleanName = parentType == .enum || construct == .typeAlias ? name.cleaned(.typeName) : name.cleaned(.paramName)
+        codeWriter.emit(modifiers: modifiers)
         let cbBuilder = CodeBlock.builder()
-            .addEmitObject(.Literal, any: construct)
-            .addEmitObject(.Literal, any: cleanName)
-            .addEmitObject(.Literal, any: ":")
-            .addEmitObject(.Literal, any: type)
+            .add(literal: construct)
+            .add(literal: cleanName)
+            .add(literal: ":")
+            .add(literal: type!)
 
-        if construct == .MutableField {
-            cbBuilder.addEmitObject(.Literal, any: "{get set}")
+        if construct == .mutableField {
+            cbBuilder.add(literal: "{get set}")
         } else {
-            cbBuilder.addEmitObject(.Literal, any: "{ get }")
+            cbBuilder.add(literal: "{ get }")
         }
 
-        codeWriter.emit(cbBuilder.build())
+        codeWriter.emit(codeBlock: cbBuilder.build())
     }
 }
 
-public class FieldSpecBuilder: SpecBuilder, Builder, FieldSpecProtocol {
-    private static let defaultConstruct: Construct = .Field
+open class FieldSpecBuilder: PoetSpecBuilder, Builder, FieldSpecType {
+    fileprivate static let defaultConstruct: Construct = .field
     
     public typealias Result = FieldSpec
-    public let type: TypeName?
-    public private(set) var initializer: CodeBlock? = nil
-    public var parentType: Construct?
-    public var associatedValues: [TypeName]?
 
-    private init(name: String, type: TypeName? = nil, construct: Construct? = nil) {
+    open let type: TypeName?
+    open fileprivate(set) var initializer: CodeBlock? = nil
+    open var parentType: Construct?
+    open var associatedValues: [TypeName]?
+
+    fileprivate init(name: String, type: TypeName? = nil, construct: Construct? = nil) {
         self.type = type
-        let c = construct == nil ? FieldSpecBuilder.defaultConstruct : construct!
-        super.init(name: PoetUtil.cleanCammelCaseString(name), construct: c)
+        let requiredConstruct = construct == nil ? FieldSpecBuilder.defaultConstruct : construct!
+        super.init(name: name.cleaned(.paramName), construct: requiredConstruct)
     }
 
-    public func build() -> Result {
-        return FieldSpec(b: self)
+    open func build() -> Result {
+        return FieldSpec(builder: self)
     }
-
 }
 
 // MARK: Add field specific info
 extension FieldSpecBuilder {
-    public func addInitializer(i: CodeBlock) -> Self {
-        self.initializer = i
+    @discardableResult
+    public func add(initializer toAdd: CodeBlock) -> Self {
+        self.initializer = toAdd
         return self
     }
 
-    public func addParentType(pt: Construct) -> Self {
-        self.parentType = pt
+    @discardableResult
+    public func add(parentType toAdd: Construct) -> Self {
+        self.parentType = toAdd
         return self
     }
 }
@@ -176,41 +181,48 @@ extension FieldSpecBuilder {
 // MARK: Chaining
 extension FieldSpecBuilder {
 
-    public func addModifier(m: Modifier) -> Self {
-        super.addModifier(internalModifier: m)
+    @discardableResult
+    public func add(modifier toAdd: Modifier) -> Self {
+        mutatingAdd(modifier: toAdd)
         return self
     }
 
-    public func addModifiers(modifiers: [Modifier]) -> Self {
-        super.addModifiers(internalModifiers: modifiers)
+    @discardableResult
+    public func add(modifiers toAdd: [Modifier]) -> Self {
+        toAdd.forEach { mutatingAdd(modifier: $0) }
         return self
     }
 
-    public func addDescription(description: String?) -> Self {
-        super.addDescription(internalDescription: description)
+    @discardableResult
+    public func add(description toAdd: String?) -> Self {
+        mutatingAdd(description: toAdd)
         return self
     }
 
-    public func addFramework(framework: String?) -> Self {
-        super.addFramework(internalFramework: framework)
+    @discardableResult
+    public func add(framework toAdd: String?) -> Self {
+        mutatingAdd(framework: toAdd)
         return self
     }
 
-    public func addImport(imprt: String) -> Self {
-        super.addImport(internalImport: imprt)
+    @discardableResult
+    public func add(import toAdd: String) -> Self {
+        mutatingAdd(import: toAdd)
         return self
     }
 
-    public func addImports(imports: [String]) -> Self {
-        super.addImports(internalImports: imports)
+    @discardableResult
+    public func add(imports toAdd: [String]) -> Self {
+        mutatingAdd(imports: toAdd)
         return self
     }
 }
 
 // MARK: Add enum specific info
 extension FieldSpecBuilder {
-    public func addAssociatedValues(associatedValues: [TypeName]) -> Self {
-        self.associatedValues = associatedValues
+    @discardableResult
+    public func add(associatedValues toAdd: [TypeName]) -> Self {
+        self.associatedValues = toAdd
         return self
     }
 }

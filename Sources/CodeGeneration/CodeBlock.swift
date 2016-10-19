@@ -8,48 +8,54 @@
 
 import Foundation
 
-public struct CodeBlock {
-    
-    private let _builder: CodeBlockBuilder
+public struct CodeBlock
+{
+    private let codeBlockBuilder: CodeBlockBuilder
+
     public var emittableObjects: [Either<EmitObject, CodeBlock>] {
-        return _builder.emittableObjects
+        return codeBlockBuilder.emittableObjects
     }
 
     public var isEmpty: Bool {
         return emittableObjects.isEmpty
     }
 
-    private init(builder: CodeBlockBuilder) {
-        self._builder = builder
+    fileprivate init(builder: CodeBlockBuilder) {
+        self.codeBlockBuilder = builder
     }
 
     public func toString() -> String {
         let codeWriter = CodeWriter()
-        return codeWriter.emit(self).out
+        return codeWriter.emit(codeBlock: self).out
     }
     
-    public func addCodeBlock(codeBlock: CodeBlock) -> CodeBlock {
-        _builder.addCodeBlock(codeBlock)
+    @discardableResult
+    public func add(codeBlock toAdd: CodeBlock) -> CodeBlock {
+        codeBlockBuilder.add(codeBlock: toAdd)
+        return self
+    }
+
+    @discardableResult
+    public func add(type: EmitType, data: Any? = nil) -> CodeBlock {
+        codeBlockBuilder.add(object: EmitObject(type: type, data: data))
+        return self
+    }
+
+    @discardableResult
+    public func add(literal toAdd: Literal) -> CodeBlock {
+        codeBlockBuilder.add(literal: toAdd)
         return self
     }
     
-    public func addEmitObject(type: EmitType, any: Any? = nil) -> CodeBlock {
-         _builder.addEmitObject(EmitObject(type: type, any: any))
+    @discardableResult
+    public func add(codeLine toAdd: Literal) -> CodeBlock {
+        codeBlockBuilder.add(type: .codeLine, data: toAdd)
         return self
     }
     
-    public func addLiteral(any: Literal) -> CodeBlock {
-        _builder.addEmitObject(.Literal, any: any)
-        return self
-    }
-    
-    public func addCodeLine(any: Literal) -> CodeBlock {
-        _builder.addEmitObject(.CodeLine, any: any)
-        return self
-    }
-    
-    public func addEmitObjects(emitObjects: [Either<EmitObject, CodeBlock>]) -> CodeBlock {
-        _builder.emittableObjects.appendContentsOf(emitObjects)
+    @discardableResult
+    public func add(objects toAdd: [Either<EmitObject, CodeBlock>]) -> CodeBlock {
+        codeBlockBuilder.emittableObjects.append(contentsOf: toAdd)
         return self
     }
 
@@ -71,41 +77,61 @@ extension CodeBlock: Hashable {
 }
 
 
-public class CodeBlockBuilder: Builder {
+open class CodeBlockBuilder: Builder {
     public typealias Result = CodeBlock
 
-    public private(set) var emittableObjects = [Either<EmitObject, CodeBlock>]()
+    open fileprivate(set) var emittableObjects = [Either<EmitObject, CodeBlock>]()
 
-    private init () {}
+    fileprivate init () {}
 
-    public func build() -> CodeBlock {
+    open func build()
+        -> CodeBlock
+    {
         return CodeBlock(builder: self)
     }
 
-    internal func addEmitObject(eo: EmitObject) -> CodeBlockBuilder {
-        emittableObjects.append(Either.Left(eo))
+    @discardableResult
+    internal func add(object toAdd: EmitObject)
+        -> CodeBlockBuilder
+    {
+        emittableObjects.append(Either.left(toAdd))
         return self
     }
 
-    public func addEmitObject(type: EmitType, any: Any? = nil) -> CodeBlockBuilder {
-        return self.addEmitObject(EmitObject(type: type, any: any))
+    @discardableResult
+    open func add(type: EmitType, data: Any? = nil)
+        -> CodeBlockBuilder
+    {
+        return self.add(object: EmitObject(type: type, data: data))
     }
 
-    public func addLiteral(any: Literal) -> CodeBlockBuilder {
-        return self.addEmitObject(.Literal, any: any)
+    @discardableResult
+    open func add(literal toAdd: Literal)
+        -> CodeBlockBuilder
+    {
+        return add(type: .literal, data: toAdd)
     }
 
-    public func addCodeLine(any: Literal) -> CodeBlockBuilder {
-        return self.addEmitObject(.CodeLine, any: any)
+    @discardableResult
+    open func add(codeLine toAdd: Literal)
+        -> CodeBlockBuilder
+    {
+        return add(type: .codeLine, data: toAdd)
     }
 
-    public func addEmitObjects(emitObjects: [Either<EmitObject, CodeBlock>]) -> CodeBlockBuilder {
-        emittableObjects.appendContentsOf(emitObjects)
+    @discardableResult
+    open func add(objects toAdd: [Either<EmitObject, CodeBlock>])
+        -> CodeBlockBuilder
+    {
+        emittableObjects.append(contentsOf: toAdd)
         return self
     }
 
-    public func addCodeBlock(codeBlock: CodeBlock) -> CodeBlockBuilder {
-        emittableObjects.append(Either.Right(codeBlock))
+    @discardableResult
+    open func add(codeBlock toAdd: CodeBlock)
+        -> CodeBlockBuilder
+    {
+        emittableObjects.append(Either.right(toAdd))
         return self
     }
 }

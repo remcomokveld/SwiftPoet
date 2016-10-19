@@ -13,34 +13,35 @@ public protocol MethodSpecProtocol {
     var throwsError: Bool { get }
     var returnType: TypeName? { get }
     var parameters: [ParameterSpec] { get }
-    var code: CodeBlock? { get }
+    var codeBlock: CodeBlock? { get }
     var parentType: Construct? { get set}
 }
 
-public class MethodSpec: PoetSpec, MethodSpecProtocol {
-    public let typeVariables: [TypeName]
-    public let throwsError: Bool
-    public let returnType: TypeName?
-    public let parameters: [ParameterSpec]
-    public let code: CodeBlock?
-    public var parentType: Construct?
+open class MethodSpec: PoetSpec, MethodSpecProtocol {
+    open let typeVariables: [TypeName]
+    open let throwsError: Bool
+    open let returnType: TypeName?
+    open let parameters: [ParameterSpec]
+    open let codeBlock: CodeBlock?
+    open var parentType: Construct?
 
-    private init(b: MethodSpecBuilder) {
-        self.typeVariables = b.typeVariables
-        self.throwsError = b.throwsError
-        self.returnType = b.returnType
-        self.parameters = b.parameters
-        self.code = b.code
-        self.parentType = b.parentType
+    fileprivate init(builder: MethodSpecBuilder) {
+        self.typeVariables = builder.typeVariables
+        self.throwsError = builder.throwsError
+        self.returnType = builder.returnType
+        self.parameters = builder.parameters
+        self.codeBlock = builder.codeBlock
+        self.parentType = builder.parentType
 
-        super.init(name: b.name, construct: b.construct, modifiers: b.modifiers, description: b.description, framework: b.framework, imports: b.imports)
+        super.init(name: builder.name, construct: builder.construct, modifiers: builder.modifiers,
+                   description: builder.description, framework: builder.framework, imports: builder.imports)
     }
 
-    public static func builder(name: String) -> MethodSpecBuilder {
+    open static func builder(for name: String) -> MethodSpecBuilder {
         return MethodSpecBuilder(name: name)
     }
 
-    public override func collectImports() -> Set<String> {
+    open override func collectImports() -> Set<String> {
         let nestedImports = [
             typeVariables.reduce(Set<String>()) { set, t in
                 return set.union(t.collectImports())
@@ -58,128 +59,138 @@ public class MethodSpec: PoetSpec, MethodSpecProtocol {
         }
     }
 
-    public override func emit(codeWriter: CodeWriter) -> CodeWriter {
+    @discardableResult
+    open override func emit(to writer: CodeWriter) -> CodeWriter {
         guard let parentType = parentType else {
-            emitGeneralFunction(codeWriter)
-            return codeWriter
+            emit(generalFunction: writer)
+            return writer
         }
 
         switch parentType {
-        case .Protocol:
-            emitFunctionSigniture(codeWriter)
+        case .protocol:
+            emit(functionSignature: writer)
         default:
-            emitGeneralFunction(codeWriter)
+            emit(generalFunction: writer)
         }
 
-        return codeWriter
+        return writer
     }
 
-    private func emitGeneralFunction(codeWriter: CodeWriter) {
-        emitFunctionSigniture(codeWriter)
-        codeWriter.emit(.BeginStatement)
-        if let code = code {
-            codeWriter.emit(code)
+    fileprivate func emit(generalFunction emitter: CodeWriter) {
+        emit(functionSignature: emitter)
+        emitter.emit(type: .beginStatement)
+        if let codeBlock = codeBlock {
+            emitter.emit(codeBlock: codeBlock)
         }
-        codeWriter.emit(.EndStatement)
+        emitter.emit(type: .endStatement)
     }
 
-    private func emitFunctionSigniture(codeWriter: CodeWriter) {
-        codeWriter.emitDocumentation(self)
-        codeWriter.emitModifiers(modifiers)
+    fileprivate func emit(functionSignature emitter: CodeWriter) {
+        emitter.emit(documentationFor: self)
+        emitter.emit(modifiers: modifiers)
 
         let cbBuilder = CodeBlock.builder()
         if name != "init" {
-            cbBuilder.addEmitObject(.Literal, any: construct)
+            cbBuilder.add(literal: construct)
         }
-        cbBuilder.addEmitObject(.Literal, any: name)
-        cbBuilder.addEmitObject(.Literal, any: "(")
-        codeWriter.emit(cbBuilder.build())
+        cbBuilder.add(literal: name)
+        cbBuilder.add(literal: "(")
+        emitter.emit(codeBlock: cbBuilder.build())
 
         var first = true
         parameters.forEach { p in
             if !first {
-                codeWriter.emit(.Literal, any: ", ")
+                emitter.emit(type: .literal, data: ", ")
             }
-            p.emit(codeWriter)
+            p.emit(to: emitter)
             first = false
         }
 
-        codeWriter.emit(.Literal, any: ")")
+        _ = emitter.emit(type: .literal, data: ")")
 
         if throwsError {
-            codeWriter.emit(.Literal, any: " throws")
+            emitter.emit(type: .literal, data: " throws")
         }
 
         if let returnType = returnType {
             let returnBuilder = CodeBlock.builder()
-            returnBuilder.addEmitObject(.Literal, any: " ->")
-            returnBuilder.addEmitObject(.Literal, any: returnType)
-            codeWriter.emit(returnBuilder.build())
+            returnBuilder.add(literal: " ->")
+            returnBuilder.add(literal: returnType)
+            emitter.emit(codeBlock: returnBuilder.build())
         }
     }
 }
 
-public class MethodSpecBuilder: SpecBuilder, Builder, MethodSpecProtocol {
+open class MethodSpecBuilder: PoetSpecBuilder, Builder, MethodSpecProtocol {
     public typealias Result = MethodSpec
-    public static let defaultConstruct: Construct = .Method
+    open static let defaultConstruct: Construct = .method
 
-    public private(set) var typeVariables = [TypeName]()
-    public private(set) var throwsError = false
-    public private(set) var returnType: TypeName?
-    public private(set) var parameters = [ParameterSpec]()
-    public private(set) var code: CodeBlock?
-    public var parentType: Construct?
+    open fileprivate(set) var typeVariables = [TypeName]()
+    open fileprivate(set) var throwsError = false
+    open fileprivate(set) var returnType: TypeName?
+    open fileprivate(set) var parameters = [ParameterSpec]()
+    open fileprivate(set) var codeBlock: CodeBlock?
+    open var parentType: Construct?
 
-    private init(name: String) {
-        let cleanName = name == "init" ? name : PoetUtil.cleanCammelCaseString(name) // init is a reserved word but is ok as a method name
+    fileprivate init(name: String) {
+        // init is a reserved word but is ok as a method name
+        let cleanName = name == "init" ? name : name.cleaned(.paramName)
         super.init(name: cleanName, construct: MethodSpecBuilder.defaultConstruct)
     }
 
-    public func build() -> Result {
-        return MethodSpec(b: self)
+    open func build() -> Result {
+        return MethodSpec(builder: self)
     }
 }
 
 // MARK: Add method spcific info
 extension MethodSpecBuilder {
 
-    public func addTypeVariable(type: TypeName) -> Self {
-        PoetUtil.addDataToList(type, list: &typeVariables)
+    @discardableResult
+    public func add(typeVariable toAdd: TypeName) -> Self {
+        PoetUtil.addUnique(toAdd, to: &typeVariables)
         return self
     }
 
-    public func addTypeVariables(types: [TypeName]) -> Self {
-        types.forEach { addTypeVariable($0) }
+    @discardableResult
+    public func add(typeVariables toAdd: [TypeName]) -> Self {
+        toAdd.forEach { _ = add(typeVariable: $0) }
         return self
     }
 
-    public func addReturnType(type: TypeName) -> Self {
-        returnType = type
+    @discardableResult
+    public func add(returnType toAdd: TypeName) -> Self {
+        self.returnType = toAdd
         return self
     }
 
-    public func addParameter(parameter: ParameterSpec) -> Self {
-        PoetUtil.addDataToList(parameter, list: &parameters)
+    @discardableResult
+    public func add(parameter toAdd: ParameterSpec) -> Self {
+        PoetUtil.addUnique(toAdd, to: &parameters)
         return self
     }
 
-    public func addParameters(parameters: [ParameterSpec]) -> Self {
-        parameters.forEach { addParameter($0) }
+    @discardableResult
+    public func add(parameters toAdd: [ParameterSpec]) -> Self {
+        toAdd.forEach { _ = add(parameter: $0) }
         return self
     }
 
-    public func addCode(code: CodeBlock) -> Self {
-        self.code = CodeBlock.builder().addCodeBlock(code).build()
+    @discardableResult
+    public func add(codeBlock toAdd: CodeBlock) -> Self {
+        self.codeBlock = CodeBlock.builder().add(codeBlock: toAdd).build()
         return self
     }
 
-    public func addParentType(type: Construct) -> Self {
-        parentType = type
+    @discardableResult
+    public func add(parentType toAdd: Construct) -> Self {
+        self.parentType = toAdd
         return self
     }
 
-    public func canThrowError() -> Self {
-        throwsError = true
+    @discardableResult
+    public func add(throwable toAdd: Bool) -> Self {
+        throwsError = toAdd
         return self
     }
 }
@@ -187,33 +198,39 @@ extension MethodSpecBuilder {
 // MARK: Chaining
 extension MethodSpecBuilder {
 
-    public func addModifier(m: Modifier) -> Self {
-        super.addModifier(internalModifier: m)
+    @discardableResult
+    public func add(modifier toAdd: Modifier) -> Self {
+        mutatingAdd(modifier: toAdd)
         return self
     }
 
-    public func addModifiers(modifiers: [Modifier]) -> Self {
-        super.addModifiers(internalModifiers: modifiers)
+    @discardableResult
+    public func add(modifiers toAdd: [Modifier]) -> Self {
+        toAdd.forEach { mutatingAdd(modifier: $0) }
         return self
     }
 
-    public func addDescription(description: String?) -> Self {
-        super.addDescription(internalDescription: description)
+    @discardableResult
+    public func add(description toAdd: String?) -> Self {
+        mutatingAdd(description: toAdd)
         return self
     }
 
-    public func addFramework(framework: String?) -> Self {
-        super.addFramework(internalFramework: framework)
+    @discardableResult
+    public func add(framework toAdd: String?) -> Self {
+        mutatingAdd(framework: toAdd)
         return self
     }
 
-    public func addImport(imprt: String) -> Self {
-        super.addImport(internalImport: imprt)
+    @discardableResult
+    public func add(import toAdd: String) -> Self {
+        mutatingAdd(import: toAdd)
         return self
     }
 
-    public func addImports(imports: [String]) -> Self {
-        super.addImports(internalImports: imports)
+    @discardableResult
+    public func add(imports toAdd: [String]) -> Self {
+        mutatingAdd(imports: toAdd)
         return self
     }
 }

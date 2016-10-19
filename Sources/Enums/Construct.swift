@@ -8,32 +8,32 @@
 
 import Foundation
 
-public enum Construct {
-    case Param
-    case MutableParam
-    case Field
-    case MutableField
-    case Method
-    case Enum
-    case Struct
-    case Class
-    case Protocol
-    case TypeAlias
-    case Extension
+public enum Construct: Int {
+    case param = 0
+    case mutableParam
+    case field
+    case mutableField
+    case method
+    case `enum`
+    case `struct`
+    case `class`
+    case `protocol`
+    case typeAlias
+    case `extension`
 
     public var stringValue: String {
         switch self {
-        case .Param: return ""
-        case .MutableParam: return "var"
-        case .Field: return "let"
-        case .MutableField: return "var"
-        case .Method: return "func"
-        case .Enum: return "enum"
-        case .Struct: return "struct"
-        case .Class: return "class"
-        case .Protocol: return "protocol"
-        case .TypeAlias: return "typealias"
-        case .Extension: return "extension"
+        case .param: return ""
+        case .mutableParam: return "var"
+        case .field: return "let"
+        case .mutableField: return "var"
+        case .method: return "func"
+        case .enum: return "enum"
+        case .struct: return "struct"
+        case .class: return "class"
+        case .protocol: return "protocol"
+        case .typeAlias: return "typealias"
+        case .extension: return "extension"
         }
     }
 }

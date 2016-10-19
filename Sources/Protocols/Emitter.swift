@@ -9,13 +9,8 @@
 import Foundation
 
 public protocol Emitter {
-    func emit(codeWriter: CodeWriter) -> CodeWriter
+    @discardableResult
+    func emit(to writer: CodeWriter) -> CodeWriter
 
     func toString() -> String
-}
-
-extension Emitter {
-    public func toString() -> String {
-        return self.emit(CodeWriter()).out
-    }
 }

@@ -10,10 +10,10 @@ import Foundation
 
 public struct EmitObject {
     public let type: EmitType
-    public let any: Any?
+    public let data: Any?
 
-    public init(type: EmitType, any: Any? = nil) {
+    public init(type: EmitType, data: Any? = nil) {
         self.type = type
-        self.any = any
+        self.data = data
     }
 }

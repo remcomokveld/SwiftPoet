@@ -6,9 +6,10 @@
 //
 //
 
+
 import Foundation
 
-public protocol PoetSpecProtocol {
+public protocol PoetSpecType {
     var name: String { get }
     var construct: Construct { get }
     var modifiers: Set<Modifier> { get }
@@ -17,13 +18,13 @@ public protocol PoetSpecProtocol {
     var imports: Set<String> { get }
 }
 
-public class PoetSpec: PoetSpecProtocol, Emitter, Importable {
-    public let name: String
-    public let construct: Construct
-    public let modifiers: Set<Modifier>
-    public let description: String?
-    public let framework: String?
-    public let imports: Set<String>
+open class PoetSpec: PoetSpecType, Emitter, Importable {
+    open let name: String
+    open let construct: Construct
+    open let modifiers: Set<Modifier>
+    open let description: String?
+    open let framework: String?
+    open let imports: Set<String>
 
     public init(name: String, construct: Construct, modifiers: Set<Modifier>, description: String?, framework: String?, imports: Set<String>) {
         self.name = name
@@ -34,23 +35,27 @@ public class PoetSpec: PoetSpecProtocol, Emitter, Importable {
         self.imports = imports
     }
 
-    public func emit(codeWriter: CodeWriter) -> CodeWriter {
+    open func emit(to writer: CodeWriter) -> CodeWriter {
         fatalError("Override emit method in child")
     }
 
-    public func collectImports() -> Set<String> {
+    open func collectImports() -> Set<String> {
         fatalError("Override collectImports method in child")
     }
 
-    public func toFile() -> PoetFile {
+    open func toFile() -> PoetFile {
         return PoetFile(spec: self, framework: framework)
+    }
+
+    open func toString() -> String {
+        return emit(to: CodeWriter()).out
     }
 }
 
 extension PoetSpec: Equatable {}
 
 public func ==(lhs: PoetSpec, rhs: PoetSpec) -> Bool {
-    return lhs.dynamicType == rhs.dynamicType && lhs.toString() == rhs.toString()
+    return type(of: lhs) == type(of: rhs) && lhs.toString() == rhs.toString()
 }
 
 extension PoetSpec: Hashable {
@@ -59,40 +64,40 @@ extension PoetSpec: Hashable {
     }
 }
 
-public class SpecBuilder: PoetSpecProtocol {
-    public let name: String
-    public let construct: Construct
-    public private(set) var modifiers = Set<Modifier>()
-    public private(set) var description: String? = nil
-    public private(set) var framework: String? = nil
-    public private(set) var imports = Set<String>()
+open class PoetSpecBuilder: PoetSpecType {
+    open let name: String
+    open let construct: Construct
+    open fileprivate(set) var modifiers = Set<Modifier>()
+    open fileprivate(set) var description: String? = nil
+    open fileprivate(set) var framework: String? = nil
+    open fileprivate(set) var imports = Set<String>()
 
     public init(name: String, construct: Construct) {
         self.name = name // clean the string in child
         self.construct = construct
     }
 
-    internal func addModifier(internalModifier modifier: Modifier) {
-        self.modifiers.insert(modifier)
+    internal func mutatingAdd(modifier toAdd: Modifier) {
+        modifiers.insert(toAdd)
     }
 
-    internal func addModifiers(internalModifiers modifiers: [Modifier]) {
-        modifiers.forEach { addModifier(internalModifier: $0) }
+    internal func mutatingAdd(modifiers toAdd: [Modifier]) {
+        toAdd.forEach { mutatingAdd(modifier: $0) }
     }
 
-    internal func addDescription(internalDescription description: String?) {
-        self.description = description
+    internal func mutatingAdd(description toAdd: String?) {
+        self.description = toAdd
     }
 
-    internal func addFramework(internalFramework framework: String?) {
-        self.framework = PoetUtil.fmap(PoetUtil.cleanTypeName, a: framework)
+    internal func mutatingAdd(framework toAdd: String?) {
+        self.framework = toAdd?.cleaned(.typeName)
     }
 
-    internal func addImport(internalImport imprt: String) {
-        self.imports.insert(imprt)
+    internal func mutatingAdd(import toAdd: String) {
+        self.imports.insert(toAdd)
     }
 
-    internal func addImports(internalImports imports: [String]) {
-        imports.forEach { addImport(internalImport: $0) }
+    internal func mutatingAdd(imports toAdd: [String]) {
+        toAdd.forEach { mutatingAdd(import: $0) }
     }
 }

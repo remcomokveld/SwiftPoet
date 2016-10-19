@@ -8,9 +8,8 @@
 
 import Foundation
 
-
 public struct ReservedWords {
-    private static let all: Set = [
+    fileprivate static let all: Set = [
         "class", "deinit", "enum", "extension", "func", "import", "init",
         "inout", "internal", "let", "operator", "private", "protocol", "public",
         "static", "struct", "subscript", "typealias", "var", "break", "case",
@@ -25,14 +24,14 @@ public struct ReservedWords {
         "right", "set", "Type", "unowned", "weak", "willSet"
     ]
 
-    public static func contains(s: String) -> Bool {
-        return ReservedWords.all.contains(s)
+    public static func contains(_ word: String) -> Bool {
+        return ReservedWords.all.contains(word)
     }
 
-    public static func safeWord(s: String) -> String {
-        guard ReservedWords.contains(s) == false else {
-            return "_" + s
+    public static func safeWord(_ word: String) -> String {
+        guard ReservedWords.contains(word) == false else {
+            return "_" + word
         }
-        return s
+        return word
     }
 }
