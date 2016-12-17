@@ -18,7 +18,7 @@ class GenerateModelFromJSON: XCTestCase {
         super.setUp()
         let b = Bundle(for: GenerateModelFromJSON.self)
         print(b.bundlePath)
-        print(b.resourcePath)
+        print(b.resourcePath ?? "<nil>")
 
         if let path = Bundle(for: GenerateModelFromJSON.self).path(forResource: "gilt_public_api", ofType: "json"),
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
