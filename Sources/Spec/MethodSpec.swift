@@ -90,7 +90,7 @@ open class MethodSpec: PoetSpec, MethodSpecProtocol {
         emitter.emit(modifiers: modifiers)
 
         let cbBuilder = CodeBlock.builder()
-        if name != "init" {
+        if name != "init" && name != "init?" {
             cbBuilder.add(literal: construct)
         }
         cbBuilder.add(literal: name)
