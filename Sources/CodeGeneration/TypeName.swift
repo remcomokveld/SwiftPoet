@@ -68,10 +68,6 @@ open class TypeName: Importable {
         return collectedImports
     }
 
-    open var isPrimitive: Bool {
-        return keyword != TypeName.NilType.keyword
-    }
-
     private static func isArray(_ keyword: String) -> Bool {
         var arrayMatch: NSRegularExpression?
         let range = NSRange(location: 0, length: keyword.characters.count)
@@ -137,8 +133,6 @@ extension TypeName: Emitter {
 
 extension TypeName: Literal {
     public func literalValue() -> String {
-        guard keyword != "_nil" else { return "nil" }
-
         var attrStr = ""
         if !attributes.isEmpty {
             attrStr = attributes.map{ "@\($0)" }.joined(separator: " ") + " "
@@ -156,7 +150,6 @@ extension TypeName: Literal {
 }
 
 extension TypeName {
-    public static let NilType = TypeName(keyword: "nil")
     public static let BooleanType = TypeName(keyword: "Bool")
     public static let IntegerType = TypeName(keyword: "Int")
     public static let DoubleType = TypeName(keyword: "Double")
