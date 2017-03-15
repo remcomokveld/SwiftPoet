@@ -21,12 +21,7 @@ open class TypeName: Importable {
 
         self.attributes = attributes
 
-        if TypeName.isObject(trimKeyWord) {
-            self.keyword = "Dictionary"
-            self.leftInnerType = TypeName.StringType
-            self.rightInnerType = TypeName.StringType
-            self.optional = optional
-        } else if TypeName.isDictionary(trimKeyWord) {
+        if TypeName.isDictionary(trimKeyWord) {
             let chars = trimKeyWord.characters
 
             let isOptional = TypeName.isOptional(trimKeyWord)
@@ -75,10 +70,6 @@ open class TypeName: Importable {
 
     open var isPrimitive: Bool {
         return keyword != TypeName.NilType.keyword
-    }
-
-    private static func isObject(_ keyword: String) -> Bool {
-        return keyword.lowercased() == "object"
     }
 
     private static func isArray(_ keyword: String) -> Bool {
