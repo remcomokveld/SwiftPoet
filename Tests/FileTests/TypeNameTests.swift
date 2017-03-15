@@ -27,4 +27,11 @@ class TypeNameTests: XCTestCase {
 
         XCTAssertEqual(type.literalValue(), typeStr)
     }
+
+    func testObject() {
+        let typeStr = "Object"
+        let type = TypeName(keyword: typeStr)
+
+        XCTAssertEqual(type.literalValue(), typeStr)
+    }
 }
