@@ -30,7 +30,13 @@ open class TypeName: Importable {
         let trimmedKeyWord = keyword.trimmingCharacters(in: .whitespaces)
         let nonOptionalKeyword: String
         let stringOptional: Bool
-        if TypeName.isOptional(keyword) {
+        if TypeName.isOptionalClosure(keyword) {
+            let chars = trimmedKeyWord.characters
+            let endIndex = chars.index(chars.endIndex, offsetBy: -2)
+            let startIndex = chars.index(after: chars.startIndex)
+            nonOptionalKeyword = trimmedKeyWord.substring(with: startIndex..<endIndex)
+            stringOptional = true
+        } else if TypeName.isOptional(keyword) {
             let chars = trimmedKeyWord.characters
             let endIndex = chars.index(before: chars.endIndex)
             nonOptionalKeyword = trimmedKeyWord.substring(with: chars.startIndex..<endIndex)
@@ -41,7 +47,24 @@ open class TypeName: Importable {
         }
         self.attributes = attributes
 
-        if TypeName.containsGenerics(nonOptionalKeyword) {
+        if TypeName.isClosure(nonOptionalKeyword) {
+            let chars = nonOptionalKeyword.characters
+            // find ->
+            let returnRange = nonOptionalKeyword.range(of: "->")!
+            // Find function inputs
+            let endIndex = nonOptionalKeyword.index(returnRange.lowerBound, offsetBy:-2)
+            let inputs = nonOptionalKeyword.substring(with: chars.index(after: chars.startIndex)..<endIndex)
+            // Find return type
+            let returnType = nonOptionalKeyword.substring(with: chars.index(after: returnRange.upperBound)..<chars.endIndex)
+
+            let leftInnerTypes = inputs.components(separatedBy: ",").map {
+                TypeName(keyword: $0)
+            }
+
+            self.innerTypes = leftInnerTypes + [TypeName(keyword: returnType)]
+            self.keyword = "Closure"
+
+        } else if TypeName.containsGenerics(nonOptionalKeyword) {
             let chars = nonOptionalKeyword.characters
             // find first `<`
             let leftIndex = nonOptionalKeyword.range(of: "<")!.lowerBound
@@ -117,6 +140,14 @@ open class TypeName: Importable {
         return test(pattern: "^.+\\?$", for: keyword)
     }
 
+    internal static func isClosure(_ keyword: String) -> Bool {
+        return test(pattern: "^\\(.+\\)\\s*->\\s*.+$", for: keyword)
+    }
+
+    internal static func isOptionalClosure(_ keyword: String) -> Bool {
+        return test(pattern: "^[((].+\\)\\s*->\\s*.+\\)\\?$", for: keyword)
+    }
+
     private static func test(pattern: String, for keyword: String) -> Bool {
         var match: NSRegularExpression?
         let range = NSRange(location: 0, length: keyword.characters.count)
@@ -162,6 +193,16 @@ extension TypeName: Literal {
         }
 
         let optionalChar = optional ? "?" : ""
+        if keyword == "Closure" {
+            let functionParams = innerTypes[0..<innerTypes.count - 1].map { $0.literalValue() }.joined(separator: ", ")
+            let function = "(\(functionParams)) -> \(innerTypes.last?.literalValue() ?? "Void")"
+
+            if optional {
+                return "(\(function))?"
+            } else {
+                return function
+            }
+        }
         if innerTypes.isEmpty {
             return attrStr + keyword + optionalChar
         } else {

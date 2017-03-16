@@ -72,10 +72,8 @@ class TypeNameTests: XCTestCase {
 
     func testDictionaryType() {
         let typeStr = "[String:Any]"
-
         let complexTypeStr = "[String?:Any]?"
         let typeName = TypeName(keyword: typeStr)
-
         let complexTypeName = TypeName(keyword: complexTypeStr)
 
 
@@ -92,6 +90,22 @@ class TypeNameTests: XCTestCase {
         XCTAssertTrue(complexTypeName.leftInnerType?.optional ?? false)
         XCTAssertEqual(complexTypeName.leftInnerType?.literalValue() ?? "", "String?")
         XCTAssertEqual(complexTypeName.rightInnerType?.literalValue() ?? "", "Any")
+    }
+
+    func testClosure() {
+        let typeStr = "(String, String) -> Int"
+        let optionalTypeStr = "((String, Dictionary<Int>) -> Array<String>)?"
+        let typeName = TypeName(keyword: typeStr)
+        let optionalTypeName = TypeName(keyword: optionalTypeStr)
+
+        XCTAssertEqual(typeName.literalValue(), typeStr)
+        XCTAssertNotNil(typeName.innerTypes.first)
+        XCTAssertEqual(typeName.innerTypes[1].literalValue(), "String")
+        XCTAssertEqual(typeName.keyword, "Closure")
+
+        XCTAssertEqual(optionalTypeName.literalValue(), optionalTypeStr)
+        XCTAssertNotNil(optionalTypeName.innerTypes.first)
+        XCTAssertEqual(optionalTypeName.keyword, "Closure")
     }
 
     func testRegexMatches() {
@@ -123,6 +137,12 @@ class TypeNameTests: XCTestCase {
         XCTAssertFalse(TypeName.isDictionary("String?"))
         XCTAssertFalse(TypeName.isDictionary("String?"))
         XCTAssertFalse(TypeName.isDictionary("[String:?"))
+
+        XCTAssertTrue(TypeName.isClosure("(String) -> Int"))
+        XCTAssertTrue(TypeName.isClosure("(String, String) -> Array<String>"))
+        XCTAssertFalse(TypeName.isClosure("String ->"))
+        XCTAssertTrue(TypeName.isOptionalClosure("((String, String) -> Int)?"))
+        XCTAssertFalse(TypeName.isOptionalClosure("(String, String) -> Int?"))
     }
 
 }
