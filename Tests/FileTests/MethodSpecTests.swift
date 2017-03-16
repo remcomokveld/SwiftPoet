@@ -197,5 +197,19 @@ class MethodSpecTests: XCTestCase {
         
         XCTAssertEqual(result, method.toString())
     }
+    
+    func testOptionalInit() {
+        let method = MethodSpec.builder(for: "init?")
+            .build()
+        
+        let result =
+        "init? () {\n" +
+        "}"
+        
+        //        print(result)
+        //        print(method.toString())
+        
+        XCTAssertEqual(result, method.toString())
+    }
 
 }
