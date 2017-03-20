@@ -11,58 +11,109 @@ import Foundation
 open class TypeName: Importable {
     open let keyword: String
     open let attributes: [String]
-    open let leftInnerType: TypeName? // for arrays or dictionaries
-    open let rightInnerType: TypeName? // for dictionaries
+    open let innerTypes: [TypeName]
+
+    // for arrays and dictionaries
+    open var leftInnerType: TypeName? {
+        return innerTypes.first
+    }
+
+    // for dictionaries
+    open var rightInnerType: TypeName? {
+        guard innerTypes.count > 1 else { return nil }
+        return innerTypes[1]
+    }
     open let optional: Bool
     open var imports: Set<String>
 
     public init(keyword: String, attributes: [String] = [], optional: Bool = false, imports: [String]? = nil) {
-        let trimKeyWord = keyword.trimmingCharacters(in: .whitespaces)
-
+        let trimmedKeyWord = keyword.trimmingCharacters(in: .whitespaces)
+        let nonOptionalKeyword: String
+        let stringOptional: Bool
+        if TypeName.isOptionalClosure(keyword) {
+            let chars = trimmedKeyWord.characters
+            let endIndex = chars.index(chars.endIndex, offsetBy: -2)
+            let startIndex = chars.index(after: chars.startIndex)
+            nonOptionalKeyword = trimmedKeyWord.substring(with: startIndex..<endIndex)
+            stringOptional = true
+        } else if TypeName.isOptional(keyword) {
+            let chars = trimmedKeyWord.characters
+            let endIndex = chars.index(before: chars.endIndex)
+            nonOptionalKeyword = trimmedKeyWord.substring(with: chars.startIndex..<endIndex)
+            stringOptional = true
+        } else {
+            nonOptionalKeyword = trimmedKeyWord
+            stringOptional = false
+        }
         self.attributes = attributes
 
-        if TypeName.isObject(trimKeyWord) {
-            self.keyword = "Dictionary"
-            self.leftInnerType = TypeName.StringType
-            self.rightInnerType = TypeName.StringType
-            self.optional = optional
-        } else if TypeName.isDictionary(trimKeyWord) {
-            let chars = trimKeyWord.characters
+        if TypeName.isClosure(nonOptionalKeyword) {
+            let chars = nonOptionalKeyword.characters
+            // find ->
+            let returnRange = nonOptionalKeyword.range(of: "->")!
+            // Find function inputs
+            let endIndex = nonOptionalKeyword.index(returnRange.lowerBound, offsetBy:-2)
+            let inputs = nonOptionalKeyword.substring(with: chars.index(after: chars.startIndex)..<endIndex)
+            // Find return type
+            let returnType = nonOptionalKeyword.substring(with: chars.index(after: returnRange.upperBound)..<chars.endIndex)
 
-            let isOptional = TypeName.isOptional(trimKeyWord)
-            let endIndex = isOptional ? chars.index(chars.endIndex, offsetBy: -2) : chars.index(before: chars.endIndex)
-            let splitIndex = trimKeyWord.range(of: ":")!.lowerBound//.startIndex //.rangeOfString(":")!.startIndex
+            let leftInnerTypes = inputs.components(separatedBy: ",").map {
+                TypeName(keyword: $0)
+            }
 
-            self.leftInnerType = TypeName(keyword: trimKeyWord.substring(with: chars.index(after: chars.startIndex)..<splitIndex))
-            self.rightInnerType = TypeName(keyword: trimKeyWord.substring(with: chars.index(after: splitIndex)..<endIndex))
+            self.innerTypes = leftInnerTypes + [TypeName(keyword: returnType)]
+            self.keyword = "Closure"
+
+        } else if TypeName.containsGenerics(nonOptionalKeyword) {
+            let chars = nonOptionalKeyword.characters
+            // find first `<`
+            let leftIndex = nonOptionalKeyword.range(of: "<")!.lowerBound
+            // find last `>`
+            let reverse = String(nonOptionalKeyword.characters.reversed())
+            let endIndex = reverse.range(of: ">")!.upperBound
+            let distance = reverse.distance(from:reverse.startIndex, to:endIndex)
+            let rightIndex = nonOptionalKeyword.index(nonOptionalKeyword.endIndex, offsetBy: -distance)
+
+            // find keyword before generics
+            let keywordStrRange = nonOptionalKeyword.startIndex..<leftIndex
+            let keywordStr = nonOptionalKeyword.substring(with: keywordStrRange)
+
+            // find contents of generic brackets
+            // Note: This implmentation won't support multiple generics with multiple generics
+            // i.e. Dictionary<String,Dictionary<String,String>>
+            let genericsRange = chars.index(after: leftIndex)..<rightIndex
+            let generics = nonOptionalKeyword.substring(with: genericsRange)
+
+            self.innerTypes = generics.components(separatedBy: ",").map {
+                TypeName(keyword: $0)
+            }
+            self.keyword = keywordStr.cleaned(.typeName)
+
+        } else if TypeName.isDictionary(nonOptionalKeyword) {
+            let chars = nonOptionalKeyword.characters
+            let endIndex = chars.index(before: chars.endIndex)
+            let splitIndex = nonOptionalKeyword.range(of: ":")!.lowerBound
+
+            self.innerTypes = [
+                TypeName(keyword: nonOptionalKeyword.substring(with: chars.index(after: chars.startIndex)..<splitIndex)),
+                TypeName(keyword: nonOptionalKeyword.substring(with: chars.index(after: splitIndex)..<endIndex))
+            ]
             self.keyword = "Dictionary".cleaned(.typeName)
-            self.optional = isOptional || optional
             
-        } else if TypeName.isArray(trimKeyWord) {
-            let chars = trimKeyWord.characters
-            let isOptional = TypeName.isOptional(trimKeyWord)
-            let endIndex = isOptional ? chars.index(chars.endIndex, offsetBy: -2) : chars.index(before: chars.endIndex)
+        } else if TypeName.isArray(nonOptionalKeyword) {
+            let chars = nonOptionalKeyword.characters
+            let endIndex = chars.index(before: chars.endIndex)
             let range = chars.index(after: chars.startIndex)..<endIndex
 
-            self.leftInnerType = TypeName(keyword: trimKeyWord.substring(with: range))
-            self.rightInnerType = nil
+            self.innerTypes = [TypeName(keyword: nonOptionalKeyword.substring(with: range))]
             self.keyword = "Array".cleaned(.typeName)
-            self.optional = isOptional || optional
 
-        } else if TypeName.isOptional(trimKeyWord) {
-
-            self.leftInnerType = nil
-            self.rightInnerType = nil
-            let index = trimKeyWord.characters.index(before: trimKeyWord.characters.endIndex)
-            self.keyword = trimKeyWord.substring(to: index).cleaned(.typeName)
-            self.optional = true
         } else {
-            self.leftInnerType = nil
-            self.rightInnerType = nil
-            self.keyword = trimKeyWord.cleaned(.typeName)
-            self.optional = optional
+            self.innerTypes = []
+            self.keyword = nonOptionalKeyword.cleaned(.typeName)
         }
 
+        self.optional = optional || stringOptional
         self.imports = imports?.reduce(Set<String>()) { (dict, s) in var retVal = dict; retVal.insert(s); return retVal; } ?? Set<String>()
     }
 
@@ -73,51 +124,41 @@ open class TypeName: Importable {
         return collectedImports
     }
 
-    open var isPrimitive: Bool {
-        return keyword != TypeName.NilType.keyword
+    internal static func containsGenerics(_ keyword: String) -> Bool {
+        return test(pattern: "^.*<.+>\\??$", for: keyword)
     }
 
-    private static func isObject(_ keyword: String) -> Bool {
-        return keyword.lowercased() == "object"
+    internal static func isArray(_ keyword: String) -> Bool {
+        return test(pattern: "^\\[.+\\]\\??$", for: keyword)
     }
 
-    private static func isArray(_ keyword: String) -> Bool {
-        var arrayMatch: NSRegularExpression?
+    internal static func isDictionary(_ keyword: String) -> Bool {
+        return test(pattern: "^\\[.+:.+\\]\\??$", for: keyword)
+    }
+
+    internal static func isOptional(_ keyword: String) -> Bool {
+        return test(pattern: "^.+\\?$", for: keyword)
+    }
+
+    internal static func isClosure(_ keyword: String) -> Bool {
+        return test(pattern: "^\\(.+\\)\\s*->\\s*.+$", for: keyword)
+    }
+
+    internal static func isOptionalClosure(_ keyword: String) -> Bool {
+        return test(pattern: "^[((].+\\)\\s*->\\s*.+\\)\\?$", for: keyword)
+    }
+
+    private static func test(pattern: String, for keyword: String) -> Bool {
+        var match: NSRegularExpression?
         let range = NSRange(location: 0, length: keyword.characters.count)
 
         do {
-            arrayMatch = try NSRegularExpression(pattern: "^\\[.+\\]\\??$", options: .caseInsensitive)
+            match = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         } catch {
-            arrayMatch = nil // this should never happen
+            match = nil // this should never happen
         }
 
-        return arrayMatch?.numberOfMatches(in: keyword, options: .anchored, range: range) == 1
-    }
-
-    private static func isDictionary(_ keyword: String) -> Bool {
-        var dictionaryMatch: NSRegularExpression?
-        let range = NSRange(location: 0, length: keyword.characters.count)
-
-        do {
-            dictionaryMatch = try NSRegularExpression(pattern: "^\\[.+:.+\\]\\??$", options: .caseInsensitive)
-        } catch {
-            dictionaryMatch = nil // this should never happen
-        }
-
-        return dictionaryMatch?.numberOfMatches(in: keyword, options: .anchored, range: range) == 1
-    }
-
-    private static func isOptional(_ keyword: String) -> Bool {
-        var optionalMatch: NSRegularExpression?
-        let range = NSRange(location: 0, length: keyword.characters.count)
-
-        do {
-            optionalMatch = try NSRegularExpression(pattern: "^.+\\?$", options: .caseInsensitive)
-        } catch {
-            optionalMatch = nil // this should never happen
-        }
-
-        return optionalMatch?.numberOfMatches(in: keyword, options: .anchored, range: range) == 1
+        return match?.numberOfMatches(in: keyword, options: .anchored, range: range) == 1
     }
 }
 
@@ -146,26 +187,31 @@ extension TypeName: Emitter {
 
 extension TypeName: Literal {
     public func literalValue() -> String {
-        guard keyword != "_nil" else { return "nil" }
-
         var attrStr = ""
         if !attributes.isEmpty {
             attrStr = attributes.map{ "@\($0)" }.joined(separator: " ") + " "
         }
 
         let optionalChar = optional ? "?" : ""
-        if keyword == "Array" {
-            return attrStr + "[" + leftInnerType!.literalValue() + "]" + optionalChar
-        } else if keyword == "Dictionary" {
-            return attrStr + "[" + leftInnerType!.literalValue() + ":" + rightInnerType!.literalValue() + "]" + optionalChar
-        } else {
+        if keyword == "Closure" {
+            let functionParams = innerTypes[0..<innerTypes.count - 1].map { $0.literalValue() }.joined(separator: ", ")
+            let function = "(\(functionParams)) -> \(innerTypes.last?.literalValue() ?? "Void")"
+
+            if optional {
+                return "(\(function))?"
+            } else {
+                return function
+            }
+        }
+        if innerTypes.isEmpty {
             return attrStr + keyword + optionalChar
+        } else {
+            return attrStr + keyword + "<" + innerTypes.map { $0.literalValue() }.joined(separator: ",") + ">" + optionalChar
         }
     }
 }
 
 extension TypeName {
-    public static let NilType = TypeName(keyword: "nil")
     public static let BooleanType = TypeName(keyword: "Bool")
     public static let IntegerType = TypeName(keyword: "Int")
     public static let DoubleType = TypeName(keyword: "Double")
