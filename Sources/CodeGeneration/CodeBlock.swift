@@ -99,17 +99,17 @@ open class CodeBlockBuilder: Builder {
     }
 
     @discardableResult
-    open func add(type: EmitType, data: Any? = nil)
+    open func add(type: EmitType, data: Any? = nil, trimStart: Bool = false)
         -> CodeBlockBuilder
     {
-        return self.add(object: EmitObject(type: type, data: data))
+        return self.add(object: EmitObject(type: type, data: data, trimStart: trimStart))
     }
 
     @discardableResult
-    open func add(literal toAdd: Literal)
+    open func add(literal toAdd: Literal, trimStart: Bool = false)
         -> CodeBlockBuilder
     {
-        return add(type: .literal, data: toAdd)
+        return add(type: .literal, data: toAdd, trimStart: trimStart)
     }
 
     @discardableResult
