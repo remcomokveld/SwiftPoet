@@ -11,11 +11,11 @@ import Foundation
 public struct EmitObject {
     public let type: EmitType
     public let data: Any?
-    public let trimStart: Bool;
+    public let trimString: Bool;
 
-    public init(type: EmitType, data: Any? = nil, trimStart: Bool = false) {
+    public init(type: EmitType, data: Any? = nil, trimString: Bool = false) {
         self.type = type
         self.data = data
-        self.trimStart = trimStart
+        self.trimString = trimString
     }
 }

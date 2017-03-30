@@ -60,8 +60,8 @@ public enum ControlFlow: String {
         cb.add(type: .beginStatement)
 
         closureBlock.add(literal: "(")
-        closureBlock.add(literal: parameterList, trimStart: true)
-        closureBlock.add(literal: ")", trimStart: true)
+        closureBlock.add(literal: parameterList, trimString: true)
+        closureBlock.add(literal: ")", trimString: true)
         if canThrow {
             closureBlock.add(literal: "throws")
         }

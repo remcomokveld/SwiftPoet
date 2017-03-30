@@ -244,7 +244,7 @@ extension CodeWriter {
             case .left(let emitObject):
                 switch emitObject.type {
                 case .literal:
-                    self.emit(literal: emitObject.data, first: first, trimStart: emitObject.trimStart)
+                    self.emit(literal: emitObject.data, first: first, trimString: emitObject.trimString)
 
                 case .beginStatement:
                     self.emitBeginStatement()
@@ -292,12 +292,12 @@ extension CodeWriter {
         return self
     }
 
-    fileprivate func emit(literal value: Any?, first: Bool = false, trimStart: Bool = false) {
+    fileprivate func emit(literal value: Any?, first: Bool = false, trimString: Bool = false) {
         if let _ = value as? TypeSpec {
             // Dunno
         } else if let literalType = value as? Literal {
             var lv = literalType.literalValue().characters
-            if !first && !trimStart { lv.insert(" ", at: lv.startIndex) }
+            if !first && !trimString { lv.insert(" ", at: lv.startIndex) }
             _out.append(contentsOf: lv)
         } else if let str = value as? String {
             _out.append(contentsOf: str.characters)
